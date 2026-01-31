@@ -1392,6 +1392,187 @@ html {
     to { opacity: 1; }
 }
 
+/* Enhanced Toggle Switches for Incremental Calculator */
+.efficiency-card .toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 28px;
+    margin: 0 auto;
+}
+
+.efficiency-card .toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.efficiency-card .toggle-switch .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #333;
+    border-radius: 34px;
+    transition: .4s;
+    border: 2px solid transparent;
+}
+
+.efficiency-card .toggle-switch .slider:before {
+    position: absolute;
+    content: "";
+    height: 20px;
+    width: 20px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    border-radius: 50%;
+    transition: .4s;
+}
+
+.efficiency-card .toggle-switch input:checked + .slider {
+    border-color: currentColor;
+}
+
+.efficiency-card .toggle-switch input:checked + .slider:before {
+    transform: translateX(30px);
+}
+
+/* AFK toggle specific */
+.efficiency-card .toggle-switch input#incAfk:checked + .slider {
+    background-color: #4b00ff;
+    box-shadow: 0 0 10px rgba(75, 0, 255, 0.5);
+}
+
+/* Clicking toggle specific */
+.efficiency-card .toggle-switch input#incClick:checked + .slider {
+    background-color: #ff4b4b;
+    box-shadow: 0 0 10px rgba(255, 75, 75, 0.5);
+}
+
+/* Champion toggle specific */
+.efficiency-card .toggle-switch input#incChamp:checked + .slider {
+    background-color: #00ffcc;
+    box-shadow: 0 0 10px rgba(0, 255, 204, 0.5);
+}
+
+/* 2x Stats toggle specific */
+.efficiency-card .toggle-switch input#inc2x:checked + .slider {
+    background-color: #ffcc00;
+    box-shadow: 0 0 10px rgba(255, 204, 0, 0.5);
+}
+
+/* Input styling */
+.efficiency-card input[type="text"] {
+    font-size: 14px;
+    font-weight: bold;
+    text-align: center;
+}
+
+.efficiency-card input[type="text"]::placeholder {
+    color: #666;
+    font-weight: normal;
+}
+
+/* Incremental Section Styles */
+.incremental-section {
+    margin-top: 20px;
+    padding: 25px;
+    border: 1px dashed #00ffcc;
+    border-radius: 12px;
+    background: rgba(0, 255, 204, 0.05);
+    transition: all 0.4s ease;
+}
+
+.incremental-section h3 {
+    color: #00ffcc;
+    text-shadow: 0 0 5px rgba(0, 255, 204, 0.5);
+}
+
+.incremental-section label, .incremental-section span {
+    color: #ccc !important;
+}
+
+.incremental-section input, .incremental-section select {
+    border-color: #00ffcc !important;
+    background: rgba(10, 20, 20, 0.8) !important;
+    color: #fff !important;
+}
+
+.incremental-section .result-text {
+    color: #00ffcc !important;
+    text-shadow: 0 0 8px rgba(0, 255, 204, 0.6);
+}
+
+/* AFK Mode */
+.incremental-section.afk-bg {
+    background: rgba(30, 0, 70, 0.6) !important;
+    border-left: 4px solid #4b00ff;
+}
+
+/* Clicking Mode */
+.incremental-section.clicking-bg {
+    background: rgba(70, 0, 0, 0.6) !important;
+    border-left: 4px solid #ff4b4b;
+}
+
+/* Toggle Switch Styles */
+.toggle-switch {
+    position: relative;
+    display: inline-block;
+    width: 50px;
+    height: 24px;
+}
+
+.toggle-switch input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.toggle-switch .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #444;
+    border-radius: 34px;
+    transition: .4s;
+}
+
+.toggle-switch .slider:before {
+    position: absolute;
+    content: "";
+    height: 18px;
+    width: 18px;
+    left: 3px;
+    bottom: 3px;
+    background-color: white;
+    border-radius: 50%;
+    transition: .4s;
+}
+
+.toggle-switch input:checked + .slider {
+    background-color: #3399ff;
+}
+
+.toggle-switch input:checked + .slider:before {
+    transform: translateX(26px);
+}
+
+/* Incremental Calculator Theme */
+.card[style*="border-color: #00ffcc"] {
+    transition: all 0.3s ease;
+}
+
+.card[style*="border-color: #00ffcc"] .toggle-switch input:checked + .slider {
+    background-color: #00ffcc;
+}
+
 /* Close button for zoomed card */
 .close-zoom-btn {
     position: absolute;

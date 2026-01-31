@@ -701,7 +701,11 @@ document.addEventListener('DOMContentLoaded', function() {
             initGachaCards();
         }
     }, 100);
-    
+
+    setTimeout(() => {
+        initIncrementalCalculator();
+    }, 500);
+
     // Check URL hash on page load
     if (window.location.hash) {
         const pageId = window.location.hash.substring(1);
@@ -711,7 +715,135 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 100);
         }
     }
-});
+}); 
+
+      // Incremental Calculator Functions - Updated for main theme
+function toggleIncMode(mode) {
+    const afk = s('incAfk');
+    const click = s('incClick');
+    const card = document.querySelector('.card:has(#incStatOption)'); // Find the incremental calculator card
+    
+    if (!afk || !click || !card) return;
+    
+    // Mutual exclusion
+    if (mode === 'afk') {
+        if (afk.checked) {
+            click.checked = false;
+            // Apply AFK theme
+            card.style.border = "1px solid #4b00ff";
+            card.style.borderLeft = "4px solid #4b00ff";
+            card.style.boxShadow = "0 0 20px #4b00ff80";
+            card.style.background = "rgba(30, 0, 70, 0.6)";
+        } else {
+            click.checked = true;
+        }
+    } else {
+        if (click.checked) {
+            afk.checked = false;
+            // Apply Clicking theme
+            card.style.border = "1px solid #ff4b4b";
+            card.style.borderLeft = "4px solid #ff4b4b";
+            card.style.boxShadow = "0 0 20px rgba(255, 75, 75, 0.6)";
+            card.style.background = "rgba(70, 0, 0, 0.6)";
+        } else {
+            afk.checked = true;
+        }
+    }
+    
+    // Calculate
+    calculateIncrements();
+}
+
+function calculateIncrements() {
+    // Get values
+    const statName = s('incStatOption') ? s('incStatOption').value : 'Strength';
+    const current = parseNum(s('incCurrent') ? s('incCurrent').value : '0');
+    const target = parseNum(s('incTarget') ? s('incTarget').value : '0');
+    const isAfk = s('incAfk') ? s('incAfk').checked : true;
+    const isChamp = s('incChamp') ? s('incChamp').checked : false;
+    const is2x = s('inc2x') ? s('inc2x').checked : false;
+    
+    // Get base increments per minute
+    let incPerMin = 0;
+    if (ticksPerStat[statName]) {
+        incPerMin = ticksPerStat[statName][isAfk ? "AFK" : "Clicking"];
+    }
+    
+    // Apply multipliers
+    if (isChamp) incPerMin += 15; // Champion bonus
+    if (is2x) incPerMin *= 2; // 2x multiplier
+    
+    // Calculate time
+    let minutesNeeded = 0;
+    if (target > current && incPerMin > 0) {
+        minutesNeeded = (target - current) / incPerMin;
+    }
+    
+    // Format time
+    const days = Math.floor(minutesNeeded / 1440);
+    const hours = Math.floor((minutesNeeded % 1440) / 60);
+    const mins = Math.floor(minutesNeeded % 60);
+    
+    // Update display
+    const minValue = s('incResultMinValue');
+    const timeValue = s('incResultTimeValue');
+    
+    if (minValue) {
+        minValue.textContent = incPerMin.toFixed(2);
+    }
+    
+    if (timeValue) {
+        if (target <= current) {
+            timeValue.textContent = "TARGET REACHED";
+            timeValue.style.color = "#9b5eff";
+        } else {
+            timeValue.textContent = `${days}d ${hours}h ${mins}m`;
+            timeValue.style.color = "#00ffcc";
+        }
+    }
+    
+    // Also update the full result displays
+    const fullMinDisplay = s('incResultMin');
+    const fullTimeDisplay = s('incResultTime');
+    
+    if (fullMinDisplay) {
+        fullMinDisplay.innerHTML = `Inc/Min: <span style="color: #00ffcc; text-shadow: 0 0 8px rgba(0, 255, 204, 0.7);">${incPerMin.toFixed(2)}</span>`;
+    }
+    
+    if (fullTimeDisplay) {
+        if (target <= current) {
+            fullTimeDisplay.innerHTML = `Time: <span style="color: #9b5eff; text-shadow: 0 0 8px rgba(155, 94, 255, 0.7);">TARGET REACHED</span>`;
+        } else {
+            fullTimeDisplay.innerHTML = `Time: <span style="color: #00ffcc; text-shadow: 0 0 8px rgba(0, 255, 204, 0.7);">${days}d ${hours}h ${mins}m</span>`;
+        }
+    }
+}
+
+// Initialize on page load
+function initIncrementalCalculator() {
+    console.log("Initializing incremental calculator...");
+    
+    // Set default values
+    setTimeout(() => {
+        if (s('incCurrent')) {
+            s('incCurrent').value = "1";
+        }
+        if (s('incTarget')) {
+            s('incTarget').value = "20";
+        }
+        if (s('incAfk')) {
+            s('incAfk').checked = true;
+        }
+        if (s('incClick')) {
+            s('incClick').checked = false;
+        }
+        
+        // Calculate initial values
+        calculateIncrements();
+        
+        console.log("Incremental calculator initialized");
+    }, 300);
+}
 
         // Calculator Functions
     function toggleStatsMode(mode) {
@@ -726,32 +858,170 @@ document.addEventListener('DOMContentLoaded', function() {
         calculateStats();
     }
 
-        function startBoost() {
-            const mins = parseInt(s("boostMinutes").value) || 0;
-            state.boostActive = true;
-            state.boostSecondsRemaining = mins * 60;
-            s("countdownDisplay").style.display = "block";
-            
-            if (isNaN(mins) || mins <= 0) {
-                s("boostMinutes").style.borderColor = "var(--cyber-red)";
-                setTimeout(() => s("boostMinutes").style.borderColor = "", 500);
-                return;
-            }
+       function startBoost() {
+    const mins = parseInt(s("boostMinutes").value) || 0;
+    
+    if (isNaN(mins) || mins <= 0) {
+        showToast("> ENTER VALID MINUTES", 'error');
+        s("boostMinutes").style.borderColor = "var(--cyber-red)";
+        setTimeout(() => s("boostMinutes").style.borderColor = "", 500);
+        return;
+    }
+    
+    state.boostActive = true;
+    state.boostSecondsRemaining = mins * 60;
+    s("countdownDisplay").style.display = "block";
+    
+    // Visual feedback
+    s('boost-flash').classList.add("trigger-flash");
+    setTimeout(() => s('boost-flash').classList.remove("trigger-flash"), 500);
 
-            if (state.boostInterval) clearInterval(state.boostInterval);
-            state.boostInterval = setInterval(() => {
-                state.boostSecondsRemaining--;
-                if (state.boostSecondsRemaining <= 0) {
-                    clearInterval(state.boostInterval);
-                    state.boostActive = false;
-                    s("countdownDisplay").style.display = "none";
-                    calculateStats();
-                } else {
-                    s("timerText").innerText = `${Math.floor(state.boostSecondsRemaining / 60).toString().padStart(2, '0')}:${(state.boostSecondsRemaining % 60).toString().padStart(2, '0')}`;
-                    calculateStats();
-                }
-            }, 1000);
+    if (state.boostInterval) clearInterval(state.boostInterval);
+    state.boostInterval = setInterval(() => {
+        state.boostSecondsRemaining--;
+        if (state.boostSecondsRemaining <= 0) {
+            clearInterval(state.boostInterval);
+            state.boostActive = false;
+            s("countdownDisplay").style.display = "none";
+            calculateStats();
+            showToast("> BOOST ENDED", 'info');
+        } else {
+            s("timerText").innerText = 
+                `${Math.floor(state.boostSecondsRemaining / 60).toString().padStart(2, '0')}:${(state.boostSecondsRemaining % 60).toString().padStart(2, '0')}`;
+            calculateStats();
         }
+    }, 1000);
+    
+    showToast(`> ${mins} MINUTE BOOST ACTIVATED (x1.5)`, 'success');
+}
+
+        // Incremental Calculator Functions
+function toggleIncMode(mode) {
+    const afk = s('incAfk');
+    const click = s('incClick');
+    
+    if (!afk || !click) {
+        console.error("Incremental calculator elements not found");
+        return;
+    }
+    
+    // Debug log
+    console.log(`toggleIncMode called: ${mode}`);
+    console.log(`AFK before: ${afk.checked}, Click before: ${click.checked}`);
+    
+    // Mutual exclusion
+    if (mode === 'afk') {
+        click.checked = !afk.checked;
+    } else {
+        afk.checked = !click.checked;
+    }
+    
+    console.log(`AFK after: ${afk.checked}, Click after: ${click.checked}`);
+    
+    // Calculate immediately
+    calculateIncrements();
+}
+
+function calculateNPCKills() {
+    // Get values
+    const currentKills = parseNum(s('currentKills') ? s('currentKills').value : '0');
+    const wantedKills = parseNum(s('wantedKills') ? s('wantedKills').value : '0');
+    
+    // Get NPC amount
+    let npcAmount = 4; // Default to match first image
+    const npcAmountInput = s('npcAmount');
+    if (npcAmountInput && npcAmountInput.value) {
+        const value = npcAmountInput.value.trim();
+        
+        // Handle both regular numbers and suffixes like "K", "M"
+        if (value.toLowerCase().includes('k')) {
+            npcAmount = parseFloat(value) * 1000;
+        } else if (value.toLowerCase().includes('m')) {
+            npcAmount = parseFloat(value) * 1000000;
+        } else {
+            // Extract number from string (handles "4", "2.5", etc.)
+            const match = value.match(/(\d+\.?\d*)/);
+            if (match) {
+                npcAmount = parseFloat(match[1]);
+            }
+        }
+    }
+    
+    console.log("NPC Calculator Inputs:", { currentKills, wantedKills, npcAmount });
+    
+    // FIRST IMAGE LOGIC (CORRECTED):
+    // 4 NPCs = 80 kills/min in first image
+    // So base rate: 20 kills/min per NPC
+    // Time per kill: 60 seconds / 20 kills = 3 seconds per kill
+    
+    const killsPerMinutePerNPC = 20; // Each NPC gives 20 kills/min
+    const killsPerMinute = npcAmount * killsPerMinutePerNPC;
+    
+    console.log("Calculated:", npcAmount, "NPCs ×", killsPerMinutePerNPC, "kills/min per NPC =", killsPerMinute, "kills/min");
+    
+    // Calculate kills remaining
+    const killsRemaining = Math.max(0, wantedKills - currentKills);
+    
+    // Calculate time needed in minutes
+    let minutesNeeded = killsRemaining / killsPerMinute;
+    
+    // Format time display
+    const days = Math.floor(minutesNeeded / 1440);
+    const hours = Math.floor((minutesNeeded % 1440) / 60);
+    const minutes = Math.floor(minutesNeeded % 60);
+    const seconds = Math.floor((minutesNeeded * 60) % 60);
+    
+    // Update display
+    const killsPerMinDisplay = s('killsPerMin');
+    const killsRemainingDisplay = s('killsRemaining');
+    const timeNeededDisplay = s('npcTimeNeeded');
+    
+    if (killsPerMinDisplay) {
+        killsPerMinDisplay.textContent = killsPerMinute.toFixed(2);
+    }
+    
+    if (killsRemainingDisplay) {
+        killsRemainingDisplay.textContent = formatNum(killsRemaining);
+    }
+    
+    if (timeNeededDisplay) {
+        if (killsRemaining <= 0) {
+            timeNeededDisplay.textContent = "TARGET REACHED";
+            timeNeededDisplay.style.color = "#00ffcc";
+        } else if (minutesNeeded > 1000000) { // Very long time
+            timeNeededDisplay.textContent = "WAY TOO LONG";
+            timeNeededDisplay.style.color = "#ff4b4b";
+        } else {
+            timeNeededDisplay.textContent = `${days}d ${hours}h ${minutes}m ${seconds}s`;
+            timeNeededDisplay.style.color = "#ff4b4b";
+        }
+    }
+    
+    // Add visual feedback for very long times
+    const npcCard = document.querySelector('.card:has(#currentKills)');
+    if (npcCard && minutesNeeded > 1000000) {
+        npcCard.classList.add('overheat-shake');
+        npcCard.style.boxShadow = "0 0 40px #ff2200";
+    } else if (npcCard) {
+        npcCard.classList.remove('overheat-shake');
+        npcCard.style.boxShadow = "0 0 20px rgba(255, 75, 75, 0.6)";
+    }
+}
+
+// Initialize with correct values
+function initNPCCalculator() {
+    setTimeout(() => {
+        // Set default values to match first image
+        if (s('currentKills')) s('currentKills').value = "20";
+        if (s('wantedKills')) s('wantedKills').value = "5000";
+        if (s('npcAmount')) s('npcAmount').value = "4";
+        
+        // Calculate initial values
+        calculateNPCKills();
+        
+        console.log("NPC Kills Calculator initialized");
+    }, 500);
+}
 
         function calculateStats() {
             const statName = s("statOption").value;
