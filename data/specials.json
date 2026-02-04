@@ -1,0 +1,230 @@
+{
+  "bloodlines": [
+    {
+      "name": "SHARINGAN",
+      "abilities": [
+        "Z - No Damage, Stuns Players for 5 seconds",
+        "X - Based on the move you copy",
+        "C - Dodge"
+      ]
+    },
+    {
+      "name": "BYAKUGAN",
+      "abilities": [
+        "Z - Chakra, 40x Multiplier",
+        "X - Strength, 25x Multiplier/7 Ticks",
+        "C - Strength, 24x Multiplier/10 Ticks"
+      ]
+    },
+    {
+      "name": "ITACHI'S MANGEKYO SHARINGAN",
+      "abilities": [
+        "Z - NAN (Can't use it for some reason)",
+        "X - No Damage, Stuns Players for 5 Seconds",
+        "C - Sword, 40x Multiplier/2 Ticks"
+      ]
+    },
+    {
+      "name": "RINNEGAN",
+      "abilities": [
+        "Z - No Damage, Pulls towards user",
+        "X - Strength, 10x Multiplier",
+        "C - Chakra, 55x Multiplier"
+      ]
+    }
+  ],
+  "quirks": [
+    {
+      "name": "BELLY LASER",
+      "abilities": [
+        "Z - Chakra, 10x Multiplier",
+        "X - No Damage? Desc says it does damage but can't get it to deal any",
+        "C - Chakra, 25x Multiplier"
+      ]
+    },
+    {
+      "name": "BLUE INFERNO",
+      "abilities": [
+        "Z - Chakra, 8x Multiplier/5 Ticks",
+        "X - Chakra, 4x Multiplier/5 Ticks",
+        "C - Chakra, 8x Multiplier/5 Ticks"
+      ]
+    },
+    {
+      "name": "FROSTFIRE RIFT",
+      "abilities": [
+        "Z - Chakra, 40x Multiplier",
+        "X - Chakra, 12x Multiplier/4 Ticks",
+        "C - Chakra, 15x Multiplier/6 Ticks, Stuns Players"
+      ]
+    },
+    {
+      "name": "BIO-RECONSTRUCT / OVERHAUL",
+      "abilities": [
+        "Z - Strength, 30x Multiplier",
+        "X - Strength, 35x Multiplier",
+        "C - Strength, 40x Multiplier, Holds Players in Place"
+      ]
+    },
+    {
+      "name": "UNITY DRIVE / ONE FOR ALL",
+      "abilities": [
+        "Z - Strength, 30x Multiplier",
+        "X - Strength, 35x Multiplier",
+        "C - Strength, 40x Multiplier"
+      ]
+    },
+    {
+      "name": "HELL FLAME / ENDEAVOR QUIRK",
+      "abilities": [
+        "Z - Chakra, 25x Multiplier",
+        "X - Chakra, 35x Multiplier",
+        "C - Chakra, 55x Multiplier"
+      ]
+    }
+  ],
+  "grimoires": [
+    {
+      "name": "WATER GRIMOIRE / NOELLE GRIMOIRE",
+      "abilities": [
+        "Z - Chakra, 25x Multiplier",
+        "X - Chakra, 50x Multiplier",
+        "C - Chakra, 75x Multiplier"
+      ]
+    },
+    {
+      "name": "WIND GRIMOIRE / YUNO GRIMOIRE",
+      "abilities": [
+        "Z - Strength, 25x Multiplier",
+        "X - Strength, 35x Multiplier",
+        "C - Strength, 40x Multiplier"
+      ]
+    },
+    {
+      "name": "DEMON GRIMOIRE / ASTA GRIMOIRE",
+      "abilities": [
+        "Z - Strength, 20x Multiplier, Blocks Other Player Grimoire Damage",
+        "X - Strength, 30x Multiplier",
+        "C - Strength, 35x Multiplier, Reflects Other Player Grimoire Damage Back"
+      ]
+    },
+    {
+      "name": "TREE GRIMOIRE / VANGEANCE GRIMOIRE",
+      "abilities": [
+        "Z - Chakra, 15x Multiplier",
+        "X - No Damage, Holds Players in place",
+        "C - Chakra, 25x Multiplier"
+      ]
+    }
+  ],
+  "stands": [
+    {
+      "name": "THE ARM",
+      "abilities": [
+        "Z - Strength, 2x Multiplier/15 Ticks",
+        "X - Strength, 8x Multiplier",
+        "C - No Damage, Pulls players towards you",
+        "V - Chakra, 15x Multiplier"
+      ]
+    },
+    {
+      "name": "HIEROPHANT LIME",
+      "abilities": [
+        "Z - Strength, 2x Multiplier/15 Ticks",
+        "X - Strength, 9x Multiplier",
+        "C - Chakra, 8x Multiplier/10 Ticks",
+        "V - Chakra, 10x Multiplier/3 Ticks"
+      ]
+    },
+    {
+      "name": "MAGICIAN'S CRIMSON",
+      "abilities": [
+        "Z - Strength, 3x Multiplier/15 Ticks",
+        "X - Strength, 8x Multiplier",
+        "C - Chakra, 8x Multiplier/4 Ticks",
+        "V - Chakra, 10x Multiplier/4 Ticks"
+      ]
+    },
+    {
+      "name": "PURPLE SMOG",
+      "abilities": [
+        "Z - Strength, 2x Multiplier/15 Ticks",
+        "X - Strength, 10x Multiplier",
+        "C - Chakra, 5x Multiplier/5 Ticks",
+        "V - Chakra, 7x Multiplier/8 Ticks"
+      ]
+    },
+    {
+      "name": "KILLER KING",
+      "abilities": [
+        "Z - Strength, 3x Multiplier/15 Ticks",
+        "X - Strength, 12x Multiplier",
+        "C - Chakra, 35x Multiplier",
+        "V - Chakra, 30x Multiplier"
+      ]
+    },
+    {
+      "name": "CELESTIAL DIAMOND",
+      "abilities": [
+        "Z - Strength, 4x Multiplier/15 Ticks",
+        "X - Strength, 15x Multiplier",
+        "C - Chakra, 35x Multiplier",
+        "V - No Damage, Stuns Players"
+      ]
+    },
+    {
+      "name": "TIME CRUSADER / JOTARO'S STAND",
+      "abilities": [
+        "Z - Strength, 4x Multiplier/15 Ticks",
+        "X - Strength, 15x Multiplier",
+        "C - Chakra, 40x Multiplier",
+        "V - No Damage, Stuns Players"
+      ]
+    },
+    {
+      "name": "GUARDIAN'S ARM / DIO STAND",
+      "abilities": [
+        "Z - Strength, 4x Multiplier/15 Ticks",
+        "X - Strength, 25x Multiplier",
+        "C - Chakra, 5x Multiplier/15 Ticks",
+        "V - Chakra, 60x Multiplier"
+      ]
+    },
+    {
+      "name": "CRAFTED IN HEAVEN",
+      "abilities": [
+        "Z - Strength, 5x Multiplier/15 Ticks",
+        "X - Strength, 30x Multiplier",
+        "C - Chakra, 70x Multiplier, Teleports to every entity nearby and hits them",
+        "V - Chakra, 85x Multiplier"
+      ]
+    }
+  ],
+  "kagunes": [
+    {
+      "name": "EYE PATCH / KANEKI KAGUNE",
+      "abilities": [
+        "Z - Chakra, 20x Multiplier",
+        "X - Chakra, 5x Multiplier/8 Ticks"
+      ]
+    },
+    {
+      "name": "JASON / JASON KAGUNE",
+      "abilities": ["Z - Chakra, 35x Multiplier", "X - Chakra, 45x Multiplier"]
+    },
+    {
+      "name": "CENTIPEDE / KANEKI KAKUJA",
+      "abilities": [
+        "Z - Chakra, 6x Multiplier/10 Ticks",
+        "X - Chakra, 55x Multiplier"
+      ]
+    },
+    {
+      "name": "ONE EYE / ETO'S KAGUNE",
+      "abilities": [
+        "Z - Chakra, 5x Multiplier/20 Ticks",
+        "X - Chakra, 65x Multiplier"
+      ]
+    }
+  ]
+}

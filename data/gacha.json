@@ -1,0 +1,130 @@
+{
+	"location": [
+		{
+			"heading": "SOUL UNDER & UPPER",
+			"description": "You may go to this area near thousand sunny ship. Go down there's a cave underground. Behind of Kurama. That's where is the Soul Shop.",
+			"images": [
+				{
+					"caption": "Under",
+					"path": "/412efe5f-21e2-43e1-9a34-9466289be5b7.png"
+				},
+				{
+					"caption": "Upper",
+					"path": "/0ac55480-8def-4945-b0c7-809d8a817a65.png"
+				}
+			]
+		},
+		{
+			"heading": "HERO",
+			"description": "Located in the Gym area.",
+			"images": [
+				{
+					"caption": "",
+					"path": "c9305a6d-207a-439c-ad0e-8bad50bf3f97.png"
+				}
+			]
+		},
+		{
+			"heading": "JUTSU",
+			"description": "Found in the Ramen Shop area. Near 5T Chakra.",
+			"images": [
+				{
+					"caption": "",
+					"path": "7a7b18c6-5d9d-41e0-ac43-00177179e0b5.png"
+				}
+			]
+		},
+		{
+			"heading": "NEN",
+			"description": "Nen gacha location is nearby Meteor 1M Strength.",
+			"images": [
+				{
+					"caption": "",
+					"path": "b1c5616c-9395-4da7-a07b-f3e9ff6a04d9.png"
+				}
+			]
+		},
+		{
+			"heading": "NICHIRIN",
+			"description": "Nichirin gacha nearby Arena 100M Strength.",
+			"images": [
+				{
+					"caption": "",
+					"path": "c0e84849-4d38-43ca-b880-a9ccbf15b6e5.png"
+				}
+			]
+		},
+		{
+			"heading": "SAIYAN",
+			"description": "Located on Lookout Island. Near 10M Strength.",
+			"images": [
+				{
+					"caption": "",
+					"path": "2dbe3526-e337-4275-9fd1-ae2c2928b04c.png"
+				}
+			]
+		}
+	],
+	"tokens": [
+		{
+			"heading": "BUU - SAIYAN TOKEN",
+			"description": "1Qd HP Buu tokens can be used on Saiyan Gacha. Nearby 50Qd Boulder Strength.",
+			"images": [
+				{
+					"caption": "",
+					"path": "0e4998e3-0099-459c-a575-3206c8366ad5.png"
+				}
+			]
+		},
+		{
+			"heading": "GON - NEN TOKEN",
+			"description": "1M HP Gon tokens can be used on Nen Gacha. Nearby 1M Meteor.",
+			"images": [
+				{
+					"caption": "",
+					"path": "56be4af0-b646-46c3-9526-f91f67baa5b0.png"
+				}
+			]
+		},
+		{
+			"heading": "ICHIGO - SOUL TOKEN",
+			"description": "1B HP Ichigo tokens can be used on Soul Gacha. Nearby Thousand Sunny.",
+			"images": [
+				{
+					"caption": "",
+					"path": "d4e5d8c8-dfc9-42a0-a855-02e51acca76a.png"
+				}
+			]
+		},
+		{
+			"heading": "RENGOKU - NICHIRIN TOKEN",
+			"description": "1T HP Rengoku tokens can be used on Nichirin Gacha. Nearby Dark Palace 1SX Durability.",
+			"images": [
+				{
+					"caption": "",
+					"path": "445c2ec8-ffa5-4f83-92a0-a385d5b22b4d.png"
+				}
+			]
+		},
+		{
+			"heading": "SAITAMA - HERO TOKEN",
+			"description": "1QN HP Saitama tokens can be used on Hero Gacha. Nearby GYM.",
+			"images": [
+				{
+					"caption": "",
+					"path": "744a189c-6324-4678-8fc5-203f62367503.png"
+				}
+			]
+		},
+		{
+			"heading": "SAKURA - JUTSU TOKEN",
+			"description": "1K HP Sakura tokens can be used on Jutsu Gacha. Nearby Ramen 5T.",
+			"images": [
+				{
+					"caption": "",
+					"path": "3ba67931-93cf-4a96-9eee-fb07e3a95d25.png"
+				}
+			]
+		}
+	]
+}
