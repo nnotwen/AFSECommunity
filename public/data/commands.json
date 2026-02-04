@@ -1,0 +1,26 @@
+{
+	"player-management": {
+		"label": "Player Management",
+		"commands": [
+			"/kick <name> - Kicks a specific player from the server",
+			"/kick all - Kicks all players except you",
+			"/ban <name> - Bans a specific player and kicks them",
+			"/ban all - Bans all players except you and kicks them",
+			"/unban <name> - Removes ban from a specific player",
+			"/unban all - Removes all bans",
+			"/kill <name> - Kills a specific player's character",
+			"/kill all - Kills all players except you"
+		]
+	},
+	"server-settings": {
+		"label": "Server Settings",
+		"commands": [
+			"/shutdown - Shuts down the server and kicks everyone",
+			"/lock - Prevents new players from joining (saves)",
+			"/unlock - Allows new players to join again (saves)",
+			"/kickondeath - Toggles kicking players when they die (saves)",
+			"/pvpon - Enables PVP for all players (current session only)",
+			"/pvpoff - Disables PVP for all players (current session only)"
+		]
+	}
+}

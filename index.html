@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8" />
+		<title>AFSE COMMUNITY GUIDELINES</title>
+		<link rel="stylesheet" href="/src/styles/main.css" />
+		<link rel="stylesheet" href="/src/styles/generic.css" />
+
+		<!-- Standard favicon -->
+		<link rel="icon" href="/icons/icon-16.png" sizes="16x16" type="image/png" />
+		<link rel="icon" href="/icons/icon-32.png" sizes="32x32" type="image/png" />
+		<link rel="icon" href="/icons/icon-64.png" sizes="64x64" type="image/png" />
+		<link rel="icon" href="/icons/icon-128.png" sizes="128x128" type="image/png" />
+		<link rel="icon" href="/icons/icon-256.png" sizes="256x256" type="image/png" />
+		<link rel="icon" href="/icons/icon-512.png" sizes="512x512" type="image/png" />
+
+		<!-- Apple Touch Icon (for iOS devices) -->
+		<link rel="apple-touch-icon" href="/icons/icon-180.png" sizes="180x180" />
+	</head>
+	<body class="overflow-hidden">
+		<div
+			id="init"
+			class="position-fixed top-0 left-0 vw-100 vh-100 d-flex flex-col justify-center"
+			data-bs-theme="dark"
+			style="z-index: 9999; background-color: var(--dark-1)"
+		>
+			<div class="mx-auto flex flex-column gap-4">
+				<img width="120px" class="border-cyber-blue-2 animation-subtle-glow rounded-3" src="/icons/icon-256.png" alt="icon" />
+				<p class="text-lg font-medium text-terminal text-cyber-green text-glow-green text-nowrap animation-typing-caret">Tap to Start</p>
+			</div>
+		</div>
+		<div class="scan-lines"></div>
+		<div class="grid-pattern"></div>
+		<div class="video-background">
+			<video autoplay muted loop playsinline>
+				<source src="/videos/bg.mp4" type="video/mp4" />
+			</video>
+		</div>
+		<div class="snap-container">
+			<div class="snap-item flex flex-column flex-md-row items-center justify-center gap-4 mb-6 vh-100">
+				<img src="/images/ccede69d-d6f1-41e1-840c-674c59dd64c4.png" alt="AFSE Logo" class="w-20 h-20 rounded-lg" />
+				<div class="d-flex flex-col">
+					<h1 class="text-4xl font-bold text-glow-blue text-md-start text-center">AFSE COMMUNITY<span class="text-cyber-purple"> GUIDELINES</span></h1>
+					<p class="text-gray-light mt-2 terminal-text text-md-start text-center">
+						&gt; SYSTEM ONLINE | <span class="version-label">&lt;Loading...&gt;</span>
+					</p>
+				</div>
+			</div>
+			<main class="snap-item">
+				<nav data-main-navbar="true" class="tab-bar mb-8 justify-center flex-wrap z-[1]"></nav>
+				<div class="d-flex flex-column">
+					<div data-main-content="true" class="flex-1 m-auto w-100" style="max-width: 950px"></div>
+					<footer class="mt-8 pt-6 text-center terminal-text text-sm">
+						<p class="text-glow-blue">AFSE Community Guidelines Hub © <span class="copyright-year">2XXX</span></p>
+						<p class="mt-1">
+							Anime Fighting Simulator: Endless <span class="version-label">&lt;Loading...&gt;</span> | For further updates you may DM me on Discord.
+						</p>
+					</footer>
+				</div>
+			</main>
+		</div>
+		<script type="module" src="/src/main.ts"></script>
+	</body>
+</html>

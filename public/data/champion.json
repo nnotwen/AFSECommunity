@@ -1,0 +1,296 @@
+[
+	{
+		"name": "SANJI",
+		"chance": "13.46%",
+		"cost": "1000 SHARDS",
+		"board": 1,
+		"desc": "Auto trains 40% of your Agility multiplier every 4 seconds and buffs Punch damage by 40%"
+	},
+	{
+		"name": "LEVI",
+		"chance": "12.39%",
+		"cost": "1250 SHARDS",
+		"board": 1,
+		"desc": "Auto trains 30% of your sword multiplier every 4 seconds"
+	},
+	{
+		"name": "KILLUA",
+		"chance": "11.75%",
+		"cost": "1250 SHARDS",
+		"board": 1,
+		"desc": "Auto trains 45% of your Speed multiplier every 4 seconds and nerf Strength damage by 10%"
+	},
+	{
+		"name": "SAKURA",
+		"chance": "9.61%",
+		"cost": "1500 SHARDS",
+		"board": 1,
+		"desc": "Auto trains 20% of your Chakra every 4 seconds and heals 3% of your health every 5 seconds"
+	},
+	{
+		"name": "PICOLLO",
+		"chance": "8.54%",
+		"cost": "2000 SHARDS",
+		"board": 1,
+		"desc": "Auto traind 20% of your Durability and Strength multiplier every 4 seconds."
+	},
+	{
+		"name": "TOJI",
+		"chance": "6.41%",
+		"cost": "2000 SHARDS",
+		"board": 1,
+		"desc": "Auto trains 34% of your Strength and Durability multiplier every 4 seconds"
+	},
+	{
+		"name": "KANEKI",
+		"chance": "5.12%",
+		"cost": "2250 SHARDS",
+		"board": 1,
+		"desc": "Auto trains 30% of your Strength multiplier every 4 seconds. Specially buffs Kagune damage by 15% and nerfs incoming Kagune damage by 20%"
+	},
+	{
+		"name": "LUFFY",
+		"chance": "4.7%",
+		"cost": "3000 SHARDS",
+		"board": 1,
+		"desc": "Auto trains 40% of your Agility and 35% Strength multiplier every 4 seconds. Specially buffs Fruit damage by 25% and nerfs incomming Fruit damage by 20%"
+	},
+	{
+		"name": "ASTA",
+		"chance": "4.48%",
+		"cost": "7500 SHARDS",
+		"board": 1,
+		"desc": "Auto trains 45% of your sword multiplier every 4 seconds. Specially buffs Grimoire damage by 25% nerfs incomming Grimoire damage by 20%. Also nerfs and buffs Sword Slash damage by 20%"
+	},
+	{
+		"name": "JINWOO",
+		"chance": "4.06%",
+		"cost": "7500 SHARDS",
+		"board": 1,
+		"desc": "Auto trains 40% of your strength multiplier every 4 seconds. Specially buffs Quark damage by 25% nerfs incomming Quark damage by 20%"
+	},
+	{
+		"name": "JOTARO",
+		"chance": "3.84%",
+		"cost": "7500 SHARDS",
+		"board": 1,
+		"desc": "Auto trains 45% of your Durability multiplier every $ seconds. Specially buffs stand damage by 20% and nerfs incomming stand damage by 25%"
+	},
+	{
+		"name": "JIRAIYA",
+		"chance": "3.41%",
+		"cost": "7500 SHARDS",
+		"board": 1,
+		"desc": "Auto trains 50% of your Chakra multiplier every 4 seconds. Nerfs chakra damage by 25%"
+	},
+	{
+		"name": "NARUTO",
+		"chance": "3.2%",
+		"cost": "7500 SHARDS",
+		"board": 1,
+		"desc": "Auto trains 55% of your Chakra multiplier every 4 seconds. Nerfs all Chakra damage by 30% and buffs Chakra damage by 20%"
+	},
+	{
+		"name": "VEGETA",
+		"chance": "2.76%",
+		"cost": "7500 SHARDS",
+		"board": 1,
+		"desc": "Auto trains 50% of your Strength multiplier every 4 seconds. Nerfs all Strength damage by 30% and all damage is buffed by 1.6x when health is below 30%"
+	},
+	{
+		"name": "GENOS",
+		"chance": "0.681%",
+		"cost": "7500 SHARDS",
+		"board": 1,
+		"desc": "When the player reaches 20% if his health, all damages are reduced to 30% of their original value. Auto trains 95% of your chakra. Nerfs all player damage by 30% and buffs all damage by 15%"
+	},
+	{
+		"name": "BOROS",
+		"chance": "0.68%",
+		"cost": "7500 SHARDS",
+		"board": 1,
+		"desc": "Auto trains 305 of your Chakra, 50% strength and Durability multiplier ever 4 seconds. Nerfs all damage by 30% and buffs all damage by 20%"
+	},
+	{
+		"name": "ICHIGO",
+		"chance": "0.56%",
+		"cost": "7500 SHARDS",
+		"board": 1,
+		"desc": "Auto trains 30% if your strength, 75% of Sword and 50% of Durability multiplier every 4 seconds. Nerfs all player damage by 10% and buffs all damage by 40%"
+	},
+	{
+		"name": "RENGOKU",
+		"chance": "0.42%",
+		"cost": "7500 SHARDS",
+		"board": 1,
+		"desc": "Auto trains 305 of your chakra, 70% of your Sword multiplier every 4 seconds. Nerfs all Chakra damage by 40% and buffs Chakra damage by 30%"
+	},
+	{
+		"name": "SASUKE",
+		"chance": "0.31%",
+		"cost": "7500 SHARDS",
+		"board": 1,
+		"desc": "Every player kill multiplies damage by 80% for 20 seconds. Trains 80% of Chakra, nerds all damage by 25% and buffs all damage by 50%"
+	},
+	{
+		"name": "ITACHI",
+		"chance": "0.19%",
+		"cost": "7500 SHARDS",
+		"board": 1,
+		"desc": "When the player reaches 105 of his health, he will become immune to all attacks for 8 seconds. Train 80% of Chakra, 20% of Strength and 20% of Durability. He also nerfs all damage by 25% and buffs all damage by 50%"
+	},
+	{
+		"name": "GOJO",
+		"chance": "0.0031%",
+		"cost": "7500 SHARDS",
+		"board": 1,
+		"desc": "Auto trains 125% Durability. Nerfs all player damage by 50% buffs all damage by 25% and increases your Chikara Per Min by x1.5"
+	},
+	{
+		"name": "LIGHT YAGAMI",
+		"chance": "0.003%",
+		"cost": "7500 SHARDS",
+		"board": 1,
+		"desc": "Auto trains 100% of your Chakra. Nerfs all player damage by 50% buffs all damage by 50% and increases your Chikara Per Min by x1.5"
+	},
+	{
+		"name": "SAITAMA SERIOUS",
+		"chance": "0.005%",
+		"cost": "7500 SHARDS",
+		"board": 1,
+		"desc": "Auto trains 150% of your Strength, 150% of your Durability. Nerfs all player damage by 50% buffs all damage by 100% increase your Chikara Per Min by x1.5, increases your Yen per Min by x1.25"
+	},
+	{
+		"name": "GIOVANNA",
+		"chance": "40.37%",
+		"cost": "500 SHARDS",
+		"board": 2,
+		"desc": "Trains 60% Strength & 50% Durability every 4s. Buffs all Stand damage by 20%."
+	},
+	{
+		"name": "BUU",
+		"chance": "29.84%",
+		"cost": "500 SHARDS",
+		"board": 2,
+		"desc": "Trains 70% Strength and 70% Chakra. Buffs all damage by 20%. Nerfs all damage by 10%"
+	},
+	{
+		"name": "GON",
+		"chance": "20.11%",
+		"cost": "500 SHARDS",
+		"board": 2,
+		"desc": "Train 50% Strength 50% Durability and 50% Chakra. He nerfs all incoming damage by 35%."
+	},
+	{
+		"name": "SHINRA",
+		"chance": "4.17%",
+		"cost": "1250 SHARDS",
+		"board": 2,
+		"desc": "Shinra trains 70% of Speed 45% if Durability and 55% of Chakra finally he also doubles all chakra damage"
+	},
+	{
+		"name": "KRILLIN",
+		"chance": "3.12%",
+		"cost": "1500 SHARDS",
+		"board": 2,
+		"desc": "Trains 95% Strength and 85% Durability. Buffs all damage by 30%. Nerfs all Quarks by an additional 50%"
+	},
+	{
+		"name": "ESCANOR",
+		"chance": "1.83%",
+		"cost": "2250 SHARDS",
+		"board": 2,
+		"desc": "Trains 60% Sword 50% Durability and 45% Strength he doubles all your damage and nerf all incomimg damage by 50% when it's day time"
+	},
+	{
+		"name": "MELIODAS",
+		"chance": "0.44%",
+		"cost": "3200 SHARDS",
+		"board": 2,
+		"desc": "A strength oriented Champion by training 90% of Strenght and 80% of Durability Overall he nerfs all damage by 50% and buffs al outgoing damage by 35%"
+	},
+	{
+		"name": "GOKU",
+		"chance": "0.43%",
+		"cost": "7500 SHARDS",
+		"board": 2,
+		"desc": "After every player kill your damage doubles for 10 seconds. Auto trains 95% if your Chakra. Nerfs all player damage by 50% and buffs all damage by 25%."
+	},
+	{
+		"name": "SAITAMA",
+		"chance": "0.12%",
+		"cost": "7500 SHARDS",
+		"board": 2,
+		"desc": "Auto trains 110% of your Strength 110% of your Durability. Nerfs all damage by 50% buffs all Damage by 50% increases your Yen Per Min by x1.1"
+	},
+	{
+		"name": "CHOPPER",
+		"chance": "CHOPPER QUEST",
+		"cost": "EVENT ONLY",
+		"board": 3,
+		"desc": "Auto trains 100% of your Durability 100% of your Sword. Nerfs all damage by 30%. buffs all Damage by 30% and increase your Chikara Per Min by x1.05"
+	},
+	{
+		"name": "ACE",
+		"chance": "CHOPPER QUEST",
+		"cost": "EVENT ONLY",
+		"board": 3,
+		"desc": "Auto trains 140% of your Strength, 140% of your Durability. Nerfs all player damage by 50%, buffs all Damage by 25%, increases your Yen Per Min by x1.1, and prevents you from being stunned."
+	},
+	{
+		"name": "KIRITO",
+		"chance": "KIRITO QUEST",
+		"cost": "EVENT ONLY",
+		"board": 3,
+		"desc": "Auto train 125% sword. Nerfs all player damage by 50% buffs all Damage by 25% increases your Yen Per Min by x1.05"
+	},
+	{
+		"name": "PAIN",
+		"chance": "0.005%",
+		"cost": "EVENT ONLY",
+		"board": 3,
+		"desc": "Auto trains 150% of your Strength 140% of your Durabiltity and 40% Sword. Nerfs all player damage y 50% buffs all Damage by 25% and increases your Chikara per min by x1.75"
+	},
+	{
+		"name": "RIMURU",
+		"chance": "0.005%",
+		"cost": "EVENT ONLY",
+		"board": 3,
+		"desc": "Auto trains 200% of your Chakra. Nerfs all player damage by 50% buffs all damage by 50% and increases your Chikara Per Min by x2"
+	},
+	{
+		"name": "SHANKS",
+		"chance": "BATTLE PASS TIER 45",
+		"cost": "EVENT ONLY",
+		"board": 3,
+		"desc": "Auto trains 125% of your sword 125% of your Durability. Nerfs all player Damage by 30% buffs all Damage by 35% increases Your Yen Per min by x1.1"
+	},
+	{
+		"name": "SIX PATH SAGE MODE NARUTO",
+		"chance": "BATTLE PASS TIER 45",
+		"cost": "EVENT ONLY",
+		"board": 3,
+		"desc": "Auto trains 175% of your Durability, Nerfs all player damage by 25%, buffs all Bloodline damage by 55%, increases your Yen Per Min by x1.15"
+	},
+	{
+		"name": "KAKASHI",
+		"chance": "BATTLE PASS TIER 25",
+		"cost": "EVENT ONLY",
+		"board": 3,
+		"desc": "Auto trains 160% of your Strength, Nerfs all player damage by 20%, buffs all Damage by 25%, increases your Yen Per Min by x1.1"
+	},
+	{
+		"name": "ROCK LEE",
+		"chance": "BATTLE PASS TIER 1",
+		"cost": "EVENT ONLY",
+		"board": 3,
+		"desc": "Auto trains 110% of your Strength, 120% of your Durability, 125% of your Agility, Nerfs all player damage by 25%, buffs all damage by 25%, increases your Yen Per Min by x1.05"
+	},
+	{
+		"name": "MINATO",
+		"chance": "0.01%",
+		"cost": "EVENT ONLY",
+		"board": 3,
+		"desc": "Auto trains 175% of your Chakra, Buffs Kurama damage by 1.5x and Kurama drop chances by 1.5x increases your Yen Per Min by x1.05."
+	}
+]

@@ -1,0 +1,23 @@
+[
+	{
+		"type": "Sword",
+		"delay": [0, 120, 160],
+		"autoTrain": false,
+		"cursorPos": "Anywhere on screen",
+		"icon": "<svg viewBox=\"0 0 24 24\" class=\"me-2\" width=\"1rem\" height=\"1rem\" xmlns=\"http://www.w3.org/2000/svg\" fill=\"currentColor\" stroke=\"currentColor\"><g stroke-width=\"0\"/><g stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"m7.05 13.406 3.534 3.536-1.413 1.414 1.415 1.415-1.414 1.414-2.475-2.475-2.829 2.829-1.414-1.414 2.829-2.83-2.475-2.474 1.414-1.414 1.414 1.413 1.413-1.414zM3 3l3.546.003 11.817 11.818 1.415-1.414 1.414 1.414-2.474 2.475 2.828 2.829-1.414 1.414-2.829-2.829-2.475 2.475-1.414-1.414 1.414-1.415L3.003 6.531zm14.457 0L21 3.003l.002 3.523-4.053 4.052-3.536-3.535z\"/></svg>"
+	},
+	{
+		"type": "Chakra",
+		"delay": [1150, 1100],
+		"autoTrain": true,
+		"cursorPos": "Cursor on icon/logo",
+		"icon": "<i class='bi bi-fire me-2'></i>"
+	},
+	{
+		"type": "Strength",
+		"delay": [0, 125],
+		"autoTrain": false,
+		"cursorPos": "Anywhere on screen",
+		"icon": "<svg height=\"1rem\" class=\"me-2\" width=\"1rem\" xmlns=\"http://www.w3.org/2000/svg\" viewBox=\"0 0 50.463 50.463\" fill=\"currentColor\" xml:space=\"preserve\"><g stroke-width=\"0\"/><g stroke-linecap=\"round\" stroke-linejoin=\"round\"/><path d=\"M47.923 29.694c.021-.601-.516-1.063-.901-1.515-.676-2.733-2.016-5.864-3.961-8.971C39.942 14.23 31.688 6.204 28.553 4.966a3 3 0 0 0-.429-.126c-.313-1.013-.479-1.708-1.698-2.521C23.072.083 19.327-.547 16.848.476c-2.481 1.023-3.859 6.687-1.19 8.625 2.546 1.857 7.583-1.888 9.195.509 1.609 2.396 3.386 10.374 6.338 15.473a17 17 0 0 0-2.307-.156c-3.406 0-6.467.998-8.63 2.593-1.85-2.887-5.08-4.806-8.764-4.806-3.82 0-7.141 2.064-8.95 5.13v22.619h4.879l1.042-1.849c3.354-1.287 7.32-4.607 10.076-8.147 11.014 4.322 29.139-3.678 29.386-10.773\"/></svg>"
+	}
+]

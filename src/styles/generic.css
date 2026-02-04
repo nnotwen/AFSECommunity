@@ -1,0 +1,834 @@
+.snap-container {
+	height: 100vh;
+	overflow-y: auto;
+	/* scroll-snap-type: y; */
+	/* scroll-behavior: smooth; */
+}
+
+.snap-item {
+	height: 100vh;
+	/* scroll-snap-align: start; */
+}
+
+.opacity-100 {
+	opacity: 1;
+}
+
+.opacity-90 {
+	opacity: 0.9;
+}
+
+.opacity-80 {
+	opacity: 0.8;
+}
+
+.opacity-70 {
+	opacity: 0.7;
+}
+
+.opacity-60 {
+	opacity: 0.6;
+}
+
+.opacity-50 {
+	opacity: 0.5;
+}
+
+.opacity-40 {
+	opacity: 0.4;
+}
+
+.opacity-30 {
+	opacity: 0.3;
+}
+
+.opacity-20 {
+	opacity: 0.2;
+}
+
+.opacity-10 {
+	opacity: 0.1;
+}
+
+.opacity-0 {
+	opacity: 0;
+}
+
+.hover\:opacity-100:hover {
+	opacity: 1;
+}
+
+.hover\:opacity-90:hover {
+	opacity: 0.9;
+}
+
+.hover\:opacity-80:hover {
+	opacity: 0.8;
+}
+
+.hover\:opacity-70:hover {
+	opacity: 0.7;
+}
+
+.hover\:opacity-60:hover {
+	opacity: 0.6;
+}
+
+.hover\:opacity-50:hover {
+	opacity: 0.5;
+}
+
+.hover\:opacity-40:hover {
+	opacity: 0.4;
+}
+
+.hover\:opacity-30:hover {
+	opacity: 0.3;
+}
+
+.hover\:opacity-20:hover {
+	opacity: 0.2;
+}
+
+.hover\:opacity-10:hover {
+	opacity: 0.1;
+}
+
+.hover\:opacity-0:hover {
+	opacity: 0;
+}
+
+.top-0 {
+	top: 0;
+}
+
+.top-1 {
+	top: 0.25rem;
+}
+
+.top-2 {
+	top: 0.5rem;
+}
+
+.top-3 {
+	top: 0.75rem;
+}
+
+.top-4 {
+	top: 1rem;
+}
+
+.right-0 {
+	right: 0;
+}
+
+.right-1 {
+	right: 0.25rem;
+}
+
+.right-2 {
+	right: 0.5rem;
+}
+
+.right-3 {
+	right: 0.75rem;
+}
+
+.right-4 {
+	right: 1rem;
+}
+
+.bottom-0 {
+	bottom: 0;
+}
+
+.bottom-1 {
+	bottom: 0.25rem;
+}
+
+.bottom-2 {
+	bottom: 0.5rem;
+}
+
+.bottom-3 {
+	bottom: 0.75rem;
+}
+
+.bottom-4 {
+	bottom: 1rem;
+}
+
+.left-0 {
+	left: 0;
+}
+
+.left-1 {
+	left: 0.25rem;
+}
+
+.left-2 {
+	left: 0.5rem;
+}
+
+.left-3 {
+	left: 0.75rem;
+}
+
+.left-4 {
+	left: 1rem;
+}
+
+.z-\[1\] {
+	z-index: 1;
+}
+
+.z-\[2\] {
+	z-index: 2;
+}
+
+.z-\[3\] {
+	z-index: 3;
+}
+
+.z-\[4\] {
+	z-index: 4;
+}
+
+.z-\[5\] {
+	z-index: 5;
+}
+
+.z-\[6\] {
+	z-index: 6;
+}
+
+.z-\[7\] {
+	z-index: 7;
+}
+
+.z-\[8\] {
+	z-index: 8;
+}
+
+.z-\[9\] {
+	z-index: 9;
+}
+
+.z-\[10\] {
+	z-index: 10;
+}
+
+.z-\[50\] {
+	z-index: 50;
+}
+
+.z-\[100\] {
+	z-index: 100;
+}
+
+.border-cyber-blue {
+	border: 1px solid var(--cyber-blue);
+}
+
+.border-cyber-blue-2 {
+	border: 2px solid var(--cyber-blue);
+}
+
+.text-terminal {
+	font-family: "Share Tech Mono", monospace;
+}
+
+.text-cyber-green {
+	color: var(--cyber-green) !important;
+}
+
+.text-cyber-blue {
+	color: var(--cyber-blue) !important;
+}
+
+.text-cyber-red {
+	color: var(--cyber-red) !important;
+}
+
+.text-cyber-purple {
+	color: var(--cyber-purple) !important;
+}
+
+.text-cyber-pink {
+	color: var(--cyber-pink) !important;
+}
+
+.text-cyber-yellow {
+	color: var(--cyber-yellow) !important;
+}
+
+.hover\:border-cyber-green:hover {
+	border: 1px solid var(--cyber-green) !important;
+}
+
+.hover\:border-cyber-blue:hover {
+	border: 1px solid var(--cyber-blue) !important;
+}
+
+.input-no-spinner::-webkit-inner-spin-button,
+.input-no-spinner::-webkit-outer-spin-button {
+	-webkit-appearance: none;
+	margin: 0;
+}
+
+.form-switch-lg {
+	font-size: 1.25rem;
+}
+
+.form-switch-sm {
+	font-size: 0.875rem;
+}
+
+.form-input-placeholder {
+	position: absolute;
+	left: 0.85rem; /* adjust to match input padding */
+	bottom: 0.625rem;
+	color: #6c757d; /* muted placeholder color */
+	pointer-events: none; /* clicks go through to input */
+}
+
+.form-floating input:not(:placeholder-shown) ~ .form-input-placeholder,
+.form-floating input:not(:focus) ~ .form-input-placeholder {
+	opacity: 0;
+}
+
+.input-no-spinner {
+	appearance: textField;
+	-moz-appearance: textfield;
+}
+
+.cyber-shadow {
+	box-shadow:
+		0 0 20px rgba(0, 243, 255, 0.1),
+		inset 0 0 20px rgba(0, 243, 255, 0.05);
+}
+
+.cyber-input.invalid {
+	border-color: var(--cyber-red);
+	box-shadow: 0 0 15px rgba(255, 51, 0, 0.3);
+}
+
+.cyber-card-purple {
+	border: 1px solid rgba(76, 0, 255, 0.2);
+	box-shadow:
+		0 0 20px rgba(76, 0, 255, 0.1),
+		inset 0 0 20px rgba(76, 0, 255, 0.05);
+}
+
+.cyber-card-purple::before {
+	background: linear-gradient(90deg, transparent, var(--cyber-purple), transparent);
+}
+
+.cyber-card-purple:hover {
+	border-color: var(--cyber-purple);
+	box-shadow:
+		0 0 30px rgba(76, 0, 255, 0.3),
+		inset 0 0 30px rgba(76, 0, 255, 0.1);
+}
+
+.cyber-card-red {
+	border: 1px solid rgba(255, 0, 55, 0.2);
+	box-shadow:
+		0 0 20px rgba(255, 0, 55, 0.1),
+		inset 0 0 20px rgba(255, 0, 55, 0.05);
+}
+
+.cyber-card-red::before {
+	background: linear-gradient(90deg, transparent, var(--cyber-red), transparent);
+}
+
+.cyber-card-red:hover {
+	border-color: var(--cyber-red);
+	box-shadow:
+		0 0 30px rgba(255, 0, 55, 0.3),
+		inset 0 0 30px rgba(255, 0, 55, 0.1);
+}
+
+.cyber-card-pink {
+	border: 1px solid rgba(255, 0, 221, 0.2);
+	box-shadow:
+		0 0 20px rgba(255, 0, 221, 0.1),
+		inset 0 0 20px rgba(255, 0, 221, 0.05);
+}
+
+.cyber-card-pink::before {
+	background: linear-gradient(90deg, transparent, var(--cyber-pink), transparent);
+}
+
+.cyber-card-pink:hover {
+	border-color: var(--cyber-pink);
+	box-shadow:
+		0 0 30px rgba(255, 0, 221, 0.3),
+		inset 0 0 30px rgba(255, 0, 221, 0.1);
+}
+
+.cyber-card-yellow {
+	border: 1px solid rgba(238, 255, 0, 0.2);
+	box-shadow:
+		0 0 20px rgba(238, 255, 0, 0.1),
+		inset 0 0 20px rgba(238, 255, 0, 0.05);
+}
+
+.cyber-card-yellow::before {
+	background: linear-gradient(90deg, transparent, var(--cyber-yellow), transparent);
+}
+
+.cyber-card-yellow:hover {
+	border-color: var(--cyber-yellow);
+	box-shadow:
+		0 0 30px rgba(238, 255, 0, 0.3),
+		inset 0 0 30px rgba(238, 255, 0, 0.1);
+}
+
+.cyber-select-purple {
+	border: 1px solid rgba(76, 0, 255, 0.3);
+}
+
+.cyber-select-purple:focus {
+	border-color: var(--cyber-purple);
+	box-shadow: 0 0 15px rgba(76, 0, 255, 0.3);
+}
+
+.cyber-select-red {
+	border: 1px solid rgba(255, 0, 55, 0.3);
+}
+
+.cyber-select-red:focus {
+	border-color: var(--cyber-red);
+	box-shadow: 0 0 15px rgba(255, 0, 55, 0.3);
+}
+
+.cyber-select-pink {
+	border: 1px solid rgba(255, 0, 221, 0.3);
+}
+
+.cyber-select-pink:focus {
+	border-color: var(--cyber-pink);
+	box-shadow: 0 0 15px rgba(255, 0, 221, 0.3);
+}
+
+.cyber-select-yellow {
+	border: 1px solid rgba(238, 255, 0, 0.3);
+}
+
+.cyber-select-yellow:focus {
+	border-color: var(--cyber-yellow);
+	box-shadow: 0 0 15px rgba(238, 255, 0, 0.3);
+}
+
+.cyber-input-purple {
+	border: 1px solid rgba(238, 255, 0, 0.3);
+}
+
+.cyber-input-purple:focus {
+	border-color: var(--cyber-purple);
+	box-shadow: 0 0 15px rgba(76, 0, 255, 0.3);
+}
+
+.cyber-input-red {
+	border: 1px solid rgba(255, 0, 55, 0.3);
+}
+
+.cyber-input-red:focus {
+	border-color: var(--cyber-red);
+	box-shadow: 0 0 15px rgba(255, 0, 55, 0.3);
+}
+
+.cyber-input-pink {
+	border: 1px solid rgba(255, 0, 221, 0.3);
+}
+
+.cyber-input-pink:focus {
+	border-color: var(--cyber-pink);
+	box-shadow: 0 0 15px rgba(255, 0, 221, 0.3);
+}
+
+.cyber-input-yellow {
+	border: 1px solid rgba(238, 255, 0, 0.3);
+}
+
+.cyber-input-yellow:focus {
+	border-color: var(--cyber-yellow);
+	box-shadow: 0 0 15px rgba(238, 255, 0, 0.3);
+}
+
+.cyber-tab-purple {
+	border: 1px solid color-mix(in srgb, var(--cyber-purple) 20%, transparent);
+}
+
+.cyber-tab-purple.active {
+	background: linear-gradient(145deg, rgba(76, 0, 255, 0.2), rgba(76, 0, 255, 0.1));
+	border-color: var(--cyber-purple);
+	color: white;
+	text-shadow: 0 0 5px var(--cyber-purple-glow);
+}
+
+.cyber-tab-purple:hover:not(.active) {
+	color: var(--cyber-purple);
+	border-color: var(--cyber-purple);
+	text-shadow: 0 0 10px var(--cyber-purple-glow);
+}
+
+.cyber-tab-purple::before {
+	background: linear-gradient(90deg, transparent, rgba(76, 0, 255, 0.2), transparent);
+}
+
+.cyber-tab-red {
+	border: 1px solid color-mix(in srgb, var(--cyber-red) 20%, transparent);
+}
+
+.cyber-tab-red.active {
+	background: linear-gradient(145deg, rgba(255, 0, 55, 0.2), rgba(255, 0, 55, 0.1));
+	border-color: var(--cyber-red);
+	color: white;
+	text-shadow: 0 0 5px var(--cyber-red-glow);
+}
+
+.cyber-tab-red:hover:not(.active) {
+	color: var(--cyber-red);
+	border-color: var(--cyber-red);
+	text-shadow: 0 0 10px var(--cyber-red-glow);
+}
+
+.cyber-tab-red::before {
+	background: linear-gradient(90deg, transparent, rgba(255, 0, 55, 0.2), transparent);
+}
+
+.cyber-tab-pink {
+	border: 1px solid color-mix(in srgb, var(--cyber-pink) 20%, transparent);
+}
+
+.cyber-tab-pink.active {
+	background: linear-gradient(145deg, rgba(255, 0, 221, 0.2), rgba(255, 0, 221, 0.1));
+	border: 1px solid var(--cyber-pink);
+	color: white;
+	text-shadow: 0 0 5px var(--cyber-pink-glow);
+}
+
+.cyber-tab-pink:hover:not(.active) {
+	color: var(--cyber-pink);
+	border-color: var(--cyber-pink);
+	text-shadow: 0 0 10px var(--cyber-pink-glow);
+}
+
+.cyber-tab-pink::before {
+	background: linear-gradient(90deg, transparent, rgba(255, 0, 221, 0.2), transparent);
+}
+
+.cyber-tab-yellow {
+	border: 1px solid color-mix(in srgb, var(--cyber-yellow) 20%, transparent);
+}
+
+.cyber-tab-yellow.active {
+	background: linear-gradient(145deg, rgba(238, 255, 0, 0.2), rgba(238, 255, 0, 0.1));
+	border-color: var(--cyber-yellow);
+	color: white;
+	text-shadow: 0 0 5px var(--cyber-yellow-glow);
+}
+
+.cyber-tab-yellow:hover:not(.active) {
+	color: var(--cyber-yellow);
+	border-color: var(--cyber-yellow);
+	text-shadow: 0 0 10px var(--cyber-yellow-glow);
+}
+
+.cyber-tab-yellow::before {
+	background: linear-gradient(90deg, transparent, rgba(238, 255, 0, 0.2), transparent);
+}
+
+.cyber-btn-purple {
+	background: linear-gradient(145deg, rgba(76, 0, 255, 0.2), rgba(76, 0, 255, 0.1));
+	border-color: var(--cyber-purple);
+	color: white;
+	text-shadow: 0 0 5px var(--cyber-purple-glow);
+}
+.cyber-btn-purple:hover {
+	box-shadow:
+		0 0 20px rgba(76, 0, 255, 0.4),
+		inset 0 0 20px rgba(76, 0, 255, 0.1);
+	text-shadow: 0 0 10px var(--cyber-purple-glow);
+}
+.cyber-btn-purple::before {
+	background: linear-gradient(90deg, transparent, rgba(76, 0, 255, 0.2), transparent);
+}
+
+.cyber-btn-red {
+	background: linear-gradient(145deg, rgba(255, 0, 55, 0.2), rgba(255, 0, 55, 0.1));
+	border-color: var(--cyber-red);
+	color: white;
+	text-shadow: 0 0 5px var(--cyber-red-glow);
+}
+.cyber-btn-red:hover {
+	box-shadow:
+		0 0 20px rgba(255, 0, 55, 0.4),
+		inset 0 0 20px rgba(255, 0, 55, 0.1);
+	text-shadow: 0 0 10px var(--cyber-red-glow);
+}
+.cyber-btn-red::before {
+	background: linear-gradient(90deg, transparent, rgba(255, 0, 55, 0.2), transparent);
+}
+
+.cyber-btn-pink {
+	background: linear-gradient(145deg, rgba(255, 0, 221, 0.2), rgba(255, 0, 221, 0.1));
+	border-color: var(--cyber-pink);
+	color: white;
+	text-shadow: 0 0 5px var(--cyber-pink-glow);
+}
+.cyber-btn-pink:hover {
+	box-shadow:
+		0 0 20px rgba(255, 0, 221, 0.4),
+		inset 0 0 20px rgba(255, 0, 221, 0.1);
+	text-shadow: 0 0 10px var(--cyber-pink-glow);
+}
+.cyber-btn-pink::before {
+	background: linear-gradient(90deg, transparent, rgba(255, 0, 221, 0.2), transparent);
+}
+
+.cyber-btn-yellow {
+	background: linear-gradient(145deg, rgba(238, 255, 0, 0.2), rgba(238, 255, 0, 0.1));
+	border-color: var(--cyber-yellow);
+	color: white;
+	text-shadow: 0 0 5px var(--cyber-yellow-glow);
+}
+.cyber-btn-yellow:hover {
+	box-shadow:
+		0 0 20px rgba(238, 255, 0, 0.4),
+		inset 0 0 20px rgba(238, 255, 0, 0.1);
+	text-shadow: 0 0 10px var(--cyber-yellow-glow);
+}
+.cyber-btn-yellow::before {
+	background: linear-gradient(90deg, transparent, rgba(238, 255, 0, 0.2), transparent);
+}
+
+.cyber-btn.disabled {
+	background: linear-gradient(145deg, rgba(8, 8, 8, 0.2), rgba(0, 0, 0, 0.1));
+	border-color: #cacaca;
+	color: #cacaca;
+	text-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+}
+
+/* TOAST */
+
+.toast {
+	animation: cyber-toast-enter 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+	box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Toast progress indicator */
+.toast::after {
+	content: "";
+	position: absolute;
+	bottom: 0;
+	left: 0;
+	height: 3px;
+	animation: progress-shrink 5s linear forwards;
+	border-radius: 0 0 var(--cyber-border-radius) var(--cyber-border-radius);
+}
+
+/* RED - ERROR TOAST */
+.toast-error {
+	background: linear-gradient(145deg, rgba(40, 10, 10, 0.95), rgba(50, 15, 15, 0.95)) !important;
+	border: 1px solid var(--cyber-red) !important;
+	box-shadow:
+		0 0 25px var(--cyber-red-glow),
+		inset 0 0 20px rgba(255, 0, 60, 0.15) !important;
+	color: var(--cyber-red) !important;
+}
+
+.toast-error::before {
+	background: linear-gradient(45deg, var(--cyber-red), #ff3300, #ff0066, var(--cyber-red)) !important;
+}
+
+.toast-error::after {
+	background: linear-gradient(90deg, var(--cyber-red), #ff3300);
+}
+
+.toast-success {
+	background: linear-gradient(145deg, rgba(10, 30, 15, 0.95), rgba(15, 40, 20, 0.95)) !important;
+	border: 1px solid var(--cyber-green) !important;
+	box-shadow:
+		0 0 25px var(--cyber-green-glow),
+		inset 0 0 20px rgba(0, 255, 136, 0.15) !important;
+	color: var(--cyber-green) !important;
+}
+
+.toast-success::before {
+	background: linear-gradient(45deg, var(--cyber-green), #00ffcc, #00cc88, var(--cyber-success-green)) !important;
+}
+
+.toast-success::after {
+	background: linear-gradient(90deg, var(--cyber-green), #00ffcc);
+}
+
+/* BLUE - INFO TOAST */
+.toast-info {
+	background: linear-gradient(145deg, rgba(5, 10, 30, 0.95), rgba(10, 20, 40, 0.95)) !important;
+	border: 1px solid var(--cyber-blue) !important;
+	box-shadow:
+		0 0 25px var(--cyber-blue-glow),
+		inset 0 0 20px rgba(0, 243, 255, 0.15) !important;
+	color: var(--cyber-blue) !important;
+}
+
+.toast-info::before {
+	background: linear-gradient(45deg, var(--cyber-blue), #00a3ff, #0066ff, var(--cyber-blue)) !important;
+}
+
+.toast-info::after {
+	background: linear-gradient(90deg, var(--cyber-blue), #00a3ff);
+}
+
+.toast-warning {
+	background: linear-gradient(145deg, rgba(40, 30, 5, 0.95), rgba(50, 40, 10, 0.95)) !important;
+	border: 1px solid var(--cyber-yellow) !important;
+	box-shadow:
+		0 0 25px var(--cyber-yellow-glow),
+		inset 0 0 20px rgba(255, 204, 0, 0.15) !important;
+	animation:
+		cyber-toast-enter 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275),
+		cyber-pulse 2s infinite alternate;
+	color: var(--cyber-yellow) !important;
+}
+
+.toast-warning::before {
+	background: linear-gradient(45deg, var(--cyber-yellow), #ffaa00, #ffcc00, var(--cyber-yellow)) !important;
+}
+
+.toast-warning::after {
+	background: linear-gradient(90deg, var(--cyber-yellow), #ffaa00);
+}
+
+.stats-display-purple {
+	background: linear-gradient(145deg, rgba(76, 0, 255, 0.1), rgba(76, 0, 255, 0.05));
+	border: 1px solid var(--cyber-purple);
+	box-shadow:
+		0 0 25px rgba(76, 0, 255, 0.2),
+		inset 0 0 25px rgba(76, 0, 255, 0.1);
+}
+
+.stats-display-red {
+	background: linear-gradient(145deg, rgba(255, 0, 55, 0.1), rgba(255, 0, 55, 0.05));
+	border: 1px solid var(--cyber-red);
+	box-shadow:
+		0 0 25px rgba(255, 0, 55, 0.2),
+		inset 0 0 25px rgba(255, 0, 55, 0.1);
+}
+
+.stats-display-pink {
+	background: linear-gradient(145deg, rgba(255, 0, 221, 0.1), rgba(255, 0, 221, 0.05));
+	border: 1px solid var(--cyber-pink);
+	box-shadow:
+		0 0 25px rgba(255, 0, 221, 0.2),
+		inset 0 0 25px rgba(255, 0, 221, 0.1);
+}
+
+.stats-display-yellow {
+	background: linear-gradient(145deg, rgba(238, 255, 0, 0.1), rgba(238, 255, 0, 0.05));
+	border: 1px solid var(--cyber-yellow);
+	box-shadow:
+		0 0 25px rgba(238, 255, 0, 0.2),
+		inset 0 0 25px rgba(238, 255, 0, 0.1);
+}
+
+.animation-subtle-glow {
+	animation: subtleGlow 3s ease-in-out infinite;
+}
+
+.animation-typing-caret {
+	display: inline-block;
+	position: relative;
+}
+
+/* caret as a pseudo-element */
+.animation-typing-caret::after {
+	content: "";
+	display: inline-block;
+	width: 2px;
+	height: 1.2em;
+	background: currentColor;
+	vertical-align: middle;
+	animation: blink 1s steps(1) infinite;
+}
+
+/* blink keyframes */
+@keyframes blink {
+	0% {
+		opacity: 1;
+	}
+	50% {
+		opacity: 0;
+	}
+	100% {
+		opacity: 1;
+	}
+}
+
+/* Respect user motion preferences */
+@media (prefers-reduced-motion: reduce) {
+	.animation-typing-caret::after {
+		animation: none;
+		opacity: 1;
+	}
+}
+
+/* Animations */
+@keyframes cyber-glow {
+	0% {
+		background-position: 0% 50%;
+	}
+	50% {
+		background-position: 100% 50%;
+	}
+	100% {
+		background-position: 0% 50%;
+	}
+}
+
+@keyframes cyber-pulse {
+	0% {
+		box-shadow:
+			0 0 20px var(--cyber-warning-yellow-glow),
+			inset 0 0 15px rgba(255, 204, 0, 0.1) !important;
+	}
+	100% {
+		box-shadow:
+			0 0 30px var(--cyber-warning-yellow-glow),
+			inset 0 0 20px rgba(255, 204, 0, 0.15) !important;
+	}
+}
+
+@keyframes progress-shrink {
+	from {
+		width: 100%;
+	}
+	to {
+		width: 0%;
+	}
+}
+
+@keyframes cyber-toast-enter {
+	from {
+		opacity: 0;
+		transform: translateX(100px);
+	}
+	to {
+		opacity: 1;
+		transform: translateX(0);
+	}
+}
+
+@keyframes cyber-toast-exit {
+	from {
+		opacity: 1;
+		transform: translateX(0);
+	}
+	to {
+		opacity: 0;
+		transform: translateX(100px);
+	}
+}

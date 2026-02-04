@@ -1,0 +1,111 @@
+{
+  "Strength": [
+    {
+      "name": "RAPID PUNCH",
+      "val": "Launch a series of continuous punches | 1x/tick (Uncountable) | 20s CD"
+    },
+    {
+      "name": "SERIOUS PUNCH",
+      "val": "Throw an incredibly powerful punch that deals a large amount of damage. | 10x | 25s CD"
+    },
+    {
+      "name": "TORNADO SMASH",
+      "val": "Smash the ground with immense strength, dealing damage to a large area. | 10 | 20s CD"
+    },
+    {
+      "name": "VIBRATION WAVE",
+      "val": "Create an intense vibration that damages anyone in the way. | 13x | 20s CD"
+    }
+  ],
+  "Durability": [
+    {
+      "name": "KINGS AURA",
+      "val": "Cover's player's entire body in a mysterious power which reduces 10% of player damage taken by attacks. | N/A | 10s CD"
+    },
+    {
+      "name": "SUPER HUMAN",
+      "val": "Transform into Super Human mode reducing 15% of all player damage taken. | N/A | 10s CD"
+    },
+    {
+      "name": "ARMORED COLOSSUS",
+      "val": "Transform into an Armored Titan reducing 30% of all player damage taken and 4x punch damage for 30 seconds. | N/A | 60s CD"
+    },
+    {
+      "name": "STAGE FOUR",
+      "val": "Transform into Stage Four which reduces 35% of all player damage taken. By punching, you can activate the forms melee ability.| N/A | 10s CD"
+    },
+    {
+      "name": "NINE TAILED MODE",
+      "val": "Transform into Six Path Sage Mode and endure 40% damage received of all players MOST REQUIRED FOR PVP & PVE. | N/A | 10s CD"
+    }
+  ],
+  "Chakra": [
+    {
+      "name": "SPIRAL SPHERE",
+      "val": "Create a deadly ball of wind that blasts enemies backwards Not required equipping. | 8x | 10s CD"
+    },
+    {
+      "name": "FIRE FIST",
+      "val": "A projectile that tracks down the closest player Required for PVP and PVE. | 10x | 15s CD"
+    },
+    {
+      "name": "ENERGY BEAM",
+      "val": "Generate a deadly beam of energy that deals continuous damage Not required for PVP. Good for PVE| 6x/tick | 20s CD"
+    },
+    {
+      "name": "SKELETON",
+      "val": "Form a large skeleton around your character, reducing 20% of all player damage taken. By punching, you can activate the skeleton's melee ability | N/A | 10s CD"
+    },
+    {
+      "name": "ICE BLAST",
+      "val": "Blast ice in front of you freezing players and dealing damage. Required for PVP due to Stun | 8x scaling | 20s CD"
+    },
+    {
+      "name": "SPIRIT EXPLOSION",
+      "val": "Form a huge energy ball and casting is to long. Not required for PVP | 15x scaling | 9s CD"
+    },
+    {
+      "name": "SPIRAL SHURIKEN",
+      "val": "Form a shuriken deals massive dmg and huge AoE. required for PVP & PVE | 25x scaling | 6-7s CD"
+    },
+    {
+      "name": "MULTIPLE BOMB SPIRAL SHURIKEN",
+      "val": "Form a multiple shuriken deals massive dmg and huge AoE. required for PVP & PVE | 20x scaling | 8s CD"
+    },
+    {
+      "name": "TAIL MONSTER BOMB",
+      "val": "Form a massive bomb deals massive dmg and huge AoE. required for PVP & PVE | 50x scaling | 3-5s CD"
+    }
+  ],
+  "Sword": [
+    {
+      "name": "FLYING SLASH",
+      "val": "Create a powerful slash of wind that flies towards enemies | 10x scaling | 10s CD"
+    },
+    {
+      "name": "RAPID SLASH",
+      "val": "Multiple slashes that deal continuous damage all players within range. | 8x/tick | 20s CD"
+    },
+    {
+      "name": "DRAGON'S WRATH",
+      "val": "A powerful charge attack that can cut through multiple enemies| 15x scaling | 25s CD"
+    }
+  ],
+  "Speed": [
+    {
+      "name": "WATER RUNNING",
+      "val": "Allows players to walk and run on water. | N/A | N/A"
+    }
+  ],
+  "Agility": [
+    { "name": "FLIGHT", "val": "Allows players to fly. | N/A | N/A" },
+    {
+      "name": "FLAME FLIGHT",
+      "val": "Generates fire under player's hands that allows faster flight. | N/A"
+    },
+    {
+      "name": "BLINK",
+      "val": "Teleport in any direction within an area. Good for PVE and PVE| N/A | 5s CD"
+    }
+  ]
+}

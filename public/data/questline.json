@@ -1,0 +1,290 @@
+{
+	"minato": [
+		{ "quest": 1, "requirement": "5 boss kills", "reward": "6h boost" },
+		{ "quest": 2, "requirement": "1qn all stats", "reward": "400m yen" },
+		{ "quest": 3, "requirement": "5k increments", "reward": "25k chikara" },
+		{ "quest": 4, "requirement": "10 boss kills", "reward": "12h boost" },
+		{ "quest": 5, "requirement": "1sx main stats", "reward": "12.5b yen" },
+		{ "quest": 6, "requirement": "10k increments", "reward": "35k chikara" },
+		{ "quest": 7, "requirement": "50 boss kills", "reward": "1d boost" },
+		{ "quest": 8, "requirement": "1sp main stats", "reward": "2t yen" },
+		{ "quest": 9, "requirement": "15k increments", "reward": "50k chikara" },
+		{
+			"quest": 10,
+			"requirement": "100 boss kills",
+			"reward": "2d boost, +5 champ slots"
+		}
+	],
+	"kirito": [
+		{
+			"quest": 1,
+			"requirement": "Increase 1K strength, durability, and sword",
+			"reward": "30-Minute Self Boost, 5,000 Yen"
+		},
+		{
+			"quest": 2,
+			"requirement": "Defeat 5,000 NPCs",
+			"reward": "5,000 Chikara, 3-Hour Boost"
+		},
+		{
+			"quest": 3,
+			"requirement": "Reach 1B strength, durability, and sword",
+			"reward": "720,000 Yen, 5,000 Chikara"
+		},
+		{
+			"quest": 4,
+			"requirement": "Defeat 10,000 NPCs",
+			"reward": "15,000 Chikara, 6-Hour Boost"
+		},
+		{
+			"quest": 5,
+			"requirement": "Increase 5K strength, durability, and sword",
+			"reward": "1-Hour Self Boost, 2,500,000 Yen"
+		},
+		{
+			"quest": 6,
+			"requirement": "Reach 1T strength, durability, and sword",
+			"reward": "7,200,000 Yen, 10,000 Chikara"
+		},
+		{
+			"quest": 7,
+			"requirement": "Increase 10K strength, durability, and sword",
+			"reward": "1.5-Hour Self Boost, 12,500,000 Yen"
+		},
+		{
+			"quest": 8,
+			"requirement": "Reach 1QD strength, durability, and sword",
+			"reward": "25,000,000 Yen, 15,000 Chikara"
+		},
+		{
+			"quest": 9,
+			"requirement": "Defeat 25,000 NPCs",
+			"reward": "50,000 Chikara, 12-Hour Boost"
+		},
+		{
+			"quest": 10,
+			"requirement": "Reach 1QN strength, durability, and sword",
+			"reward": "180,000,000 Yen, 100K Chikara, 3-Hour Boost, New Champion, +5 Champion Inventory (F2P)"
+		}
+	],
+	"booms": [
+		{
+			"quest": 28,
+			"requirement": "Gain 10t Strength, 10t Durability, 10t Chakra",
+			"reward": "2m Yen, Spirit Explosion Power"
+		},
+		{
+			"quest": 29,
+			"requirement": "Gain 50t Strength",
+			"reward": "3m Yen"
+		},
+		{
+			"quest": 30,
+			"requirement": "Gain 50t Durability, 50t Chakra",
+			"reward": "4.5m Yen"
+		},
+		{
+			"quest": 31,
+			"requirement": "Gain 200t Strength",
+			"reward": "13.5m Yen"
+		},
+		{
+			"quest": 32,
+			"requirement": "Gain 200t Durability, 200t Chakra",
+			"reward": "20.25m Yen"
+		},
+		{
+			"quest": 33,
+			"requirement": "Gain 50qd Strength",
+			"reward": "30m Yen"
+		},
+		{
+			"quest": 34,
+			"requirement": "Gain 50qd Durability, 50qd Chakra",
+			"reward": "45m Yen"
+		},
+		{
+			"quest": 35,
+			"requirement": "Gain 1qn Strength",
+			"reward": "150m Yen"
+		},
+		{
+			"quest": 36,
+			"requirement": "Gain 1qn Durability, 1qn Chakra",
+			"reward": "225m Yen"
+		},
+		{
+			"quest": 37,
+			"requirement": "Gain 100qn Strength",
+			"reward": "625m Yen"
+		},
+		{
+			"quest": 38,
+			"requirement": "Gain 100qn Durability, 100qn Chakra",
+			"reward": "937.5m Yen"
+		},
+		{
+			"quest": 39,
+			"requirement": "Gain 1sx Strength",
+			"reward": "5b Yen"
+		},
+		{
+			"quest": 40,
+			"requirement": "Gain 1sx Durability, 1sx Chakra",
+			"reward": "7.5b Yen"
+		},
+		{
+			"quest": 41,
+			"requirement": "Gain 100sx Strength",
+			"reward": "100b Yen"
+		},
+		{
+			"quest": 42,
+			"requirement": "Gain 100sx Durability, 100sx Chakra",
+			"reward": "150b Yen"
+		},
+		{
+			"quest": 43,
+			"requirement": "Gain 1sp Strength",
+			"reward": "1.125t Yen"
+		},
+		{
+			"quest": 44,
+			"requirement": "Gain 1sp Durability, 1sp Chakra",
+			"reward": "3T Yen"
+		}
+	],
+	"chopper": [
+		{
+			"quest": 1,
+			"requirement": "1K strength, durability, chakra",
+			"reward": "1K Yen, 1K Chikara"
+		},
+		{
+			"quest": 2,
+			"requirement": "Kill 10 players",
+			"reward": "1K, 2K Chikara"
+		},
+		{
+			"quest": 3,
+			"requirement": "1M strength, durability, chakra",
+			"reward": "5K Yen, 3K Chikara , 3 Christmas Boxes"
+		},
+		{
+			"quest": 4,
+			"requirement": "5K increment of strength, durability and chakra",
+			"reward": "10K Yen, 5K Chikara, 30min Self Boost"
+		},
+		{
+			"quest": 5,
+			"requirement": "1B strength, durability, chakra",
+			"reward": "25K Yen 10K Chikara"
+		},
+		{
+			"quest": 6,
+			"requirement": "25 Sword kills",
+			"reward": "25K Yen, 10K Chikara, Snowflake Aura"
+		},
+		{
+			"quest": 7,
+			"requirement": "1T strength, durability, chakra",
+			"reward": "500K Yen, 20K Chikara"
+		},
+		{
+			"quest": 8,
+			"requirement": "10K increment of strength, durability, chakra",
+			"reward": "500K Yen, 20K Chikara, 2 Hour Self Boost"
+		},
+		{
+			"quest": 9,
+			"requirement": "1 QD strength, durability, chakra",
+			"reward": "5M Yen, 30K Chikara, Chopper Champion"
+		},
+		{
+			"quest": 10,
+			"requirement": "250 kills",
+			"reward": "5M Yen, 30K Chikara, 4 Hour Self boost"
+		},
+		{
+			"quest": 11,
+			"requirement": "1 QN strength, durability, chakra",
+			"reward": "500M Yen, 40K Chikara"
+		},
+		{
+			"quest": 12,
+			"requirement": "15K increment of strength, durability and chakra",
+			"reward": "500M Yen, 40K Chikara, 1 Day Self Boost"
+		},
+		{
+			"quest": 13,
+			"requirement": "1 SX strength, durability, chakra",
+			"reward": "50B Yen, 50K Chikara"
+		},
+		{
+			"quest": 14,
+			"requirement": "25K increment of strength, durability and chakra",
+			"reward": "50B Yen, 50K Chikara, 1 Day Self Boost"
+		},
+		{
+			"quest": 15,
+			"requirement": "1 SP strength, durability, chakra",
+			"reward": "1T Yen, 100K Chikara, Ace Champion"
+		}
+	],
+	"giovanno": [
+		{
+			"quest": 1,
+			"requirement": "Gain 1M Strength, 1M Durability, 1M Chakra",
+			"reward": "1K Yen - 10K Chikara"
+		},
+		{
+			"quest": 2,
+			"requirement": "Gain 50M Strength, 50M Durability, 50M Chakra",
+			"reward": "1.5K Yen - 12.5K Chikara"
+		},
+		{
+			"quest": 3,
+			"requirement": "Gain 250M Strength, 250M Durability, 250M Chakra",
+			"reward": "2K Yen - 15K Chikara"
+		},
+		{
+			"quest": 4,
+			"requirement": "Gain 1B Strength, 1B Durability, 1B Chakra",
+			"reward": "2.5K Yen - 17.5K Chikara"
+		},
+		{
+			"quest": 5,
+			"requirement": "Gain 100B Strength, 100B Durability, 100B Chakra",
+			"reward": "5K Yen - 20K Chikara"
+		},
+		{
+			"quest": 6,
+			"requirement": "Gain 1T Strength, 1T Durability, 1T Chakra",
+			"reward": "10K Yen - 20K Chikara"
+		}
+	],
+	"kaneki": [
+		{
+			"quest": 1,
+			"requirement": "Defeat 50 Players",
+			"reward": "10K Yen - 300 Chikara"
+		},
+		{
+			"quest": 2,
+			"requirement": "Defeat 100 Players",
+			"reward": "50K Yen - 500 Chikara"
+		},
+		{
+			"quest": 3,
+			"requirement": "Defeat 250 Players",
+			"reward": "100K Yen - 1,500 Chikara"
+		}
+	],
+	"santa": [
+		{
+			"quest": 1,
+			"requirement": "Gain 1 Strength, 1 Durability, 1 Chakra",
+			"reward": "1 Day free BOOST - 1,500 Chikara"
+		}
+	]
+}
