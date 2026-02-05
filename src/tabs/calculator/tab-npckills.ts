@@ -135,7 +135,7 @@ export default {
 			});
 		});
 
-		$("[data-npckills-calculate]").on("click", function () {
+		$("[data-npckills-calculate]").on("click touchstart", function () {
 			const $curr = currInp.$();
 			const $want = wantInp.$();
 			const $npcs = npcsInp.$();

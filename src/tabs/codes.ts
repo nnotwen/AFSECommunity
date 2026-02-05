@@ -23,7 +23,7 @@ export default {
                 <div class="row g-2">${data.map(format).join("")}</div>
             `);
 
-		$("[data-code-content]").on("click", function () {
+		$("[data-code-content]").on("click touchstart", function () {
 			const code = $(this).attr("data-code-content") ?? "";
 			$storage.set("redemptioncodes:copied", [...new Set([...$storage.get("redemptioncodes:copied"), code])]);
 

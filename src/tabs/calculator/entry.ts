@@ -85,7 +85,7 @@ export default {
 		});
 
 		$([statsCalcTabBtnId, incCalcTabBtnId, npckillsCalcTabBtnId, yenCalcTabBtnId, chikaraCalcTabBtnId].map((x) => `#${x}`).join(", ")).on(
-			"click",
+			"click touchstart",
 			function () {
 				$(this).siblings().removeClass("active");
 				$(this).addClass("active");

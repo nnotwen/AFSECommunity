@@ -125,7 +125,7 @@ export default {
 			$(this).removeClass("invalid");
 		});
 
-		$("[data-chikara-calculate]").on("click", function () {
+		$("[data-chikara-calculate]").on("click touchstart", function () {
 			const $targetCrates = targetCrates.$();
 
 			if (!($targetCrates.val() as string).length) {

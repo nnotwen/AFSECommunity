@@ -201,7 +201,7 @@ export default {
 			});
 		});
 
-		$("[data-yen-calculate]").on("click", function () {
+		$("[data-yen-calculate]").on("click touchstart", function () {
 			const $champYen = champYenMulti.$();
 			const $currYen = currYen.$();
 			const $wantYen = wantYen.$();

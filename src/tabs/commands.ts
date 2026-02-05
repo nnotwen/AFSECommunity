@@ -48,14 +48,14 @@ export default {
                     </div>`);
 		}
 
-		$("[data-rblx-command]").on("click", function () {
+		$("[data-rblx-command]").on("click touchstart", function () {
 			navigator.clipboard
 				.writeText($(this).attr("data-rblx-command") ?? "")
 				.then(() => toast.success("Copied command to clipboard!"))
 				.catch(() => toast.error("Failed to copy command to clipboard!"));
 		});
 
-		$("[data-commands-copyall]").on("click", function () {
+		$("[data-commands-copyall]").on("click touchstart", function () {
 			const all = Object.values(data)
 				.map((x) => x.commands)
 				.flat()

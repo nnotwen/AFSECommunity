@@ -38,11 +38,11 @@ export default {
                 <div data-champions-content="true" class="row g-2">${renderChampions(data.sort((a, b) => a.name.localeCompare(b.name)))}</div>
             `);
 
-		$("[data-board-toggle]").on("click", function () {
-			$(`#${FiltersId[$(this).attr("data-board-toggle") as keyof typeof FiltersId]}`).trigger("click");
+		$("[data-board-toggle]").on("click touchstart", function () {
+			$(`#${FiltersId[$(this).attr("data-board-toggle") as keyof typeof FiltersId]}`).trigger("click touchstart");
 		});
 
-		$("[data-champsearch-filters] button").on("click", function () {
+		$("[data-champsearch-filters] button").on("click touchstart", function () {
 			$(this).siblings().removeClass("active");
 			$(this).addClass("active");
 

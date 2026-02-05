@@ -151,12 +151,12 @@ export default {
 
 			if (state.timeToReachTargetInterval !== 0) {
 				toast.warning("Input change detected. Recalculating values...");
-				$("[data-inc-calculate]").trigger("click");
+				$("[data-inc-calculate]").trigger("click touchstart");
 			}
 		});
 
 		// When user clicks "Calculate"
-		$("[data-inc-calculate]").on("click", function () {
+		$("[data-inc-calculate]").on("click touchstart", function () {
 			const $curr = $(`#${inputs.find((x) => x.label === "CURRENT")!.id}`);
 			const $want = $(`#${inputs.find((x) => x.label === "TARGET")!.id}`);
 			const $notify = $(`#${selects.find((x) => x.label === "TARGET REACHED")!.id}`);

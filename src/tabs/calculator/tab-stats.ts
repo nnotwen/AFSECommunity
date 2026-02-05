@@ -173,7 +173,7 @@ export default {
 		});
 
 		// When boost is activated
-		$(`#${serverBoostId} > button`).on("click", function () {
+		$(`#${serverBoostId} > button`).on("click touchstart", function () {
 			const $input = $(`#input-${serverBoostId}`);
 			const val = parseFloat($input.val() as string) || null;
 
@@ -227,7 +227,7 @@ export default {
 		});
 
 		// When user clicks "Calculate"
-		$("[data-stats-calculate]").on("click", function () {
+		$("[data-stats-calculate]").on("click touchstart", function () {
 			const $statsPrT = $(`#${inputs.find((x) => x.label === "STATS PER TICK")!.id}`);
 			const $champSPT = $(`#${inputs.find((x) => x.label === "CHAMPION STAT/TICK")!.id}`);
 			const $statType = $(`#${selects.find((x) => x.label === "STAT TYPE")!.id}`);
