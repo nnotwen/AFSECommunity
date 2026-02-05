@@ -253,9 +253,9 @@
                             <div class="p-3 rounded bg-dark-2">
                                 <div class="flex items-center gap-2 mb-1">
                                     <span class="cyber-badge badge-green opacity-100">UPDATE</span>
-                                    <span class="text-sm terminal-text">[FEB 2, 2026 | 6:13AM]</span>
+                                    <span class="text-sm terminal-text">[FEB 5, 2026 | 5:16PM]</span>
                                 </div>
-                                <p class="terminal-text">&gt; Added Chikara Calculator.</p>
+                                <p class="terminal-text">&gt; Added Devil Fruit.</p>
                             </div>
                             <div class="p-3 rounded bg-dark-2">
                                 <div class="flex items-center gap-2 mb-1">
@@ -528,7 +528,7 @@
             <i class="${i.icon}"></i>${i.header}
         </p>
         <p class="terminal-text text-sm mb-0">${i.desc}</p>
-    </div>`}const _w=[{label:"Lead Developer",content:"KAGESAN21",glow:"blue"},{label:"UI/UX",content:"KAGESAN21",glow:"purple"},{label:"Data Analyst",content:"KAGESAN21",glow:"green"},{label:"Version",content:"v4.4.1 AFSE",glow:"pink"}],Ew={render(i){A(`#${i}`).html(`
+    </div>`}const _w=[{label:"Lead Developer",content:"KAGESAN21",glow:"blue"},{label:"UI/UX",content:"KAGESAN21",glow:"purple"},{label:"Data Analyst",content:"KAGESAN21 & ZYLYZ_",glow:"green"},{label:"Version",content:"v4.4.1 AFSE",glow:"pink"}],Ew={render(i){A(`#${i}`).html(`
             <h2 class="text-2xl font-bold mb-6 text-glow-blue">DEVELOPMENT CREDITS</h2>
             <div class="row g-2">${_w.map(ww).join("")}</div>
             <div class="cyber-card mt-2">
