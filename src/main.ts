@@ -16,6 +16,7 @@ import specials from "./tabs/specials";
 import autotrain from "./tabs/autotrain";
 import credits from "./tabs/credits";
 import gacha from "./tabs/gacha";
+import trainingarea, { TrainingArea } from "./tabs/trainingareas";
 import { backgroundMusic } from "./components/audiomanager";
 import $storage from "./components/storage";
 import { Tooltip } from "bootstrap";
@@ -26,6 +27,7 @@ const tabsBase = [
 	{ icon: "bi-lightning-charge", label: "POWERS" },
 	{ icon: "bi-cpu", label: "CHAMPIONS" },
 	{ icon: "bi-dice-5", label: "GACHA" },
+	{ icon: "bi-geo-alt", label: "TRAINING AREAS" },
 	{ icon: "bi-code-slash", label: "CODES" },
 	{ icon: "bi-people", label: "CREDITS" },
 	{ icon: "bi-star", label: "SPECIALS" },
@@ -147,6 +149,12 @@ function init() {
 	$.getJSON("./data/gacha.json")
 		.done((data: { location: GachaEntry[]; tokens: GachaEntry[] }) => gacha.render(data, gachaTab.contentId, gachaTab.label))
 		.fail((_, textStatus, error) => console.error("Error loading questline.json:", textStatus, error));
+
+	// LOAD TRAINING AREA TAB @ src/tabs/trainingarea.ts
+	const trainingTab = tabs.find((x) => x.label === "TRAINING AREAS")!;
+	$.getJSON("./data/trainingareas.json")
+		.done((data: TrainingArea[]) => trainingarea.render(data, trainingTab.contentId, trainingTab.label))
+		.fail((_, textStatus, error) => console.error("Error loading trainingarea.json:", textStatus, error));
 
 	// LOAD CODES TAB @ src/tabs/codes.ts
 	const codesTab = tabs.find((x) => x.label === "CODES")!;

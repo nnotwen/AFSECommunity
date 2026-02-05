@@ -25,6 +25,11 @@
 			"type": "added",
 			"timestamp": 1770312477120,
 			"list": ["Added tooltip on navigation buttons.", "Added links to dashboard tab.", "Added new style utilities (internal)."]
+		},
+		{
+			"type": "added",
+			"timestamp": 1770331907177,
+			"list": ["Added a training areas.", "Added to dashboard 6th button on tab."]
 		}
 	]
 }
