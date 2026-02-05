@@ -265,7 +265,7 @@
                     <div data-tab-changelog="true" class="cyber-card">
                         <h2 class="text-xl font-bold mb-4 text-glow-green">CHANGELOG</h2>
                         <div class="flex flex-col gap-2">
-                            ${n.slice(0,4).map(Sd).join("")}
+                            ${n.slice(0,5).map(Sd).join("")}
                         </div>
                     </div>
                 </div>
@@ -616,7 +616,7 @@
             <div class="rounded-3 overflow-hidden">${e}</div>
             <p class="terminal-text text-center mt-2">${i.description}</p>`,className:"hover:box-shadow-purple bg-card border-gacha"});function r(l,p="regular",m){return l.map(v=>({className:m,imgsrc:`./images/${v.path.replace(/^\/+/,"")}`,imgalt:i.heading,...v.caption.trim().length?{captions:{[p]:v.caption}}:{}}))}return`
     <div class="col-sm-6 col-md-4">
-        <div class="gacha-card group" data-bs-toggle="modal" data-bs-target="#${n}">
+        <div class="gacha-card group h-100" data-bs-toggle="modal" data-bs-target="#${n}">
             <div class="gacha-title">${i.heading}</div>
             <div class="rounded-3 overflow-hidden">${Od(r(i.images,"regular"),{className:"opacity-25 group-hover:opacity-100"})}</div>
             <p class="gacha-description mt-2">${i.description}</p>

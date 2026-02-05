@@ -3,23 +3,33 @@
 	"changelog": [
 		{
 			"type": "removed",
-			"timestamp": 1770290825212,
+			"timestamp": 1770059520000,
 			"list": ["Removed old dependencies"]
 		},
 		{
 			"type": "update",
-			"timestamp": 1770280848669,
-			"list": ["Added chikara calculator.", "Fixed stylings on some components"]
-		},
-		{
-			"type": "added",
-			"timestamp": 1770280548669,
-			"list": ["Added changelogs"]
+			"timestamp": 1770059520000,
+			"list": ["Added chikara calculator.", "Fixed stylings on some components."]
 		},
 		{
 			"type": "update",
-			"timestamp": 1770237817015,
-			"list": ["Updated backend to typescript"]
+			"timestamp": 1770298585522,
+			"list": ["Improved changelogs."]
+		},
+		{
+			"type": "update",
+			"timestamp": 1770059520000,
+			"list": ["Updated backend to typescript."]
+		},
+		{
+			"type": "added",
+			"timestamp": 1770298585522,
+			"list": ["Added Devil Fruit."]
+		},
+		{
+			"type": "update",
+			"timestamp": 1770298585522,
+			"list": ["Changed Bang quest due to increase reward."]
 		}
 	]
 }
