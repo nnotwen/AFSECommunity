@@ -261,28 +261,8 @@
 	font-family: "Share Tech Mono", monospace;
 }
 
-.text-cyber-green {
-	color: var(--cyber-green) !important;
-}
-
-.text-cyber-blue {
-	color: var(--cyber-blue) !important;
-}
-
-.text-cyber-red {
-	color: var(--cyber-red) !important;
-}
-
-.text-cyber-purple {
-	color: var(--cyber-purple) !important;
-}
-
-.text-cyber-pink {
-	color: var(--cyber-pink) !important;
-}
-
-.text-cyber-yellow {
-	color: var(--cyber-yellow) !important;
+.text-xs {
+	font-size: 0.75rem;
 }
 
 .hover\:border-cyber-green:hover {

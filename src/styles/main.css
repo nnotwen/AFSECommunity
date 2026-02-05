@@ -144,6 +144,10 @@ h4,
 	font-family: "Share Tech Mono", monospace;
 }
 
+.bg-dark-2 {
+	background-color: var(--dark-2);
+}
+
 .text-glow-blue {
 	text-shadow:
 		0 0 10px var(--cyber-blue-glow),

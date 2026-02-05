@@ -2,5 +2,35 @@
 	"editor.formatOnSave": true,
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"editor.linkedEditing": true,
-	"prettier.useTabs": true
+	"prettier.useTabs": true,
+	"json.schemas": [
+		{
+			"fileMatch": ["/public/data/autoclick.json"],
+			"url": "./public/data/schemas/autoclick.schema.json"
+		},
+		{
+			"fileMatch": ["/public/data/champion.json"],
+			"url": "./public/data/schemas/champion.schema.json"
+		},
+		{
+			"fileMatch": ["/public/data/codes.json"],
+			"url": "./public/data/schemas/codes.schema.json"
+		},
+		{
+			"fileMatch": ["/public/data/config.json"],
+			"url": "./public/data/schemas/config.schema.json"
+		},
+		{
+			"fileMatch": ["/public/data/gacha.json"],
+			"url": "./public/data/schemas/gacha.schema.json"
+		},
+		{
+			"fileMatch": ["/public/data/questline.json"],
+			"url": "./public/data/schemas/questline.schema.json"
+		},
+		{
+			"fileMatch": ["/public/data/specials.json"],
+			"url": "./public/data/schemas/specials.schema.json"
+		}
+	]
 }

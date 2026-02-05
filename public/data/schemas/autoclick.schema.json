@@ -1,0 +1,39 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "AutoClickItem",
+	"type": "array",
+	"items": {
+		"type": "object",
+		"required": ["type", "delay", "autoTrain", "cursorPos", "icon"],
+		"properties": {
+			"type": {
+				"type": "string",
+				"description": "Type of training item"
+			},
+			"delay": {
+				"type": "array",
+				"description": "Array of delay values in milliseconds",
+				"items": {
+					"type": "integer",
+					"minimum": 0
+				},
+				"minItems": 1
+			},
+			"autoTrain": {
+				"type": "boolean",
+				"description": "Whether the item trains automatically"
+			},
+			"cursorPos": {
+				"type": "string",
+				"description": "Cursor position requirement for training"
+			},
+			"icon": {
+				"type": "string",
+				"description": "HTML/XML icon representation",
+				"contentMediaType": "text/html"
+			}
+		},
+		"additionalProperties": false
+	},
+	"minItems": 1
+}

@@ -1,0 +1,90 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "GameLocations",
+	"description": "Schema for game locations and tokens information",
+	"type": "object",
+	"required": ["location", "tokens"],
+	"properties": {
+		"location": {
+			"type": "array",
+			"description": "Array of game locations",
+			"items": {
+				"type": "object",
+				"required": ["heading", "description", "images"],
+				"properties": {
+					"heading": {
+						"type": "string",
+						"description": "Location name/title"
+					},
+					"description": {
+						"type": "string",
+						"description": "Description of the location and how to find it"
+					},
+					"images": {
+						"type": "array",
+						"description": "Array of images for this location",
+						"items": {
+							"type": "object",
+							"required": ["caption", "path"],
+							"properties": {
+								"caption": {
+									"type": "string",
+									"description": "Image caption"
+								},
+								"path": {
+									"type": "string",
+									"description": "Image file path"
+								}
+							},
+							"additionalProperties": false
+						},
+						"minItems": 1
+					}
+				},
+				"additionalProperties": false
+			},
+			"minItems": 1
+		},
+		"tokens": {
+			"type": "array",
+			"description": "Array of game tokens information",
+			"items": {
+				"type": "object",
+				"required": ["heading", "description", "images"],
+				"properties": {
+					"heading": {
+						"type": "string",
+						"description": "Token name/title"
+					},
+					"description": {
+						"type": "string",
+						"description": "Description of the token"
+					},
+					"images": {
+						"type": "array",
+						"description": "Array of images for this token",
+						"items": {
+							"type": "object",
+							"required": ["caption", "path"],
+							"properties": {
+								"caption": {
+									"type": "string",
+									"description": "Image caption"
+								},
+								"path": {
+									"type": "string",
+									"description": "Image file path"
+								}
+							},
+							"additionalProperties": false
+						},
+						"minItems": 1
+					}
+				},
+				"additionalProperties": false
+			},
+			"minItems": 1
+		}
+	},
+	"additionalProperties": false
+}
