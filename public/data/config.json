@@ -9,22 +9,22 @@
 		{
 			"type": "update",
 			"timestamp": 1770059520000,
-			"list": ["Added chikara calculator.", "Fixed stylings on some components"]
+			"list": ["Added chikara calculator.", "Fixed stylings on some components."]
 		},
 		{
 			"type": "update",
 			"timestamp": 1770298585522,
-			"list": ["Improved changelogs"]
+			"list": ["Improved changelogs."]
 		},
 		{
 			"type": "update",
 			"timestamp": 1770059520000,
-			"list": ["Updated backend to typescript"]
+			"list": ["Updated backend to typescript."]
 		},
 		{
 			"type": "added",
 			"timestamp": 1770298585522,
-			"list": ["Added Devil Fruit"]
+			"list": ["Added Devil Fruit."]
 		},
 		{
 			"type": "update",
