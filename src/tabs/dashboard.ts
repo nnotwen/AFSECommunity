@@ -19,6 +19,10 @@ export default {
                             <span class="cyber-badge badge-green opacity-100">v${data.version}</span>
                             <span class="cyber-badge badge-purple opacity-100">AFSE</span>
                         </div>
+                        <div class="flex gap-2 mt-4">
+                            <a href="https://discord.gg/afse" class="cyber-btn btn-primary text-white hover:text-cyber-blue border-cyber border-cyber-blue border-opacity-30 hover:border-opacity-100" target="_blank"><i class="bi bi-discord"></i></a>
+                            <a href="https://github.com/Yorusensei/AFSECommunity" class="cyber-btn btn-primary text-white hover:text-cyber-blue border-cyber border-cyber-blue border-opacity-30 hover:border-opacity-100" target="_blank"><i class="bi bi-github"></i></a>
+                        </div>
                     </div>
                 </div>
                 <div class="col-12">
