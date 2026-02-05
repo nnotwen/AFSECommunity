@@ -1,0 +1,11 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Codes",
+	"description": "Schema for an array of string codes",
+	"type": "array",
+	"items": {
+		"type": "string"
+	},
+	"minItems": 1,
+	"uniqueItems": true
+}

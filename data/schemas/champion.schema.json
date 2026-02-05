@@ -1,0 +1,36 @@
+{
+	"$schema": "http://json-schema.org/draft-07/schema#",
+	"title": "Champion",
+	"description": "Schema for champion/character data",
+	"type": "array",
+	"items": {
+		"type": "object",
+		"required": ["name", "chance", "cost", "board", "desc"],
+		"properties": {
+			"name": {
+				"type": "string",
+				"description": "Name of the champion/character"
+			},
+			"chance": {
+				"type": "string",
+				"description": "Chance/drop rate of obtaining the champion"
+			},
+			"cost": {
+				"type": "string",
+				"description": "Cost to obtain the champion"
+			},
+			"board": {
+				"type": "integer",
+				"description": "Board number/category (1-3)",
+				"minimum": 1,
+				"maximum": 3
+			},
+			"desc": {
+				"type": "string",
+				"description": "Description of the champion's abilities and effects"
+			}
+		},
+		"additionalProperties": false
+	},
+	"minItems": 1
+}
