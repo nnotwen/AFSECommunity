@@ -1,3 +1,25 @@
 {
-	"version": "4.4.1"
+	"version": "4.4.1",
+	"changelog": [
+		{
+			"type": "removed",
+			"timestamp": 1770290825212,
+			"list": ["Removed old dependencies"]
+		},
+		{
+			"type": "update",
+			"timestamp": 1770280848669,
+			"list": ["Added chikara calculator.", "Fixed stylings on some components"]
+		},
+		{
+			"type": "added",
+			"timestamp": 1770280548669,
+			"list": ["Added changelogs"]
+		},
+		{
+			"type": "update",
+			"timestamp": 1770237817015,
+			"list": ["Updated backend to typescript"]
+		}
+	]
 }

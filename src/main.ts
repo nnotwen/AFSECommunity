@@ -1,7 +1,8 @@
 import $ from "jquery";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
+import "./styles/cyber.css";
 
-import type { AutoClickEntry, Champion, CommandSubGroup, GachaEntry, Quest } from "./types/data";
+import type { AutoClickEntry, Champion, CommandSubGroup, DataConfig, GachaEntry, Quest } from "./types/data";
 import { generateUniqueId } from "./utils/idGenerator";
 
 import calculator from "./tabs/calculator/entry";
@@ -112,7 +113,7 @@ function init() {
 	// LOAD DASHBOARD TAB @ src/tabs/dashboard.ts
 	const dashboardTab = tabs.find((x) => x.label === "DASHBOARD")!;
 	$.getJSON("./data/config.json")
-		.done((data: Record<string, any>) => dashboard.render(data, dashboardTab.contentId))
+		.done((data: DataConfig) => dashboard.render(data, dashboardTab.contentId))
 		.fail((_, textStatus, error) => console.error("Error loading config.json:", textStatus, error));
 
 	// LOAD CALC TAB @ src/tabs/calculator/entry.ts

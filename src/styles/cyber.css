@@ -1,0 +1,335 @@
+:root {
+	--cyber-blue-rgb: 0 243 255;
+	--cyber-green-rgb: 0 255 136;
+	--cyber-red-rgb: 255 0 60;
+	--cyber-purple-rgb: 157 0 255;
+	--cyber-pink-rgb: 255 0 255;
+	--cyber-yellow-rgb: 255 204 0;
+
+	/* DEFAULTS */
+	--cyber-border-width: 1px;
+	--cyber-border-style: solid;
+	--cyber-border-opacity: 1;
+	--cyber-border-color: rgb(var(--cyber-blue-rgb) / var(--cyber-border-opacity));
+	--cyber-border-glow-rgb: var(--cyber-blue-rgb);
+
+	--cyber-bg-opacity: 1;
+
+	--cyber-glow-color-rgb: var(--cyber-blue-rgb);
+	--cyber-glow-alpha: 0.7;
+}
+
+.border-cyber {
+	border: var(--cyber-border-width) var(--cyber-border-style) var(--cyber-border-color) !important;
+}
+
+.border-cyber-blue {
+	--cyber-border-color: rgb(var(--cyber-blue-rgb) / var(--cyber-border-opacity));
+}
+
+.border-cyber-green {
+	--cyber-border-color: rgb(var(--cyber-green-rgb) / var(--cyber-border-opacity));
+}
+
+.border-cyber-red {
+	--cyber-border-color: rgb(var(--cyber-red-rgb) / var(--cyber-border-opacity));
+}
+
+.border-cyber-purple {
+	--cyber-border-color: rgb(var(--cyber-purple-rgb) / var(--cyber-border-opacity));
+}
+
+.border-cyber-pink {
+	--cyber-border-color: rgb(var(--cyber-pink-rgb) / var(--cyber-border-opacity));
+}
+
+.border-cyber-yellow {
+	--cyber-border-color: rgb(var(--cyber-yellow-rgb) / var(--cyber-border-opacity));
+}
+
+.border-opacity-100 {
+	--cyber-border-opacity: 1;
+}
+
+.border-opacity-90 {
+	--cyber-border-opacity: 0.9;
+}
+
+.border-opacity-80 {
+	--cyber-border-opacity: 0.8;
+}
+
+.border-opacity-70 {
+	--cyber-border-opacity: 0.7;
+}
+
+.border-opacity-60 {
+	--cyber-border-opacity: 0.6;
+}
+
+.border-opacity-50 {
+	--cyber-border-opacity: 0.5;
+}
+
+.border-opacity-40 {
+	--cyber-border-opacity: 0.4;
+}
+
+.border-opacity-30 {
+	--cyber-border-opacity: 0.3;
+}
+
+.border-opacity-20 {
+	--cyber-border-opacity: 0.2;
+}
+
+.border-opacity-10 {
+	--cyber-border-opacity: 0.1;
+}
+
+.border-opacity-0 {
+	--cyber-border-opacity: 0;
+}
+
+.border-glow {
+	box-shadow:
+		0 0 30px rgb(var(--cyber-border-glow-rgb) / 0.3),
+		inset 0 0 30px rgb(var(--cyber-border-glow-rgb) / 0.1);
+}
+
+.border-glow-green {
+	--cyber-border-glow-rgb: var(--cyber-green-rgb);
+}
+
+.border-glow-red {
+	--cyber-border-glow-rgb: var(--cyber-red-rgb);
+}
+
+.border-glow-purple {
+	--cyber-border-glow-rgb: var(--cyber-purple-rgb);
+}
+
+.border-glow-pink {
+	--cyber-border-glow-rgb: var(--cyber-pink-rgb);
+}
+
+.border-glow-yellow {
+	--cyber-border-glow-rgb: var(--cyber-yellow-rgb);
+}
+
+.hover\:border-opacity-100:hover {
+	--cyber-border-opacity: 1;
+}
+
+.hover\:border-opacity-90:hover {
+	--cyber-border-opacity: 0.9;
+}
+
+.hover\:border-opacity-80:hover {
+	--cyber-border-opacity: 0.8;
+}
+
+.hover\:border-opacity-70:hover {
+	--cyber-border-opacity: 0.7;
+}
+
+.hover\:border-opacity-60:hover {
+	--cyber-border-opacity: 0.6;
+}
+
+.hover\:border-opacity-50:hover {
+	--cyber-border-opacity: 0.5;
+}
+
+.hover\:border-opacity-40:hover {
+	--cyber-border-opacity: 0.4;
+}
+
+.hover\:border-opacity-30:hover {
+	--cyber-border-opacity: 0.3;
+}
+
+.hover\:border-opacity-20:hover {
+	--cyber-border-opacity: 0.2;
+}
+
+.hover\:border-opacity-10:hover {
+	--cyber-border-opacity: 0.1;
+}
+
+.hover\:border-opacity-0 :hover {
+	--cyber-border-opacity: 0;
+}
+
+.hover\:border-glow:hover {
+	box-shadow:
+		0 0 30px rgb(var(--cyber-border-glow-rgb) / 0.3),
+		inset 0 0 30px rgb(var(--cyber-border-glow-rgb) / 0.1);
+}
+
+.hover\:border-glow-green:hover {
+	--cyber-border-glow-rgb: var(--cyber-green-rgb);
+}
+
+.hover\:border-glow-red:hover {
+	--cyber-border-glow-rgb: var(--cyber-red-rgb);
+}
+
+.hover\:border-glow-purple:hover {
+	--cyber-border-glow-rgb: var(--cyber-purple-rgb);
+}
+
+.hover\:border-glow-pink:hover {
+	--cyber-border-glow-rgb: var(--cyber-pink-rgb);
+}
+
+.hover\:border-glow-yellow:hover {
+	--cyber-border-glow-rgb: var(--cyber-yellow-rgb);
+}
+
+/* BACKGROUND */
+.bg-cyber-blue {
+	background-color: rgb(var(--cyber-blue-rgb) / var(--cyber-bg-opacity));
+}
+
+.bg-cyber-green {
+	background-color: rgb(var(--cyber-green-rgb) / var(--cyber-bg-opacity));
+}
+
+.bg-cyber-purple {
+	background-color: rgb(var(--cyber-purple-rgb) / var(--cyber-bg-opacity));
+}
+
+.bg-cyber-red {
+	background-color: rgb(var(--cyber-red-rgb) / var(--cyber-bg-opacity));
+}
+
+.bg-cyber-pink {
+	background-color: rgb(var(--cyber-pink-rgb) / var(--cyber-bg-opacity));
+}
+
+.bg-cyber-yellow {
+	background-color: rgb(var(--cyber-yellow-rgb) / var(--cyber-bg-opacity));
+}
+
+.bg-opacity-100 {
+	--cyber-bg-opacity: 1;
+}
+
+.bg-opacity-90 {
+	--cyber-bg-opacity: 0.9;
+}
+
+.bg-opacity-80 {
+	--cyber-bg-opacity: 0.8;
+}
+
+.bg-opacity-70 {
+	--cyber-bg-opacity: 0.7;
+}
+
+.bg-opacity-60 {
+	--cyber-bg-opacity: 0.6;
+}
+
+.bg-opacity-50 {
+	--cyber-bg-opacity: 0.5;
+}
+
+.bg-opacity-40 {
+	--cyber-bg-opacity: 0.4;
+}
+
+.bg-opacity-30 {
+	--cyber-bg-opacity: 0.3;
+}
+
+.bg-opacity-20 {
+	--cyber-bg-opacity: 0.2;
+}
+
+.bg-opacity-10 {
+	--cyber-bg-opacity: 0.1;
+}
+
+.bg-opacity-0 {
+	--cyber-bg-opacity: 0;
+}
+
+.tracking-tighter {
+	letter-spacing: -0.05em;
+}
+
+.tracking-tight {
+	letter-spacing: -0.025em;
+}
+
+.tracking-normal {
+	letter-spacing: 0em;
+}
+
+.tracking-wide {
+	letter-spacing: 0.025em;
+}
+
+.tracking-wider {
+	letter-spacing: 0.05em;
+}
+
+.tracking-widest {
+	letter-spacing: 0.1em;
+}
+
+/* TEXT COLOR */
+
+.text-cyber-green {
+	color: rgb(var(--cyber-green-rgb)) !important;
+}
+
+.text-cyber-blue {
+	color: rgb(var(--cyber-blue-rgb)) !important;
+}
+
+.text-cyber-red {
+	color: rgb(var(--cyber-red-rgb)) !important;
+}
+
+.text-cyber-purple {
+	color: rgb(var(--cyber-purple-rgb)) !important;
+}
+
+.text-cyber-pink {
+	color: rgb(var(--cyber-pink-rgb)) !important;
+}
+
+.text-cyber-yellow {
+	color: rgb(var(--cyber-yellow-rgb)) !important;
+}
+
+.text-glow {
+	text-shadow:
+		0 0 10px rgb(var(--cyber-glow-color-rgb) / var(--cyber-glow-alpha)),
+		0 0 20px rgb(var(--cyber-glow-color-rgb) / var(--cyber-glow-alpha));
+}
+
+/* TEXT GLOW */
+
+.text-glow-green {
+	--cyber-glow-color-rgb: var(--cyber-green-rgb);
+}
+
+.text-glow-red {
+	--cyber-glow-color-rgb: var(--cyber-red-rgb);
+}
+
+.text-glow-purple {
+	--cyber-glow-color-rgb: var(--cyber-purple-rgb);
+}
+
+.text-glow-pink {
+	--cyber-glow-color-rgb: var(--cyber-pink-rgb);
+}
+
+.text-glow-yellow {
+	--cyber-glow-color-rgb: var(--cyber-yellow-rgb);
+}

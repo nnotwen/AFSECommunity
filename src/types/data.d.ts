@@ -33,3 +33,12 @@ export interface GachaEntry {
 		path: string;
 	}[];
 }
+
+export interface DataConfig {
+	version: string;
+	changelog: {
+		type: "added" | "removed" | "update";
+		timestamp: number;
+		list: string[];
+	}[];
+}

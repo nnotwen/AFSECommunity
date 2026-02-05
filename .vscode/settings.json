@@ -2,5 +2,11 @@
 	"editor.formatOnSave": true,
 	"editor.defaultFormatter": "esbenp.prettier-vscode",
 	"editor.linkedEditing": true,
-	"prettier.useTabs": true
+	"prettier.useTabs": true,
+	"json.schemas": [
+		{
+			"fileMatch": ["/public/data/config.json"],
+			"url": "./public/data/schemas/config.schema.json"
+		}
+	]
 }
