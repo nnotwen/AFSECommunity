@@ -23,9 +23,9 @@ export default {
                             <div class="p-3 rounded bg-dark-2">
                                 <div class="flex items-center gap-2 mb-1">
                                     <span class="cyber-badge badge-green opacity-100">UPDATE</span>
-                                    <span class="text-sm terminal-text">[FEB 2, 2026 | 6:13AM]</span>
+                                    <span class="text-sm terminal-text">[FEB 5, 2026 | 5:16PM]</span>
                                 </div>
-                                <p class="terminal-text">&gt; Added Chikara Calculator.</p>
+                                <p class="terminal-text">&gt; Added Devil Fruit.</p>
                             </div>
                             <div class="p-3 rounded bg-dark-2">
                                 <div class="flex items-center gap-2 mb-1">

@@ -3,7 +3,7 @@ import $ from "jquery";
 const credits = [
 	{ label: "Lead Developer", content: "KAGESAN21", glow: "blue" },
 	{ label: "UI/UX", content: "KAGESAN21", glow: "purple" },
-	{ label: "Data Analyst", content: "KAGESAN21", glow: "green" },
+	{ label: "Data Analyst", content: "KAGESAN21 & ZYLYZ_", glow: "green" },
 	{ label: "Version", content: "v4.4.1 AFSE", glow: "pink" },
 ];
 
