@@ -4,7 +4,7 @@
 		{
 			"type": "removed",
 			"timestamp": 1770059520000,
-			"list": ["Removed old dependencies"]
+			"list": ["Removed old dependencies. (internal)"]
 		},
 		{
 			"type": "update",
@@ -13,23 +13,18 @@
 		},
 		{
 			"type": "update",
-			"timestamp": 1770298585522,
-			"list": ["Improved changelogs."]
+			"timestamp": 1770059520000,
+			"list": ["Updated backend to typescript. (internal)"]
 		},
 		{
 			"type": "update",
-			"timestamp": 1770059520000,
-			"list": ["Updated backend to typescript."]
+			"timestamp": 1770298585522,
+			"list": ["Added Devil Fruit to SPECIALS.", "Changed Bang quest due to increase reward."]
 		},
 		{
 			"type": "added",
-			"timestamp": 1770298585522,
-			"list": ["Added Devil Fruit."]
-		},
-		{
-			"type": "update",
-			"timestamp": 1770298585522,
-			"list": ["Changed Bang quest due to increase reward."]
+			"timestamp": 1770312477120,
+			"list": ["Added tooltip on navigation buttons.", "Added links to dashboard tab.", "Added new style utilities (internal)."]
 		}
 	]
 }
