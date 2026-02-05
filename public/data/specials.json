@@ -171,7 +171,7 @@
 		{
 			"name": "LIGHT / BORSALLINO'S DF",
 			"abilities": [
-				"Z - Chakra, 5x Multiplier/20 Ticks, 7s CD.",
+				"Z - Chakra, 40x Multiplier/5 Ticks, 7s CD.",
 				"X - Chakra, 65x Multiplier, 8.5s CD.",
 				"C - Chakra, 15x Multiplier/6 Ticks, 14.5s CD."
 			]
@@ -182,7 +182,7 @@
 		},
 		{
 			"name": "DARK / BLACKBEARD'S DF",
-			"abilities": ["Z - Chakra, 12x Multiplier/8 Ticks, 8s CD.", "X - Chakra, 18x Multiplier/3 Ticks, 6s CD.", "C - Chakra, 75x Multiplier, 6.5s CD."]
+			"abilities": ["Z - Chakra, 12x Multiplier/8 Ticks, 8s CD.", "X - Chakra, 18x Multiplier/3 Ticks, 6s CD.", "C - Chakra, 75x Multiplier, 6.5s CD"]
 		}
 	]
 }
