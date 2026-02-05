@@ -1389,7 +1389,6 @@ input:checked + .toggle-slider:before {
 	display: flex;
 	flex-direction: column;
 	align-items: center;
-	height: 100px;
 }
 
 .gacha-card:hover {

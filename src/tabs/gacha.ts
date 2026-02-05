@@ -52,7 +52,7 @@ function format(entry: GachaEntry) {
 
 	return /*html*/ `
     <div class="col-sm-6 col-md-4">
-        <div class="gacha-card group" data-bs-toggle="modal" data-bs-target="#${targetId}">
+        <div class="gacha-card group h-100" data-bs-toggle="modal" data-bs-target="#${targetId}">
             <div class="gacha-title">${entry.heading}</div>
             <div class="rounded-3 overflow-hidden">${buildCarousel(toCarouselData(entry.images, "regular"), { className: "opacity-25 group-hover:opacity-100" })}</div>
             <p class="gacha-description mt-2">${entry.description}</p>
