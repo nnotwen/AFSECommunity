@@ -2,10 +2,10 @@
 	{
 		"name": "Devil Fruit",
 		"attributeName": "Locations",
-		"icon": "bi bi-apple",
+		"icon": "fas fa-apple-alt",
 		"entries": [
 			{
-				"name": "Random Spawn",
+				"name": "Light Fruit",
 				"details": "Near Library 10k Chakra.",
 				"images": [
 					{
@@ -15,7 +15,7 @@
 				]
 			},
 			{
-				"name": "Random Spawn",
+				"name": "Dark Fruit",
 				"details": "Near Sage Platform 1B Chakra.",
 				"images": [
 					{
@@ -25,7 +25,7 @@
 				]
 			},
 			{
-				"name": "Random Spawn",
+				"name": "Dark Fruit",
 				"details": "Near Bloodline Gacha.",
 				"images": [
 					{
@@ -35,7 +35,7 @@
 				]
 			},
 			{
-				"name": "Random Spawn",
+				"name": "Rubber Fruit",
 				"details": "Near 100M Arena Strength.",
 				"images": [
 					{
@@ -45,7 +45,7 @@
 				]
 			},
 			{
-				"name": "Random Spawn",
+				"name": "Light Fruit",
 				"details": "Near Kunai Grounds.",
 				"images": [
 					{

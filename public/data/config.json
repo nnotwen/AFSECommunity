@@ -30,6 +30,11 @@
 			"type": "added",
 			"timestamp": 1770331907177,
 			"list": ["Added a training areas.", "Added to dashboard 6th button on tab."]
+		},
+		{
+			"type": "added",
+			"timestamp": 1770394673220,
+			"list": ["Added Devil Fruit Locations.", "Added to dashboard 10th button on tab."]
 		}
 	]
 }

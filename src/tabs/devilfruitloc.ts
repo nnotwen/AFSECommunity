@@ -38,7 +38,6 @@ export default {
                     <h2 class="text-2xl font-bold mb-6 text-glow-red">${label}</h2>
                     <p class="terminal-text">DEVIL FRUITS AND THEIR LOCATIONS</p>
                 </div>
-                <div class="flex flex-wrap justify-content-end gap-2 items-center">${buttonsHtml}</div>
             </div>
             ${categoriesHtml}
         `);
@@ -153,7 +152,7 @@ function formatEntry(entry: DevilFruitEntry, categoryName: string) {
         <div class="bg-dark-1 p-3 rounded-3 border-cyber-blue border-opacity-30 hover:border-opacity-80 group h-100 hover:border-glow-red hover:transform-translate-y-[-2] transition duration-300 cubic-beizer cursor-pointer" data-bs-toggle="modal" data-bs-target="#${targetId}">
             <!-- Card Header -->
             <div class="text-center p-2">
-                <span class="opacity-70 group-hover:opacity-100 group-hover:text-glow-purple text-terminal group-hover:text-cyber-purple tracking-widest text-sm">Fruit</span>
+                <span class="opacity-70 group-hover:opacity-100 group-hover:text-glow-purple text-terminal group-hover:text-cyber-purple tracking-widest text-sm">Random Spawn</span>
                 <div class="opacity-70 group-hover:opacity-100 group-hover:text-glow-red font-bold text-orbitron group-hover:text-cyber-red">
                     <div class="line-clamp-1">${entry.name}</div>
                 </div>
