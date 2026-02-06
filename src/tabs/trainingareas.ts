@@ -1,20 +1,9 @@
 import $ from "jquery";
 import { buildCarousel, CarouselData } from "../components/carousel";
 import { buildModal } from "../components/modal";
+import { TrainingArea } from "../types/data";
 
 // ADD 'export' here
-export interface TrainingEntry {
-	name: string;
-	details: string;
-	images: { path: string; caption: string }[];
-}
-
-// ADD 'export' here
-export interface TrainingArea {
-	name: string;
-	attributeName: string;
-	entries: TrainingEntry[];
-}
 
 export default {
 	render(data: TrainingArea[], id: string, label: string) {
@@ -36,7 +25,7 @@ export default {
 	},
 };
 
-function format(entry: TrainingEntry, areaName: string) {
+function format(entry: TrainingArea["entries"][number], areaName: string) {
 	// Create carousel for modal
 	const carousel = buildCarousel(toCarouselData(entry.images, "heading"), {
 		controls: true,
@@ -85,7 +74,7 @@ function format(entry: TrainingEntry, areaName: string) {
 	});
 
 	function toCarouselData(
-		data: TrainingEntry["images"],
+		data: TrainingArea["entries"][number]["images"],
 		captionType: keyof NonNullable<CarouselData["captions"]> = "regular",
 		className?: string,
 	): CarouselData | CarouselData[] {

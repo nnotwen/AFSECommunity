@@ -2,7 +2,7 @@ import $ from "jquery";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./styles/cyber.css";
 
-import type { AutoClickEntry, Champion, CommandSubGroup, DataConfig, GachaEntry, Quest } from "./types/data";
+import type { AutoClickEntry, Champion, CommandSubGroup, DataConfig, GachaEntry, Quest, TrainingArea } from "./types/data";
 import { generateUniqueId } from "./utils/idGenerator";
 
 import calculator from "./tabs/calculator/entry";
@@ -16,7 +16,7 @@ import specials from "./tabs/specials";
 import autotrain from "./tabs/autotrain";
 import credits from "./tabs/credits";
 import gacha from "./tabs/gacha";
-import trainingarea, { TrainingArea } from "./tabs/trainingareas";
+import trainingarea from "./tabs/trainingareas";
 import { backgroundMusic } from "./components/audiomanager";
 import $storage from "./components/storage";
 import { Tooltip } from "bootstrap";

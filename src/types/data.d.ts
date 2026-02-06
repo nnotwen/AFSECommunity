@@ -42,3 +42,13 @@ export interface DataConfig {
 		list: string[];
 	}[];
 }
+
+export interface TrainingArea {
+	name: string;
+	attributeName: string;
+	entries: {
+		name: string;
+		details: string;
+		images: { path: string; caption: string }[];
+	}[];
+}
