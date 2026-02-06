@@ -97,7 +97,7 @@ function format(entry: TrainingArea["entries"][number], areaName: string) {
                 </div>
             </div>
         `,
-		className: "hover:box-shadow-blue bg-card border-training",
+		className: "hover:border-glow-blue bg-card border-training",
 	});
 
 	function toCarouselData(
