@@ -396,6 +396,10 @@
 	font-family: "Share Tech Mono", monospace;
 }
 
+.text-orbitron {
+	font-family: "Orbitron", monospace;
+}
+
 .text-xs {
 	font-size: 0.75rem;
 }

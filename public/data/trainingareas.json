@@ -2,7 +2,7 @@
 	{
 		"name": "STRENGTH",
 		"attributeName": "Areas",
-
+		"icon": "bi bi-person-arms-up",
 		"entries": [
 			{
 				"name": "100 - Dummy",
@@ -169,7 +169,7 @@
 	{
 		"name": "DURABILITY",
 		"attributeName": "Areas",
-
+		"icon": "bi bi-shield",
 		"entries": [
 			{
 				"name": "100 - Pirate Ship",
@@ -340,7 +340,7 @@
 	{
 		"name": "CHAKRA",
 		"attributeName": "Areas",
-
+		"icon": "bi bi-fire",
 		"entries": [
 			{
 				"name": "100 - Chakra Tree",
@@ -511,7 +511,7 @@
 	{
 		"name": "SPEED & AGILITY",
 		"attributeName": "Areas",
-
+		"icon": "bi bi-wind",
 		"entries": [
 			{
 				"name": "100 - Threadmill",

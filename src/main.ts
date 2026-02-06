@@ -2,7 +2,7 @@ import $ from "jquery";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./styles/cyber.css";
 
-import type { AutoClickEntry, Champion, CommandSubGroup, DataConfig, GachaEntry, Quest } from "./types/data";
+import type { AutoClickEntry, Champion, CommandSubGroup, DataConfig, GachaEntry, Quest, TrainingArea } from "./types/data";
 import { generateUniqueId } from "./utils/idGenerator";
 
 import calculator from "./tabs/calculator/entry";
@@ -16,7 +16,7 @@ import specials from "./tabs/specials";
 import autotrain from "./tabs/autotrain";
 import credits from "./tabs/credits";
 import gacha from "./tabs/gacha";
-import trainingarea, { TrainingArea } from "./tabs/trainingareas";
+import trainingarea from "./tabs/trainingareas";
 import { backgroundMusic } from "./components/audiomanager";
 import $storage from "./components/storage";
 import { Tooltip } from "bootstrap";
@@ -102,98 +102,99 @@ function init() {
 		});
 	});
 
-	$("[data-main-navbar] button").on("click touchstart", function () {
+	$("[data-main-navbar] button").on("click touchstart", function (e) {
+		e.preventDefault();
+
 		const btnId = $(this).attr("id");
 		const tab = tabs.find((x) => x.btnId === btnId);
 
 		if (!tab) throw new Error(`Unable to find content for btnId="${btnId}"`);
 		$storage.set("tabs:navigation:lastVisited", tab.label);
 
-		$("[data-main-navbar] button").each((_, el) => {
-			$(el)[$(el).attr("id") === btnId ? "addClass" : "removeClass"]("active");
-		});
+		// Highlight the active tab button
+		$(this).addClass("active").siblings().removeClass("active");
 
-		$("[data-main-content] > div").each((_, el) => {
-			if ($(el).attr("id") === tab.contentId) {
-				$(el).fadeIn("slow");
-			} else {
-				$(el).hide();
-			}
-		});
+		// Show the active tab and hide others
+		$(`#${tab.contentId}`).siblings().hide(0);
+		$(`#${tab.contentId}`).fadeIn("slow");
+
+		// Load data on demand
+		if ($(`#${tab.contentId}`).attr("data-content-loaded") === "false") {
+			loadTab(tab.label);
+		}
+
+		$("html, body").animate({ scrollTop: "100vh" });
 	});
 
-	// LOAD DASHBOARD TAB @ src/tabs/dashboard.ts
-	const dashboardTab = tabs.find((x) => x.label === "DASHBOARD")!;
-	$.getJSON("./data/config.json")
-		.done((data: DataConfig) => dashboard.render(data, dashboardTab.contentId))
-		.fail((_, textStatus, error) => console.error("Error loading config.json:", textStatus, error));
+	$(`#${tabs.find((x) => x.label === $storage.getOrSet("tabs:navigation:lastVisited", tabs[0].label))?.btnId}`)
+		.trigger("click")
+		.trigger("touchstart");
 
-	// LOAD CALC TAB @ src/tabs/calculator/entry.ts
-	const calcTab = tabs.find((x) => x.label === "CALCULATOR")!;
-	calculator.render(calcTab.contentId);
+	// always load dashboard at the start
+	loadTab("DASHBOARD");
 
-	// LOAD POWER SKILL TAB @ src/tabs/powerskill.ts
-	const powerskillTab = tabs.find((x) => x.label === "POWERS")!;
-	$.getJSON("./data/powerskill.json")
-		.done((data: Record<string, { name: string; val: string }[]>) => powerskill.render(data, powerskillTab.contentId, powerskillTab.label))
-		.fail((_, textStatus, error) => console.error("Error loading powerskill.json:", textStatus, error));
+	function loadTab(label: (typeof tabs)[number]["label"]) {
+		const tab = tabs.find((x) => x.label === label)!;
+		let dataHref, doneCallbackFn;
 
-	// LOAD CHAMPION TAB @ src/tabs/champion.ts
-	const championTab = tabs.find((x) => x.label === "CHAMPIONS")!;
-	$.getJSON("./data/champion.json")
-		.done((data: Champion[]) => champion.render(data, championTab.contentId, championTab.label))
-		.fail((_, textStatus, error) => console.error("Error loading champions.json:", textStatus, error));
+		switch (label) {
+			case "DASHBOARD":
+				dataHref = "./data/config.json";
+				doneCallbackFn = (data: DataConfig) => dashboard.render(data, tab.contentId);
+				break;
+			case "CALCULATOR":
+				doneCallbackFn = () => calculator.render(tab.contentId);
+				break;
+			case "POWERS":
+				dataHref = "./data/powerskill.json";
+				doneCallbackFn = (data: Record<string, { name: string; val: string }[]>) => powerskill.render(data, tab.contentId, tab.label);
+				break;
+			case "CHAMPIONS":
+				dataHref = "./data/champion.json";
+				doneCallbackFn = (data: Champion[]) => champion.render(data, tab.contentId, tab.label);
+				break;
+			case "GACHA":
+				dataHref = "./data/gacha.json";
+				doneCallbackFn = (data: { location: GachaEntry[]; tokens: GachaEntry[] }) => gacha.render(data, tab.contentId, tab.label);
+				break;
+			case "TRAINING AREAS":
+				dataHref = "./data/trainingareas.json";
+				doneCallbackFn = (data: TrainingArea[]) => trainingarea.render(data, tab.contentId, tab.label);
+				break;
+			case "CODES":
+				dataHref = "./data/codes.json";
+				doneCallbackFn = (data: string[]) => codes.render(data, tab.contentId, tab.label);
+				break;
+			case "CREDITS":
+				doneCallbackFn = () => credits.render(tab.contentId);
+				break;
+			case "SPECIALS":
+				dataHref = "./data/specials.json";
+				doneCallbackFn = (data: Record<string, { name: string; abilities: string[] }[]>) => specials.render(data, tab.contentId, tab.label);
+				break;
+			case "QUESTS":
+				dataHref = "./data/questline.json";
+				doneCallbackFn = (data: Record<string, Quest[]>) => questline.render(data, tab.contentId, tab.label);
+				break;
+			case "COMMANDS":
+				dataHref = "./data/commands.json";
+				doneCallbackFn = (data: Record<string, CommandSubGroup>) => commands.render(data, tab.contentId, tab.label);
+				break;
+			case "AUTO TRAIN":
+				dataHref = "./data/autoclick.json";
+				doneCallbackFn = (data: AutoClickEntry[]) => autotrain.render(data, tab.contentId, tab.label);
+				break;
+			default:
+				doneCallbackFn = () => {};
+		}
 
-	// LOAD GACHA TAB @ src/tabs/gacha.ts
-	const gachaTab = tabs.find((x) => x.label === "GACHA")!;
-	$.getJSON("./data/gacha.json")
-		.done((data: { location: GachaEntry[]; tokens: GachaEntry[] }) => gacha.render(data, gachaTab.contentId, gachaTab.label))
-		.fail((_, textStatus, error) => console.error("Error loading questline.json:", textStatus, error));
-
-	// LOAD TRAINING AREA TAB @ src/tabs/trainingarea.ts
-	const trainingTab = tabs.find((x) => x.label === "TRAINING AREAS")!;
-	$.getJSON("./data/trainingareas.json")
-		.done((data: TrainingArea[]) => trainingarea.render(data, trainingTab.contentId, trainingTab.label))
-		.fail((_, textStatus, error) => console.error("Error loading trainingarea.json:", textStatus, error));
-
-	// LOAD CODES TAB @ src/tabs/codes.ts
-	const codesTab = tabs.find((x) => x.label === "CODES")!;
-	$.getJSON("./data/codes.json")
-		.done((data: string[]) => codes.render(data, codesTab.contentId, codesTab.label))
-		.fail((_, textStatus, error) => console.error("Error loading codes.json:", textStatus, error));
-
-	// LOAD CREDITS TAB @ src/tabs/credits.ts
-	const creditsTab = tabs.find((x) => x.label === "CREDITS")!;
-	credits.render(creditsTab.contentId);
-
-	// LOAD SPECIALS TAB @ src/tabs/specials.ts
-	const specialsTab = tabs.find((x) => x.label === "SPECIALS")!;
-	$.getJSON("./data/specials.json")
-		.done((data: Record<string, { name: string; abilities: string[] }[]>) => specials.render(data, specialsTab.contentId, specialsTab.label))
-		.fail((_, textStatus, error) => console.error("Error loading specials.json:", textStatus, error));
-
-	// LOAD QUESTLINE TAB @ src/tabs/questline.ts
-	const questlineTab = tabs.find((x) => x.label === "QUESTS")!;
-	$.getJSON("./data/questline.json")
-		.done((data: Record<string, Quest[]>) => questline.render(data, questlineTab.contentId, questlineTab.label))
-		.fail((_, textStatus, error) => console.error("Error loading questline.json:", textStatus, error));
-
-	// LOAD COMMANDS TAB @ src/tabs/commands.ts
-	const commandsTab = tabs.find((x) => x.label === "COMMANDS")!;
-	$.getJSON("./data/commands.json")
-		.done((data: Record<string, CommandSubGroup>) => commands.render(data, commandsTab.contentId, commandsTab.label))
-		.fail((_, textStatus, error) => console.error("Error loading commands.json:", textStatus, error));
-
-	// LOAD AUTO TRAIN TAB @ src/tabs/powerskill.ts
-	const autotrainTab = tabs.find((x) => x.label === "AUTO TRAIN")!;
-	$.getJSON("./data/autoclick.json")
-		.done((data: AutoClickEntry[]) => autotrain.render(data, autotrainTab.contentId, autotrainTab.label))
-		.fail((_, textStatus, error) => console.error("Error loading specials.json:", textStatus, error));
-
-	if ($storage.has("tabs:navigation:lastVisited")) {
-		const label = $storage.get("tabs:navigation:lastVisited");
-		const id = tabs.find((x) => x.label === label)?.btnId;
-
-		$(`#${id}`).trigger("click touchstart");
+		if (dataHref) {
+			$.getJSON(dataHref)
+				.done(doneCallbackFn)
+				.done(() => $(`#${tab.contentId}`).attr("data-content-loaded", "true"))
+				.fail((_, textStatus, error) => console.error(`Error loading ${dataHref}`, textStatus, error));
+		} else {
+			(doneCallbackFn as () => void)();
+		}
 	}
 }

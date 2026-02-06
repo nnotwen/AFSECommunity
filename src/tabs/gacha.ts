@@ -50,11 +50,24 @@ function format(entry: GachaEntry) {
 		}));
 	}
 
+	function toThumbCarouselData(
+		data: GachaEntry["images"],
+		captionType: keyof NonNullable<CarouselData["captions"]> = "regular",
+		className?: string,
+	): CarouselData | CarouselData[] {
+		return data.map((e) => ({
+			className,
+			imgsrc: `./images/thumb-${e.path.replace(/^\/+/, "")}`,
+			imgalt: entry.heading,
+			...(e.caption.trim().length ? { captions: { [captionType]: e.caption } } : {}),
+		}));
+	}
+
 	return /*html*/ `
     <div class="col-sm-6 col-md-4">
         <div class="gacha-card group h-100" data-bs-toggle="modal" data-bs-target="#${targetId}">
             <div class="gacha-title">${entry.heading}</div>
-            <div class="rounded-3 overflow-hidden">${buildCarousel(toCarouselData(entry.images, "regular"), { className: "opacity-25 group-hover:opacity-100" })}</div>
+            <div class="rounded-3 overflow-hidden">${buildCarousel(toThumbCarouselData(entry.images, "regular"), { className: "opacity-25 group-hover:opacity-100" })}</div>
             <p class="gacha-description mt-2">${entry.description}</p>
         </div>
     </div>`;

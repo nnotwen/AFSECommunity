@@ -103,8 +103,6 @@ export default {
 					$tab = $(`#${chikaraCalcId}`);
 				}
 
-				console.log($tab?.attr(id));
-
 				$tab?.siblings().not("[data-calc-navigation]").hide(0);
 				$tab?.fadeIn("slow");
 			},

@@ -19,171 +19,175 @@
 	--cyber-glow-alpha: 0.7;
 }
 
-.border-cyber {
+.border-cyber,
+.border-cyber-blue,
+.border-cyber-green,
+.border-cyber-red,
+.border-cyber-purple,
+.border-cyber-pink,
+.border-cyber-yellow,
+.hover\:border-cyber-blue:hover,
+.hover\:border-cyber-green:hover,
+.hover\:border-cyber-red:hover,
+.hover\:border-cyber-purple:hover,
+.hover\:border-cyber-pink:hover,
+.hover\:border-cyber-yellow:hover {
 	border: var(--cyber-border-width) var(--cyber-border-style) var(--cyber-border-color) !important;
 }
 
-.border-cyber-blue {
+.border-cyber-blue,
+.hover\:border-cyber-blue:hover {
 	--cyber-border-color: rgb(var(--cyber-blue-rgb) / var(--cyber-border-opacity));
 }
 
-.border-cyber-green {
+.border-cyber-green,
+.hover\:border-cyber-green:hover {
 	--cyber-border-color: rgb(var(--cyber-green-rgb) / var(--cyber-border-opacity));
 }
 
-.border-cyber-red {
+.border-cyber-red,
+.hover\:border-cyber-red:hover {
 	--cyber-border-color: rgb(var(--cyber-red-rgb) / var(--cyber-border-opacity));
 }
 
-.border-cyber-purple {
+.border-cyber-purple,
+.hover\:border-cyber-purple:hover {
 	--cyber-border-color: rgb(var(--cyber-purple-rgb) / var(--cyber-border-opacity));
 }
 
-.border-cyber-pink {
+.border-cyber-pink,
+.hover\:border-cyber-pink:hover {
 	--cyber-border-color: rgb(var(--cyber-pink-rgb) / var(--cyber-border-opacity));
 }
 
-.border-cyber-yellow {
+.border-cyber-yellow,
+.hover\:border-cyber-yellow:hover {
 	--cyber-border-color: rgb(var(--cyber-yellow-rgb) / var(--cyber-border-opacity));
 }
 
-.border-opacity-100 {
+.border-opacity-100,
+.hover\:border-opacity-100:hover,
+.group:hover .group-hover\:border-opacity-100 {
 	--cyber-border-opacity: 1;
 }
 
-.border-opacity-90 {
+.border-opacity-90,
+.hover\:border-opacity-90:hover,
+.group:hover .group-hover\:border-opacity-90 {
 	--cyber-border-opacity: 0.9;
 }
 
-.border-opacity-80 {
+.border-opacity-80,
+.hover\:border-opacity-80:hover,
+.group:hover .group-hover\:border-opacity-80 {
 	--cyber-border-opacity: 0.8;
 }
 
-.border-opacity-70 {
+.border-opacity-70,
+.hover\:border-opacity-70:hover,
+.group:hover .group-hover\:border-opacity-70 {
 	--cyber-border-opacity: 0.7;
 }
 
-.border-opacity-60 {
+.border-opacity-60,
+.hover\:border-opacity-60:hover,
+.group:hover .group-hover\:border-opacity-60 {
 	--cyber-border-opacity: 0.6;
 }
 
-.border-opacity-50 {
+.border-opacity-50,
+.hover\:border-opacity-50:hover,
+.group:hover .group-hover\:border-opacity-50 {
 	--cyber-border-opacity: 0.5;
 }
 
-.border-opacity-40 {
+.border-opacity-40,
+.hover\:border-opacity-40:hover,
+.group:hover .group-hover\:border-opacity-40 {
 	--cyber-border-opacity: 0.4;
 }
 
-.border-opacity-30 {
+.border-opacity-30,
+.hover\:border-opacity-30:hover,
+.group:hover .group-hover\:border-opacity-30 {
 	--cyber-border-opacity: 0.3;
 }
 
-.border-opacity-20 {
+.border-opacity-20,
+.hover\:border-opacity-20:hover,
+.group:hover .group-hover\:border-opacity-20 {
 	--cyber-border-opacity: 0.2;
 }
 
-.border-opacity-10 {
+.border-opacity-10,
+.hover\:border-opacity-10:hover,
+.group:hover .group-hover\:border-opacity-10 {
 	--cyber-border-opacity: 0.1;
 }
 
-.border-opacity-0 {
+.border-opacity-0,
+.hover\:border-opacity-0:hover,
+.group:hover .group-hover\:border-opacity-0 {
 	--cyber-border-opacity: 0;
 }
 
-.border-glow {
+.border-glow,
+.border-glow-blue,
+.border-glow-green,
+.border-glow-red,
+.border-glow-purple,
+.border-glow-pink,
+.border-glow-yellow,
+.hover\:border-glow-blue:hover,
+.hover\:border-glow-green:hover,
+.hover\:border-glow-red:hover,
+.hover\:border-glow-purple:hover,
+.hover\:border-glow-pink:hover,
+.hover\:border-glow-yellow:hover,
+.group:hover .group-hover\:border-glow-blue,
+.group:hover .group-hover\:border-glow-green,
+.group:hover .group-hover\:border-glow-red,
+.group:hover .group-hover\:border-glow-purple,
+.group:hover .group-hover\:border-glow-pink,
+.group:hover .group-hover\:border-glow-yellow {
 	box-shadow:
 		0 0 30px rgb(var(--cyber-border-glow-rgb) / 0.3),
 		inset 0 0 30px rgb(var(--cyber-border-glow-rgb) / 0.1);
 }
 
-.border-glow-green {
+.border-glow-blue,
+.hover\:border-glow-blue:hover,
+.group:hover .group-hover\:border-glow-blue {
+	--cyber-border-glow-rgb: var(--cyber-blue-rgb);
+}
+
+.border-glow-green,
+.hover\:border-glow-green:hover,
+.group:hover .group-hover\:border-glow-green {
 	--cyber-border-glow-rgb: var(--cyber-green-rgb);
 }
 
-.border-glow-red {
+.border-glow-red,
+.hover\:border-glow-red:hover,
+.group:hover .group-hover\:border-glow-red {
 	--cyber-border-glow-rgb: var(--cyber-red-rgb);
 }
 
-.border-glow-purple {
+.border-glow-purple,
+.hover\:border-glow-purple:hover,
+.group:hover .group-hover\:border-glow-purple {
 	--cyber-border-glow-rgb: var(--cyber-purple-rgb);
 }
 
-.border-glow-pink {
+.border-glow-pink,
+.hover\:border-glow-pink:hover,
+.group:hover .group-hover\:border-glow-pink {
 	--cyber-border-glow-rgb: var(--cyber-pink-rgb);
 }
 
-.border-glow-yellow {
-	--cyber-border-glow-rgb: var(--cyber-yellow-rgb);
-}
-
-.hover\:border-opacity-100:hover {
-	--cyber-border-opacity: 1;
-}
-
-.hover\:border-opacity-90:hover {
-	--cyber-border-opacity: 0.9;
-}
-
-.hover\:border-opacity-80:hover {
-	--cyber-border-opacity: 0.8;
-}
-
-.hover\:border-opacity-70:hover {
-	--cyber-border-opacity: 0.7;
-}
-
-.hover\:border-opacity-60:hover {
-	--cyber-border-opacity: 0.6;
-}
-
-.hover\:border-opacity-50:hover {
-	--cyber-border-opacity: 0.5;
-}
-
-.hover\:border-opacity-40:hover {
-	--cyber-border-opacity: 0.4;
-}
-
-.hover\:border-opacity-30:hover {
-	--cyber-border-opacity: 0.3;
-}
-
-.hover\:border-opacity-20:hover {
-	--cyber-border-opacity: 0.2;
-}
-
-.hover\:border-opacity-10:hover {
-	--cyber-border-opacity: 0.1;
-}
-
-.hover\:border-opacity-0 :hover {
-	--cyber-border-opacity: 0;
-}
-
-.hover\:border-glow:hover {
-	box-shadow:
-		0 0 30px rgb(var(--cyber-border-glow-rgb) / 0.3),
-		inset 0 0 30px rgb(var(--cyber-border-glow-rgb) / 0.1);
-}
-
-.hover\:border-glow-green:hover {
-	--cyber-border-glow-rgb: var(--cyber-green-rgb);
-}
-
-.hover\:border-glow-red:hover {
-	--cyber-border-glow-rgb: var(--cyber-red-rgb);
-}
-
-.hover\:border-glow-purple:hover {
-	--cyber-border-glow-rgb: var(--cyber-purple-rgb);
-}
-
-.hover\:border-glow-pink:hover {
-	--cyber-border-glow-rgb: var(--cyber-pink-rgb);
-}
-
-.hover\:border-glow-yellow:hover {
+.border-glow-yellow,
+.hover\:border-glow-yellow:hover,
+.group:hover .group-hover\:border-glow-blue {
 	--cyber-border-glow-rgb: var(--cyber-yellow-rgb);
 }
 
@@ -281,79 +285,156 @@
 }
 
 /* TEXT COLOR */
-
-.text-cyber-green {
-	color: rgb(var(--cyber-green-rgb)) !important;
-}
-
-.text-cyber-blue {
+.text-cyber-blue,
+.hover\:text-cyber-blue:hover,
+.group:hover .group-hover\:text-cyber-blue {
 	color: rgb(var(--cyber-blue-rgb)) !important;
 }
 
-.text-cyber-red {
-	color: rgb(var(--cyber-red-rgb)) !important;
-}
-
-.text-cyber-purple {
-	color: rgb(var(--cyber-purple-rgb)) !important;
-}
-
-.text-cyber-pink {
-	color: rgb(var(--cyber-pink-rgb)) !important;
-}
-
-.text-cyber-yellow {
-	color: rgb(var(--cyber-yellow-rgb)) !important;
-}
-
-.hover\:text-cyber-green:hover {
+.text-cyber-green,
+.hover\:text-cyber-green:hover,
+.group:hover .group-hover\:text-cyber-green {
 	color: rgb(var(--cyber-green-rgb)) !important;
 }
 
-.hover\:text-cyber-blue:hover {
-	color: rgb(var(--cyber-blue-rgb)) !important;
-}
-
-.hover\:text-cyber-red:hover {
+.text-cyber-red,
+.hover\:text-cyber-red:hover,
+.group:hover .group-hover\:text-cyber-red {
 	color: rgb(var(--cyber-red-rgb)) !important;
 }
 
-.hover\:text-cyber-purple:hover {
+.text-cyber-purple,
+.hover\:text-cyber-purple:hover,
+.group:hover .group-hover\:text-cyber-purple {
 	color: rgb(var(--cyber-purple-rgb)) !important;
 }
 
-.hover\:text-cyber-pink:hover {
+.text-cyber-pink,
+.hover\:text-cyber-pink:hover,
+.group:hover .group-hover\:text-cyber-pink {
 	color: rgb(var(--cyber-pink-rgb)) !important;
 }
 
-.hover\:text-cyber-yellow:hover {
+.text-cyber-yellow,
+.hover\:text-cyber-yellow:hover,
+.group:hover .group-hover\:text-cyber-yellow {
 	color: rgb(var(--cyber-yellow-rgb)) !important;
 }
 
-.text-glow {
+/* TEXT GLOW */
+.text-glow,
+.text-glow-blue,
+.text-glow-green,
+.text-glow-red,
+.text-glow-purple,
+.text-glow-pink,
+.text-glow-yellow,
+.hover\:text-glow:hover,
+.hover\:text-glow-blue:hover,
+.hover\:text-glow-green:hover,
+.hover\:text-glow-red:hover,
+.hover\:text-glow-purple:hover,
+.hover\:text-glow-pink:hover,
+.hover\:text-glow-yellow:hover,
+.group:hover .group-hover\:text-glow,
+.group:hover .group-hover\:text-glow-blue,
+.group:hover .group-hover\:text-glow-green,
+.group:hover .group-hover\:text-glow-red,
+.group:hover .group-hover\:text-glow-purple,
+.group:hover .group-hover\:text-glow-pink,
+.group:hover .group-hover\:text-glow-yellow {
 	text-shadow:
 		0 0 10px rgb(var(--cyber-glow-color-rgb) / var(--cyber-glow-alpha)),
 		0 0 20px rgb(var(--cyber-glow-color-rgb) / var(--cyber-glow-alpha));
 }
 
-/* TEXT GLOW */
+.text-glow-blue,
+.hover\:text-glow-blue:hover,
+.group:hover .group-hover\:text-glow-blue {
+	--cyber-glow-color-rgb: var(--cyber-blue-rgb);
+}
 
-.text-glow-green {
+.text-glow-green,
+.hover\:text-glow-green:hover,
+.group:hover .group-hover\:text-glow-green {
 	--cyber-glow-color-rgb: var(--cyber-green-rgb);
 }
 
-.text-glow-red {
+.text-glow-red,
+.hover\:text-glow-red:hover,
+.group:hover .group-hover\:text-glow-red {
 	--cyber-glow-color-rgb: var(--cyber-red-rgb);
 }
 
-.text-glow-purple {
+.text-glow-purple,
+.hover\:text-glow-purple:hover,
+.group:hover .group-hover\:text-glow-purple {
 	--cyber-glow-color-rgb: var(--cyber-purple-rgb);
 }
 
-.text-glow-pink {
+.text-glow-pink,
+.hover\:text-glow-pink:hover,
+.group:hover .group-hover\:text-glow-pink {
 	--cyber-glow-color-rgb: var(--cyber-pink-rgb);
 }
 
-.text-glow-yellow {
+.text-glow-yellow,
+.hover\:text-glow-yellow:hover,
+.group:hover .group-hover\:text-glow-yellow {
 	--cyber-glow-color-rgb: var(--cyber-yellow-rgb);
+}
+
+/* TRANSFORM HOVERS */
+.hover\:transform-translate-y-\[-4\]:hover {
+	transform: translateY(-1rem);
+}
+.hover\:transform-translate-y-\[-3\]:hover {
+	transform: translateY(-0.75rem);
+}
+.hover\:transform-translate-y-\[-2\]:hover {
+	transform: translateY(-0.5rem);
+}
+.hover\:transform-translate-y-\[-1\]:hover {
+	transform: translateY(-0.25);
+}
+.hover\:transform-translate-y-\[1\]:hover {
+	transform: translateY(0.25rem);
+}
+.hover\:transform-translate-y-\[2\]:hover {
+	transform: translateY(0.5rem);
+}
+.hover\:transform-translate-y-\[3\]:hover {
+	transform: translateY(0.75rem);
+}
+.hover\:transform-translate-y-\[4\]:hover {
+	transform: translateY(1rem);
+}
+
+/* Line clamps */
+.line-clamp-1,
+.line-clamp-2,
+.line-clamp-3,
+.line-clamp-4 {
+	--line-clamp: 1;
+	display: -webkit-box;
+	line-clamp: var(--line-clamp);
+	-webkit-line-clamp: var(--line-clamp);
+	-webkit-box-orient: vertical;
+	overflow: hidden;
+}
+
+.line-clamp-1 {
+	--line-clamp: 1;
+}
+
+.line-clamp-2 {
+	--line-clamp: 2;
+}
+
+.line-clamp-3 {
+	--line-clamp: 3;
+}
+
+.line-clamp-4 {
+	--line-clamp: 4;
 }

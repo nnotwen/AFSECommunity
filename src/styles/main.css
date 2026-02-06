@@ -144,6 +144,10 @@ h4,
 	font-family: "Share Tech Mono", monospace;
 }
 
+.bg-dark-1 {
+	background-color: linear-gradient(145deg, rgba(26, 26, 37, 0.95), rgba(17, 17, 26, 0.95));
+}
+
 .bg-dark-2 {
 	background-color: var(--dark-2);
 }
