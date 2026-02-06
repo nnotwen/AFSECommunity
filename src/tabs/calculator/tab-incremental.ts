@@ -28,10 +28,12 @@ const inputKeys = [
 	{
 		label: "CURRENT",
 		placeholder: "1",
+		key: "current",
 	},
 	{
 		label: "TARGET",
 		placeholder: "20",
+		key: "target",
 	},
 ] as const;
 
@@ -39,44 +41,92 @@ const selectKeys = [
 	{
 		label: "STAT TYPE",
 		selectOptions: [{ value: "STRENGTH" }, { value: "DURABILITY" }, { value: "CHAKRA" }, { value: "SWORD" }],
+		key: "statType",
 	},
 	{
 		label: "MODE",
 		selectOptions: [{ value: "AFK" }, { value: "CLICKING" }],
+		key: "mode",
 	},
 	{
 		label: "CHAMPION",
 		selectOptions: [{ value: "DISABLED" }, { value: "ENABLED" }],
+		key: "champion",
 	},
 	{
 		label: "2X STATS",
 		selectOptions: [{ value: "DISABLED" }, { value: "ENABLED" }],
+		key: "doubleStats",
 	},
 	{
 		label: "TARGET REACHED",
 		selectOptions: [{ value: "DISABLED" }, { value: "ENABLED" }],
+		key: "notify",
 	},
 ] as const;
 
-const inputs = inputKeys.map(({ label, placeholder }) => ({
+const inputs = inputKeys.map(({ label, placeholder, key }) => ({
 	label,
+	key,
 	...buildFloatingInput(label, { type: "text", placeholder, ...inputClasses }),
 }));
 
-const selects = selectKeys.map(({ label, selectOptions }) => ({
+const selects = selectKeys.map(({ label, selectOptions, key }) => ({
 	label,
+	key,
 	...buildSelectInput({ label, selectOptions: [...selectOptions], ...selectClasses }),
 }));
+
+// Helper function to validate stat input (simplified like yen calculator)
+function isValidStatInput(value: string, fieldName: string): { isValid: boolean; parsed: number; error?: string } {
+	const trimmed = value.trim();
+
+	// Check if empty
+	if (!trimmed) {
+		return { isValid: false, parsed: 0, error: `${fieldName} cannot be empty` };
+	}
+
+	try {
+		// Try to parse the value - convertNum should handle all suffix formats
+		const parsed = convertNum(trimmed, "parse");
+
+		// Check for negative values (only real validation we care about)
+		if (parsed < 0) {
+			return { isValid: false, parsed: parsed, error: `${fieldName} cannot be negative` };
+		}
+
+		// Check for zero or negative (stats should be > 0)
+		if (parsed <= 0) {
+			return { isValid: false, parsed: parsed, error: `${fieldName} must be greater than 0` };
+		}
+
+		// Check for NaN or Infinity
+		if (!isFinite(parsed) || isNaN(parsed)) {
+			return { isValid: false, parsed: 0, error: `${fieldName}: Invalid number` };
+		}
+
+		return { isValid: true, parsed: parsed };
+	} catch (error) {
+		// If convertNum throws an error, the format is invalid
+		return {
+			isValid: false,
+			parsed: 0,
+			error: `${fieldName}: Invalid format. Use numbers like 100, 1M, 1.5B, 1T, 1QD, etc.`,
+		};
+	}
+}
 
 export default {
 	render(appendTo: string) {
 		const id = generateUniqueId();
 
-		const stype = { ...selects.find((x) => x.label === "STAT TYPE")! };
+		const stype = selects.find((x) => x.label === "STAT TYPE")!;
 		const smode = selects.find((x) => x.label === "MODE")!;
 		const champ = selects.find((x) => x.label === "CHAMPION")!;
 		const stat2x = selects.find((x) => x.label === "2X STATS")!;
 		const notify = selects.find((x) => x.label === "TARGET REACHED")!;
+		const currInp = inputs.find((x) => x.label === "CURRENT")!;
+		const wantInp = inputs.find((x) => x.label === "TARGET")!;
 
 		const statInputs = [stype, ...inputs, smode, champ, stat2x].map(
 			(x) => /*html*/ `
@@ -139,76 +189,137 @@ export default {
 			});
 		});
 
-		const devalidatedIdsLabels = ["CURRENT", "TARGET"] as const;
-		const devalidatedIds = devalidatedIdsLabels.map((x) => inputs.find((y) => y.label === x)!.id);
-		$(devalidatedIds.map((id) => `#${id}`).join(", ")).on("focus", function () {
-			$(this).removeClass("invalid");
+		// Remove invalid class on focus
+		inputs.forEach((input) => {
+			$(`#${input.id}`).on("focus", function () {
+				$(this).removeClass("invalid");
+			});
 		});
 
-		$(selects.map((x) => `#${x.id}`).join(", ")).on("change", function () {
-			const ignoredLabels = ["TARGET REACHED"];
-			if (ignoredLabels.includes(selects.find((x) => x.id === $(this).attr("id"))!.label)) return;
-
-			if (state.timeToReachTargetInterval !== 0) {
-				toast.warning("Input change detected. Recalculating values...");
-				$("[data-inc-calculate]").trigger("click touchstart");
-			}
-		});
+		// Recalculate when select inputs change
+		selects
+			.filter((x) => x.label !== "TARGET REACHED")
+			.forEach((select) => {
+				$(`#${select.id}`).on("change", function () {
+					if (state.timeToReachTargetInterval !== 0) {
+						toast.warning("Input change detected. Recalculating values...");
+						$("[data-inc-calculate]").trigger("click touchstart");
+					}
+				});
+			});
 
 		// When user clicks "Calculate"
 		$("[data-inc-calculate]").on("click touchstart", function () {
-			const $curr = $(`#${inputs.find((x) => x.label === "CURRENT")!.id}`);
-			const $want = $(`#${inputs.find((x) => x.label === "TARGET")!.id}`);
-			const $notify = $(`#${selects.find((x) => x.label === "TARGET REACHED")!.id}`);
+			const currValue = currInp.$().val() as string;
+			const wantValue = wantInp.$().val() as string;
+
+			// Remove invalid class from all inputs first
+			currInp.$().removeClass("invalid");
+			wantInp.$().removeClass("invalid");
+
+			// Validate all inputs
+			const currValidation = isValidStatInput(currValue, "CURRENT");
+			const wantValidation = isValidStatInput(wantValue, "TARGET");
+
+			// Check for validation errors
+			let hasError = false;
+
+			if (!currValidation.isValid) {
+				toast.error(currValidation.error || "Invalid CURRENT value");
+				currInp.$().addClass("invalid");
+				hasError = true;
+			}
+
+			if (!wantValidation.isValid) {
+				toast.error(wantValidation.error || "Invalid TARGET value");
+				wantInp.$().addClass("invalid");
+				hasError = true;
+			}
+
+			if (hasError) {
+				return; // Stop calculation if any input is invalid
+			}
+
+			const curr = currValidation.parsed;
+			const want = wantValidation.parsed;
+
+			// Check logical errors
+			if (curr > want) {
+				toast.error("Target stat must be greater than the current stat.");
+				wantInp.$().addClass("invalid");
+				return;
+			}
 
 			const statName = stype.$().val() as Extract<(typeof selectKeys)[number], { label: "STAT TYPE" }>["selectOptions"][number]["value"];
 			const statMode = smode.$().val() as Extract<(typeof selectKeys)[number], { label: "MODE" }>["selectOptions"][number]["value"];
 			const statChamp = champ.$().val() as Extract<(typeof selectKeys)[number], { label: "CHAMPION" }>["selectOptions"][number]["value"];
 			const doubleStat = stat2x.$().val() as Extract<(typeof selectKeys)[number], { label: "2X STATS" }>["selectOptions"][number]["value"];
+			const notifyValue = notify.$().val() as Extract<(typeof selectKeys)[number], { label: "TARGET REACHED" }>["selectOptions"][number]["value"];
 
-			const curr = convertNum($curr.val() as string, "parse");
-			const want = convertNum($want.val() as string, "parse");
+			let incPerMin = 0;
 
-			let incPerMin = 0,
-				minutesNeeded = 0,
-				validated = true;
-
-			if (curr <= 0) {
-				validated = false;
-				toast.error("Current Stat be a positive, non-zero number.");
-				$curr.addClass("invalid");
+			// Calculate increments per minute
+			if (ticksPerStat[statName]) {
+				incPerMin = ticksPerStat[statName][statMode];
 			}
 
-			if (want <= 0) {
-				validated = false;
-				toast.error("Target Stat be a positive, non-zero number.");
-				$want.addClass("invalid");
+			if (statChamp === "ENABLED") {
+				incPerMin += 15;
 			}
 
-			if (curr > 0 && want > 0 && curr > want) {
-				validated = false;
-				toast.error("Target stat must be greater than the current stat.");
-				$want.addClass("invalid");
+			if (doubleStat === "ENABLED") {
+				incPerMin *= 2;
 			}
 
-			if (!validated) return;
+			// Handle zero or negative increments
+			if (incPerMin <= 0) {
+				if (curr >= want) {
+					$("[data-inc-ttr-label]").text("TARGET REACHED");
+					$("[data-inc-ipm-label]").text("0");
+				} else {
+					toast.error("Increments per minute is 0 or negative. Check your settings.");
+					$("[data-inc-ttr-label]").text("NO PROGRESS");
+					$("[data-inc-ipm-label]").text("0");
+				}
+				clearInterval(state.timeToReachTargetInterval);
+				state.timeToReachTargetInterval = 0;
+				return;
+			}
 
-			if (ticksPerStat[statName]) incPerMin = ticksPerStat[statName][statMode];
-			if (statChamp === "ENABLED") incPerMin += 15;
-			if (doubleStat === "ENABLED") incPerMin *= 2;
-			if (want > curr && incPerMin > 0) minutesNeeded = (want - curr) / incPerMin;
+			const minutesNeeded = (want - curr) / incPerMin;
 
 			$("[data-inc-ipm-label]").text(incPerMin.toFixed(2));
 
+			// Handle extremely large time values
+			if (minutesNeeded >= 1e9 || !isFinite(minutesNeeded)) {
+				$("[data-inc-ttr-label]").text("NEARLY INFINITE TIME");
+				clearInterval(state.timeToReachTargetInterval);
+				state.timeToReachTargetInterval = 0;
+				toast.info("Time required is extremely long. Consider adjusting your settings.");
+				return;
+			}
+
 			clearInterval(state.timeToReachTargetInterval);
 			let remainingSeconds = Math.floor(minutesNeeded * 60);
+
+			// If already at or past target
+			if (remainingSeconds <= 0) {
+				$("[data-inc-ttr-label]").text("TARGET REACHED");
+				if (notifyValue === "ENABLED") {
+					new Notification(config.header, {
+						body: "Target stats has been reached!",
+						icon: "/icons/icon-256.png",
+					});
+				}
+				return;
+			}
 
 			state.timeToReachTargetInterval = setInterval(() => {
 				if (remainingSeconds === 0) {
 					clearInterval(state.timeToReachTargetInterval);
 					state.timeToReachTargetInterval = 0;
 					$("[data-inc-ttr-label]").text("TARGET REACHED");
-					if ($notify.val() === "ENABLED") {
+					if (notifyValue === "ENABLED") {
 						new Notification(config.header, {
 							body: "Target stats has been reached!",
 							icon: "/icons/icon-256.png",

@@ -29,14 +29,17 @@ const inputKeys = [
 	{
 		label: "CURRENT KILLS",
 		placeholder: "1",
+		key: "currentKills",
 	},
 	{
 		label: "WANTED KILLS",
 		placeholder: "20",
+		key: "wantedKills",
 	},
 	{
 		label: "AMOUNT OF NPC PER SPAWN",
 		placeholder: "4",
+		key: "npcsPerSpawn",
 	},
 ] as const;
 
@@ -44,18 +47,60 @@ const selectKeys = [
 	{
 		label: "TARGET REACHED",
 		selectOptions: [{ value: "DISABLED" }, { value: "ENABLED" }],
+		key: "notify",
 	},
 ];
 
-const inputs = inputKeys.map(({ label, placeholder }) => ({
+const inputs = inputKeys.map(({ label, placeholder, key }) => ({
 	label,
+	key,
 	...buildFloatingInput(label, { type: "text", placeholder, ...inputClasses }),
 }));
 
-const selects = selectKeys.map(({ label, selectOptions }) => ({
+const selects = selectKeys.map(({ label, selectOptions, key }) => ({
 	label,
+	key,
 	...buildSelectInput({ label, selectOptions: [...selectOptions], ...selectClasses }),
 }));
+
+// Helper function to validate input (simplified like other calculators)
+function isValidNumber(value: string, fieldName: string): { isValid: boolean; parsed: number; error?: string } {
+	const trimmed = value.trim();
+
+	// Check if empty
+	if (!trimmed) {
+		return { isValid: false, parsed: 0, error: `${fieldName} cannot be empty` };
+	}
+
+	try {
+		// Try to parse the value - convertNum should handle all suffix formats
+		const parsed = convertNum(trimmed, "parse");
+
+		// Check for negative values (only real validation we care about)
+		if (parsed < 0) {
+			return { isValid: false, parsed: parsed, error: `${fieldName} cannot be negative` };
+		}
+
+		// Check for zero or negative (kills should be >= 0, but 0 is allowed for current kills)
+		if (parsed < 0) {
+			return { isValid: false, parsed: parsed, error: `${fieldName} cannot be negative` };
+		}
+
+		// Check for NaN or Infinity
+		if (!isFinite(parsed) || isNaN(parsed)) {
+			return { isValid: false, parsed: 0, error: `${fieldName}: Invalid number` };
+		}
+
+		return { isValid: true, parsed: parsed };
+	} catch (error) {
+		// If convertNum throws an error, the format is invalid
+		return {
+			isValid: false,
+			parsed: 0,
+			error: `${fieldName}: Invalid format. Use numbers like 100, 1M, 1.5B, 1T, 1QD, etc.`,
+		};
+	}
+}
 
 export default {
 	render(appendTo: string) {
@@ -107,10 +152,11 @@ export default {
 			$(`#${notify.id}`).val($storage.get(`notifications:npck:${notify.label}`));
 		}
 
-		const devalidatedIdsLabels = ["WANTED KILLS"] as const;
-		const devalidatedIds = devalidatedIdsLabels.map((x) => inputs.find((y) => y.label === x)!.id);
-		$(devalidatedIds.map((id) => `#${id}`).join(", ")).on("focus", function () {
-			$(this).removeClass("invalid");
+		// Remove invalid class on focus for all inputs
+		inputs.forEach((input) => {
+			$(`#${input.id}`).on("focus", function () {
+				$(this).removeClass("invalid");
+			});
 		});
 
 		// REQUEST NOTIFICATION PERMISSION
@@ -136,35 +182,94 @@ export default {
 		});
 
 		$("[data-npckills-calculate]").on("click touchstart", function () {
-			const $curr = currInp.$();
-			const $want = wantInp.$();
-			const $npcs = npcsInp.$();
+			const currValue = currInp.$().val() as string;
+			const wantValue = wantInp.$().val() as string;
+			const npcsValue = npcsInp.$().val() as string;
 
-			// Assign default values if input are empty
-			for (const $$ of [$curr, $want, $npcs]) {
-				if (!($$.val() as string).length) {
-					$$.val(inputKeys.find((x) => x.label === inputs.find((y) => y.id === $$.attr("id"))!.label)!.placeholder);
-				}
+			// Remove invalid class from all inputs first
+			currInp.$().removeClass("invalid");
+			wantInp.$().removeClass("invalid");
+			npcsInp.$().removeClass("invalid");
+
+			// Validate all inputs
+			const currValidation = isValidNumber(currValue, "CURRENT KILLS");
+			const wantValidation = isValidNumber(wantValue, "WANTED KILLS");
+			const npcsValidation = isValidNumber(npcsValue, "AMOUNT OF NPC PER SPAWN");
+
+			// Check for validation errors
+			let hasError = false;
+
+			if (!currValidation.isValid) {
+				toast.error(currValidation.error || "Invalid CURRENT KILLS value");
+				currInp.$().addClass("invalid");
+				hasError = true;
 			}
 
-			const curr = convertNum($curr.val() as string, "parse");
-			const want = convertNum($want.val() as string, "parse");
-			const npcs = convertNum($npcs.val() as string, "parse");
+			if (!wantValidation.isValid) {
+				toast.error(wantValidation.error || "Invalid WANTED KILLS value");
+				wantInp.$().addClass("invalid");
+				hasError = true;
+			}
+
+			if (!npcsValidation.isValid) {
+				toast.error(npcsValidation.error || "Invalid AMOUNT OF NPC PER SPAWN value");
+				npcsInp.$().addClass("invalid");
+				hasError = true;
+			}
+
+			if (hasError) {
+				return; // Stop calculation if any input is invalid
+			}
+
+			const curr = currValidation.parsed;
+			const want = wantValidation.parsed;
+			const npcs = npcsValidation.parsed;
+
+			// Check for logical errors
+			if (curr > want) {
+				toast.error("Wanted kills must be greater than current kills");
+				wantInp.$().addClass("invalid");
+				return;
+			}
+
+			if (npcs === 0) {
+				toast.error("Amount of NPC per spawn cannot be 0");
+				npcsInp.$().addClass("invalid");
+				return;
+			}
 
 			const kpm = npcs * config.npcKPM;
 			const killsRemaining = Math.max(0, want - curr);
-			const minutesNeeded = killsRemaining / kpm;
 
-			if (curr > want) {
-				toast.error("Wanted kills must be greater than current kills");
-				return $want.addClass("invalid");
+			// Handle case where kills per minute is 0 (shouldn't happen with validation above)
+			if (kpm === 0) {
+				toast.error("Kills per minute is 0. Check your inputs.");
+				$("[data-npck-kpm-label]").text("0");
+				$("[data-npck-krem-label]").text(convertNum(killsRemaining.toFixed(2), "format"));
+				$("[data-npck-ttr-label]").text("NO PROGRESS");
+				return;
 			}
+
+			const minutesNeeded = killsRemaining / kpm;
 
 			$("[data-npck-kpm-label]").text(kpm.toFixed(2));
 			$("[data-npck-krem-label]").text(convertNum(killsRemaining.toFixed(2), "format"));
 
 			clearInterval(state.timeToReachTargetInterval);
 			let remainingSeconds = Math.floor(minutesNeeded * 60);
+
+			// If already at target
+			if (remainingSeconds <= 0) {
+				$("[data-npck-ttr-label]").text("TARGET REACHED");
+				$("[data-npck-krem-label]").text("0");
+				if (notify.$().val() === "ENABLED") {
+					new Notification(config.header, {
+						body: "Target kills has been reached!",
+						icon: "/icons/icon-256.png",
+					});
+				}
+				return;
+			}
 
 			state.timeToReachTargetInterval = setInterval(() => {
 				if (remainingSeconds === 0) {

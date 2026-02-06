@@ -57,15 +57,18 @@ const selectClasses = {
 const inputKeys = [
 	{
 		label: "CHAMP YEN MULTI",
-		placeholder: "1M",
+		placeholder: "1M (optional)",
+		key: "champYenMulti",
 	},
 	{
 		label: "CURRENT YEN",
 		placeholder: "100M",
+		key: "currentYen",
 	},
 	{
 		label: "REQUIRED YEN",
 		placeholder: "10B",
+		key: "requiredYen",
 	},
 ] as const;
 
@@ -74,11 +77,13 @@ const selectKeys = [
 		label: "RANK MULTIPLIER",
 		selectOptions: data.map((x) => ({ value: `${x.value}`, label: x.label })),
 		...selectClasses,
+		key: "rankMulti",
 	},
 	{
 		label: "x2 YEN GAMEPASS",
 		selectOptions: [{ value: "DISABLED" }, { value: "ENABLED" }],
 		...selectClasses,
+		key: "x2GamePass",
 	},
 	{
 		label: "NEN MULTIPLIER",
@@ -91,6 +96,7 @@ const selectKeys = [
 			{ label: "A (1.25x)", value: "1.25" },
 		],
 		...selectClasses,
+		key: "yenMulti",
 	},
 	{
 		label: "HERO MULTIPLIER",
@@ -104,22 +110,65 @@ const selectKeys = [
 			{ label: "S (1.3x)", value: "1.3" },
 		],
 		...selectClasses,
+		key: "heroMulti",
 	},
 	{
 		label: "TARGET REACHED",
 		selectOptions: [{ value: "DISABLED" }, { value: "ENABLED" }],
+		key: "notify",
 	},
 ] as const;
 
-const inputs = inputKeys.map(({ label, placeholder }) => ({
+const inputs = inputKeys.map(({ label, placeholder, key }) => ({
 	label,
+	key,
 	...buildFloatingInput(label, { type: "text", placeholder, ...inputClasses }),
 }));
 
-const selects = selectKeys.map(({ label, selectOptions }) => ({
+const selects = selectKeys.map(({ label, selectOptions, key }) => ({
 	label,
+	key,
 	...buildSelectInput({ label, selectOptions: [...selectOptions], ...selectClasses }),
 }));
+
+// Helper function to validate yen input
+function isValidYenInput(value: string, fieldName: string, isOptional: boolean = false): { isValid: boolean; parsed: number; error?: string } {
+	const trimmed = value.trim();
+
+	// If optional and empty, return valid with default value
+	if (isOptional && !trimmed) {
+		return { isValid: true, parsed: 1 }; // Default value for optional field
+	}
+
+	// Check if empty
+	if (!trimmed) {
+		return { isValid: false, parsed: 0, error: `${fieldName} cannot be empty` };
+	}
+
+	try {
+		// Try to parse the value - convertNum should handle all suffix formats
+		const parsed = convertNum(trimmed, "parse");
+
+		// Check for negative values (only real validation we care about)
+		if (parsed < 0) {
+			return { isValid: false, parsed: parsed, error: `${fieldName} cannot be negative` };
+		}
+
+		// Check for NaN or Infinity
+		if (!isFinite(parsed) || isNaN(parsed)) {
+			return { isValid: false, parsed: 0, error: `${fieldName}: Invalid number` };
+		}
+
+		return { isValid: true, parsed: parsed };
+	} catch (error) {
+		// If convertNum throws an error, the format is invalid
+		return {
+			isValid: false,
+			parsed: 0,
+			error: `${fieldName}: Invalid format. Use numbers like 100, 1M, 1.5B, 1T, 1QD, etc.`,
+		};
+	}
+}
 
 export default {
 	render(appendTo: string) {
@@ -202,39 +251,101 @@ export default {
 		});
 
 		$("[data-yen-calculate]").on("click touchstart", function () {
-			const $champYen = champYenMulti.$();
-			const $currYen = currYen.$();
-			const $wantYen = wantYen.$();
+			const champYenValue = champYenMulti.$().val() as string;
+			const currYenValue = currYen.$().val() as string;
+			const wantYenValue = wantYen.$().val() as string;
 
-			// Assign default values if input are empty
-			for (const $$ of [$champYen, $currYen, $wantYen]) {
-				if (!($$.val() as string).length) {
-					$$.val(inputKeys.find((x) => x.label === inputs.find((y) => y.id === $$.attr("id"))!.label)!.placeholder);
-				}
+			// Remove invalid class from all inputs
+			champYenMulti.$().removeClass("invalid");
+			currYen.$().removeClass("invalid");
+			wantYen.$().removeClass("invalid");
+
+			// Validate all inputs
+			const champValidation = isValidYenInput(champYenValue, "CHAMP YEN MULTI", true); // Optional
+			const currValidation = isValidYenInput(currYenValue, "CURRENT YEN", false);
+			const wantValidation = isValidYenInput(wantYenValue, "REQUIRED YEN", false);
+
+			// Check for validation errors
+			let hasError = false;
+
+			if (!champValidation.isValid && champYenValue.trim()) {
+				// Only show error if optional field has value but it's invalid
+				toast.error(champValidation.error || "Invalid CHAMP YEN MULTI value");
+				champYenMulti.$().addClass("invalid");
+				hasError = true;
 			}
 
-			const curr = convertNum($currYen.val() as string, "parse");
-			const want = convertNum($wantYen.val() as string, "parse");
+			if (!currValidation.isValid) {
+				toast.error(currValidation.error || "Invalid CURRENT YEN value");
+				currYen.$().addClass("invalid");
+				hasError = true;
+			}
 
+			if (!wantValidation.isValid) {
+				toast.error(wantValidation.error || "Invalid REQUIRED YEN value");
+				wantYen.$().addClass("invalid");
+				hasError = true;
+			}
+
+			if (hasError) {
+				return; // Stop calculation if any input is invalid
+			}
+
+			const curr = currValidation.parsed;
+			const want = wantValidation.parsed;
+
+			// Use validated value for champYenMulti (or default 1 if empty)
+			const champYenMultiVal = champValidation.isValid ? champValidation.parsed : 1;
+
+			// Check logical errors
 			if (curr > want) {
 				toast.error("Wanted yen must be greater than current yen.");
-				return $wantYen.addClass("invalid");
+				wantYen.$().addClass("invalid");
+				return;
 			}
 
-			const baseVal = convertNum(rankMulti.$().val() as string, "parse") * (x2GamePass.$().val() === "ENABLED" ? 2 : 1);
-			const total =
-				baseVal *
-				parseFloat(yenMulti.$().val() as string) *
-				parseFloat(heroMulti.$().val() as string) *
-				convertNum(champYenMulti.$().val() as string, "parse");
+			// Calculate base value
+			const rankMultiValue = convertNum(rankMulti.$().val() as string, "parse");
+			const baseVal = rankMultiValue * (x2GamePass.$().val() === "ENABLED" ? 2 : 1);
 
-			const minutesNeeded = Math.max(0, (want - curr) / total);
+			const total = baseVal * parseFloat(yenMulti.$().val() as string) * parseFloat(heroMulti.$().val() as string) * champYenMultiVal;
 
 			$("[data-yen-bypm-label]").text(convertNum(baseVal, "format"));
 			$("[data-yen-ypm-label]").text(convertNum(total, "format"));
 
+			// Handle edge case where total is 0 or extremely small
+			if (total <= 0) {
+				toast.error("Yen per minute is 0 or negative. Check your multipliers.");
+				$("[data-yen-ttr-label]").text("INFINITE TIME");
+				clearInterval(state.timeToReachTargetInterval);
+				state.timeToReachTargetInterval = 0;
+				return;
+			}
+
+			const minutesNeeded = Math.max(0, (want - curr) / total);
+
+			// Handle extremely large time (practically infinite)
+			if (minutesNeeded >= Number.MAX_SAFE_INTEGER / 60 || !isFinite(minutesNeeded)) {
+				$("[data-yen-ttr-label]").text("INFINITE TIME");
+				clearInterval(state.timeToReachTargetInterval);
+				state.timeToReachTargetInterval = 0;
+				return;
+			}
+
 			clearInterval(state.timeToReachTargetInterval);
 			let remainingSeconds = Math.floor(minutesNeeded * 60);
+
+			// If already at or past target
+			if (remainingSeconds <= 0) {
+				$("[data-yen-ttr-label]").text("TARGET REACHED");
+				if (notify.$().val() === "ENABLED") {
+					new Notification(config.header, {
+						body: "Required coins have been reached!",
+						icon: "/icons/icon-256.png",
+					});
+				}
+				return;
+			}
 
 			state.timeToReachTargetInterval = setInterval(() => {
 				if (remainingSeconds === 0) {
