@@ -1,0 +1,562 @@
+[
+	{
+		"name": "STRENGTH",
+		"attributeName": "Areas",
+
+		"entries": [
+			{
+				"name": "100 - Dummy",
+				"details": "Near Lobby.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-05 224030.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "10k - Gym",
+				"details": "Near Hero Gacha.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-05 224419.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "100k - Beach",
+				"details": "Near 1M Meteor Strength.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 004017.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "1M - Meteor",
+				"details": "Near 1M Paw Durability.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 004311.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "10M - Lookout Island/Time Chamber",
+				"details": "Near Saiyan Gacha.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 004647.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "100M - Arena",
+				"details": "Near Nichirin Gacha.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 005616.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "1B - Excalibur",
+				"details": "Near Waterfall or Bloodline Gacha.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 005943.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "100B - Jinwoo/Solo Leveling",
+				"details": "Near Kaneki Gacha.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 012342.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "5T - Floating Island/Aincrad",
+				"details": "Near Temple 1M Chakra.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 012803.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "250T - Skull/Licht Skull",
+				"details": "Near Heavenly Pillar 100QN.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 013116.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "50QD - Boulder/Kimetsu na Yawa :>",
+				"details": "Near Buu NPC.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 013227.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "1QN - Piggy",
+				"details": "Near Church.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 013621.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "100QN - Heavenly Pillar",
+				"details": "Near Skull.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 014350.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "1SX - Monster Cube",
+				"details": "Infront of Founder Titan.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 021122.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "100SX - Iced Rose Spikes",
+				"details": "Near Time Chamber.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 021333.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "1SP - Alien Ship",
+				"details": "Fly around. You can also use navigation on your bottom left.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 021547.png",
+						"caption": ""
+					}
+				]
+			}
+		]
+	},
+	{
+		"name": "DURABILITY",
+		"attributeName": "Areas",
+
+		"entries": [
+			{
+				"name": "100 - Pirate Ship",
+				"details": "Near Trampoline.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-05 224050.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "10k - Desert Island",
+				"details": "Near Volcano.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-05 224209.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "100k - Igloo",
+				"details": "Near 100QN Mystical Tree.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 004157.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "1M - Paw",
+				"details": "Near 1M Meteor Strength.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 004311.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "10M - Volcano",
+				"details": "Near Desert Island.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 004623.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "100M - Black Flames",
+				"details": "Near Nichirin Gacha.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 005528.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "1B - Planet",
+				"details": "Near Founder Titan Above.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 010135.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "100B - Time Chamber",
+				"details": "Nearby Galleon Ship 100SX .",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 010919.png",
+						"caption": "Outside"
+					},
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 010941.png",
+						"caption": "Inside"
+					}
+				]
+			},
+			{
+				"name": "5T - Hollow",
+				"details": "Near Temple 1M Chakra.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 012741.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "250T - Founder Titan",
+				"details": "Near 50QD Boulder Strength.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 013055.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "50QD - Rock Planet",
+				"details": "Near Buu NPC.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 013333.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "1QN - Marine Ford",
+				"details": "Near Sage Platform.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 013553.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "100QN - Island of Power",
+				"details": "Near Kurama Boss arena.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 015151.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "1SX - Dark Palace",
+				"details": "Near Rengoku NPC.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 021210.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "100SX - Galleon Ship",
+				"details": "Near Desert Island.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 021312.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "1SP - Caravel Ship",
+				"details": "Roam on sky",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 021608.png",
+						"caption": ""
+					}
+				]
+			}
+		]
+	},
+	{
+		"name": "CHAKRA",
+		"attributeName": "Areas",
+
+		"entries": [
+			{
+				"name": "100 - Chakra Tree",
+				"details": "Near Lobby.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-05 224017.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "10k - Library",
+				"details": "Near Kunai Field.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-05 224238.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "100k - Truth Waterfall",
+				"details": "Near Bloodline Gacha.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 003931.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "1M - Temple",
+				"details": "Near 1M Hollow Durability.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 004408.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "10M - Demon Fox",
+				"details": "Underground Cave.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 004528.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "100M - Sakura Chakra Tree",
+				"details": "Near Grimoire Gacha.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 005739.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "1B - Sage Mode Platform",
+				"details": "Near Dark Palace 1SX Durability.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 010156.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "100B - Crystal of Heaven",
+				"details": "Near Marine Ford.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 011059.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "5T - Ramen",
+				"details": "Near Jutsu Gacha.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 013008.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "250T - Ultimate Dragon",
+				"details": "Fly around. You can also use navigation on your bottom left.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 013142.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "50QD - Mugen Tsukyomi",
+				"details": "Fly around. You can also use navigation on your bottom left.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 013355.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "1QN - Gate",
+				"details": "Nearby Kunai 100K Speed & Agility .",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 013426.png",
+						"caption": "Outside"
+					},
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 013515.png",
+						"caption": "Inside"
+					}
+				]
+			},
+			{
+				"name": "100QN - Mystical Tree",
+				"details": "Near Saitama NPC or Igloo Durability.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 020936.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "1SX - Divine Plant",
+				"details": "Near Rimuru NPC on Ice land.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 021033.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "100SX - Kunai's Field",
+				"details": "Near Library 10K Chakra.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 021450.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "1SP - Shino Academy",
+				"details": "Near Heavenly Pillar 100QN Strength.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 021523.png",
+						"caption": ""
+					}
+				]
+			}
+		]
+	},
+	{
+		"name": "SPEED & AGILITY",
+		"attributeName": "Areas",
+
+		"entries": [
+			{
+				"name": "100 - Threadmill",
+				"details": "Near Ramen 5T Chakra.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-05 224419.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "10k - Gravity Chamber",
+				"details": "Nearby Speed & Agility leaderboard.",
+				"images": [
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 005303.png",
+						"caption": "Outside"
+					},
+					{
+						"path": "/trainingareas/Screenshot 2026-02-06 005344.png",
+						"caption": "Inside"
+					}
+				]
+			},
+			{
+				"name": "100k - Kunai Ground",
+				"details": "Near Ichigo NPC. Going to 1QN Chakra.",
+				"images": [
+					{
+						"caption": "",
+						"path": "/trainingareas/Screenshot 2026-02-05 225028.png"
+					}
+				]
+			},
+			{
+				"name": "5M - Church",
+				"details": "Near Piggy 1QN Strength.",
+				"images": [
+					{
+						"caption": "",
+						"path": "/trainingareas/Screenshot 2026-02-06 034216.png"
+					}
+				]
+			}
+		]
+	}
+]
