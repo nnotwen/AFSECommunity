@@ -28,6 +28,8 @@
 		"@fontsource/exo-2": "^5.2.8",
 		"@fontsource/orbitron": "^5.2.8",
 		"@fontsource/share-tech-mono": "^5.2.7",
+		"@fortawesome/fontawesome-svg-core": "^7.1.0",
+		"@fortawesome/free-solid-svg-icons": "^7.1.0",
 		"bootstrap": "^5.3.8",
 		"bootstrap-icons": "^1.13.1",
 		"jquery": "^4.0.0",
