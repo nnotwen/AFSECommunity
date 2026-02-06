@@ -1,6 +1,7 @@
 import $ from "jquery";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./styles/cyber.css";
+import "./icons";
 
 import type { AutoClickEntry, Champion, CommandSubGroup, DataConfig, GachaEntry, Quest, TrainingArea } from "./types/data";
 import { generateUniqueId } from "./utils/idGenerator";
