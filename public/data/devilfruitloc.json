@@ -1,0 +1,59 @@
+[
+	{
+		"name": "Devil Fruit",
+		"attributeName": "Locations",
+		"icon": "bi bi-apple",
+		"entries": [
+			{
+				"name": "Random Spawn",
+				"details": "Near Library 10k Chakra.",
+				"images": [
+					{
+						"path": "/devilfruitlocations/1.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "Random Spawn",
+				"details": "Near Sage Platform 1B Chakra.",
+				"images": [
+					{
+						"path": "/devilfruitlocations/2.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "Random Spawn",
+				"details": "Near Bloodline Gacha.",
+				"images": [
+					{
+						"path": "/devilfruitlocations/3.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "Random Spawn",
+				"details": "Near 100M Arena Strength.",
+				"images": [
+					{
+						"path": "/devilfruitlocations/4.png",
+						"caption": ""
+					}
+				]
+			},
+			{
+				"name": "Random Spawn",
+				"details": "Near Kunai Grounds.",
+				"images": [
+					{
+						"path": "/devilfruitlocations/5.png",
+						"caption": ""
+					}
+				]
+			}
+		]
+	}
+]

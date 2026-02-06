@@ -53,3 +53,20 @@ export interface TrainingArea {
 		images: { path: string; caption: string }[];
 	}[];
 }
+export interface DevilFruitImage {
+	path: string;
+	caption: string;
+}
+
+export interface DevilFruitEntry {
+	name: string;
+	details: string;
+	images: DevilFruitImage[];
+}
+
+export interface DevilFruitLocations {
+	name: string;
+	attributeName: string;
+	icon: string;
+	entries: DevilFruitEntry[];
+}

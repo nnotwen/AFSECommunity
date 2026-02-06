@@ -2,7 +2,7 @@ import $ from "jquery";
 import "bootstrap/dist/js/bootstrap.bundle.min.js";
 import "./styles/cyber.css";
 
-import type { AutoClickEntry, Champion, CommandSubGroup, DataConfig, GachaEntry, Quest, TrainingArea } from "./types/data";
+import type { AutoClickEntry, Champion, CommandSubGroup, DataConfig, GachaEntry, Quest, TrainingArea, DevilFruitLocations } from "./types/data";
 import { generateUniqueId } from "./utils/idGenerator";
 
 import calculator from "./tabs/calculator/entry";
@@ -17,6 +17,7 @@ import autotrain from "./tabs/autotrain";
 import credits from "./tabs/credits";
 import gacha from "./tabs/gacha";
 import trainingarea from "./tabs/trainingareas";
+import devilfruitloc from "./tabs/devilfruitloc";
 import { backgroundMusic } from "./components/audiomanager";
 import $storage from "./components/storage";
 import { Tooltip } from "bootstrap";
@@ -31,6 +32,7 @@ const tabsBase = [
 	{ icon: "bi-code-slash", label: "CODES" },
 	{ icon: "bi-people", label: "CREDITS" },
 	{ icon: "bi-star", label: "SPECIALS" },
+	{ icon: "fas fa-apple-alt", label: "DEVIL FRUIT" },
 	{ icon: "bi-flag", label: "QUESTS" },
 	{ icon: "bi-terminal-fill", label: "COMMANDS" },
 	{ icon: "bi-robot", label: "AUTO TRAIN" },
@@ -171,6 +173,10 @@ function init() {
 			case "SPECIALS":
 				dataHref = "./data/specials.json";
 				doneCallbackFn = (data: Record<string, { name: string; abilities: string[] }[]>) => specials.render(data, tab.contentId, tab.label);
+				break;
+			case "DEVIL FRUIT":
+				dataHref = "./data/devilfruitloc.json";
+				doneCallbackFn = (data: DevilFruitLocations[]) => devilfruitloc.render(data, tab.contentId, tab.label);
 				break;
 			case "QUESTS":
 				dataHref = "./data/questline.json";
