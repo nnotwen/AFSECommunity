@@ -46,6 +46,7 @@ export interface DataConfig {
 export interface TrainingArea {
 	name: string;
 	attributeName: string;
+	icon: string;
 	entries: {
 		name: string;
 		details: string;
