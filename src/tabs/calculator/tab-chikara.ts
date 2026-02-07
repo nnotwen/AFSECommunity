@@ -3,7 +3,7 @@ import { generateUniqueId } from "../../utils/idGenerator";
 import { buildFloatingInput, buildSelectInput, FloatingInputOptions } from "../../components/forms";
 import $storage from "../../components/storage";
 import toast from "../../components/toast";
-import { convertNum, humanizeDuration } from "./helper";
+import { convertNum } from "./helper";
 import { Duration } from "luxon";
 
 const config = {

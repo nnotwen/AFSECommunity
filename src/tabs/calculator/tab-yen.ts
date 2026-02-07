@@ -2,7 +2,7 @@ import $ from "jquery";
 import { buildFloatingInput, buildSelectInput } from "../../components/forms";
 import $storage from "../../components/storage";
 import toast from "../../components/toast";
-import { convertNum, humanizeDuration } from "./helper";
+import { convertNum, humanizeDuration, validateInput } from "./helper";
 import { Duration } from "luxon";
 import { generateUniqueId } from "../../utils/idGenerator";
 
@@ -58,17 +58,14 @@ const inputKeys = [
 	{
 		label: "CHAMP YEN MULTI",
 		placeholder: "1M (optional)",
-		key: "champYenMulti",
 	},
 	{
 		label: "CURRENT YEN",
 		placeholder: "100M",
-		key: "currentYen",
 	},
 	{
 		label: "REQUIRED YEN",
 		placeholder: "10B",
-		key: "requiredYen",
 	},
 ] as const;
 
@@ -77,13 +74,11 @@ const selectKeys = [
 		label: "RANK MULTIPLIER",
 		selectOptions: data.map((x) => ({ value: `${x.value}`, label: x.label })),
 		...selectClasses,
-		key: "rankMulti",
 	},
 	{
 		label: "x2 YEN GAMEPASS",
 		selectOptions: [{ value: "DISABLED" }, { value: "ENABLED" }],
 		...selectClasses,
-		key: "x2GamePass",
 	},
 	{
 		label: "NEN MULTIPLIER",
@@ -96,7 +91,6 @@ const selectKeys = [
 			{ label: "A (1.25x)", value: "1.25" },
 		],
 		...selectClasses,
-		key: "yenMulti",
 	},
 	{
 		label: "HERO MULTIPLIER",
@@ -110,7 +104,6 @@ const selectKeys = [
 			{ label: "S (1.3x)", value: "1.3" },
 		],
 		...selectClasses,
-		key: "heroMulti",
 	},
 	{
 		label: "TARGET REACHED",
@@ -119,56 +112,15 @@ const selectKeys = [
 	},
 ] as const;
 
-const inputs = inputKeys.map(({ label, placeholder, key }) => ({
+const inputs = inputKeys.map(({ label, placeholder }) => ({
 	label,
-	key,
 	...buildFloatingInput(label, { type: "text", placeholder, ...inputClasses }),
 }));
 
-const selects = selectKeys.map(({ label, selectOptions, key }) => ({
+const selects = selectKeys.map(({ label, selectOptions }) => ({
 	label,
-	key,
 	...buildSelectInput({ label, selectOptions: [...selectOptions], ...selectClasses }),
 }));
-
-// Helper function to validate yen input
-function isValidYenInput(value: string, fieldName: string, isOptional: boolean = false): { isValid: boolean; parsed: number; error?: string } {
-	const trimmed = value.trim();
-
-	// If optional and empty, return valid with default value
-	if (isOptional && !trimmed) {
-		return { isValid: true, parsed: 1 }; // Default value for optional field
-	}
-
-	// Check if empty
-	if (!trimmed) {
-		return { isValid: false, parsed: 0, error: `${fieldName} cannot be empty` };
-	}
-
-	try {
-		// Try to parse the value - convertNum should handle all suffix formats
-		const parsed = convertNum(trimmed, "parse");
-
-		// Check for negative values (only real validation we care about)
-		if (parsed < 0) {
-			return { isValid: false, parsed: parsed, error: `${fieldName} cannot be negative` };
-		}
-
-		// Check for NaN or Infinity
-		if (!isFinite(parsed) || isNaN(parsed)) {
-			return { isValid: false, parsed: 0, error: `${fieldName}: Invalid number` };
-		}
-
-		return { isValid: true, parsed: parsed };
-	} catch (error) {
-		// If convertNum throws an error, the format is invalid
-		return {
-			isValid: false,
-			parsed: 0,
-			error: `${fieldName}: Invalid format. Use numbers like 100, 1M, 1.5B, 1T, 1QD, etc.`,
-		};
-	}
-}
 
 export default {
 	render(appendTo: string) {
@@ -261,9 +213,9 @@ export default {
 			wantYen.$().removeClass("invalid");
 
 			// Validate all inputs
-			const champValidation = isValidYenInput(champYenValue, "CHAMP YEN MULTI", true); // Optional
-			const currValidation = isValidYenInput(currYenValue, "CURRENT YEN", false);
-			const wantValidation = isValidYenInput(wantYenValue, "REQUIRED YEN", false);
+			const champValidation = validateInput(champYenValue, "CHAMP YEN MULTI", 1); // Optional value = 1
+			const currValidation = validateInput(currYenValue, "CURRENT YEN");
+			const wantValidation = validateInput(wantYenValue, "REQUIRED YEN");
 
 			// Check for validation errors
 			let hasError = false;

@@ -35,97 +35,158 @@
 	border: var(--cyber-border-width) var(--cyber-border-style) var(--cyber-border-color) !important;
 }
 
-.border-cyber-blue,
-.hover\:border-cyber-blue:hover {
+/* BORDER BASE CLASS */
+.border-cyber-blue {
 	--cyber-border-color: rgb(var(--cyber-blue-rgb) / var(--cyber-border-opacity));
 }
 
-.border-cyber-green,
-.hover\:border-cyber-green:hover {
+.border-cyber-green {
 	--cyber-border-color: rgb(var(--cyber-green-rgb) / var(--cyber-border-opacity));
 }
 
-.border-cyber-red,
-.hover\:border-cyber-red:hover {
+.border-cyber-red {
 	--cyber-border-color: rgb(var(--cyber-red-rgb) / var(--cyber-border-opacity));
 }
 
-.border-cyber-purple,
-.hover\:border-cyber-purple:hover {
+.border-cyber-purple {
 	--cyber-border-color: rgb(var(--cyber-purple-rgb) / var(--cyber-border-opacity));
 }
 
-.border-cyber-pink,
-.hover\:border-cyber-pink:hover {
+.border-cyber-pink {
 	--cyber-border-color: rgb(var(--cyber-pink-rgb) / var(--cyber-border-opacity));
 }
 
-.border-cyber-yellow,
-.hover\:border-cyber-yellow:hover {
+.border-cyber-yellow {
 	--cyber-border-color: rgb(var(--cyber-yellow-rgb) / var(--cyber-border-opacity));
 }
 
-.border-opacity-100,
+/* BORDER HOVER CLASS */
+.hover\:border-cyber-blue:hover,
+.group:hover .group-hover\:border-class-blue {
+	--cyber-border-color: rgb(var(--cyber-blue-rgb) / var(--cyber-border-opacity));
+}
+
+.hover\:border-cyber-green:hover,
+.group:hover .group-hover\:border-class-green {
+	--cyber-border-color: rgb(var(--cyber-green-rgb) / var(--cyber-border-opacity));
+}
+
+.hover\:border-cyber-red:hover,
+.group:hover .group-hover\:border-class-red {
+	--cyber-border-color: rgb(var(--cyber-red-rgb) / var(--cyber-border-opacity));
+}
+
+.hover\:border-cyber-purple:hover,
+.group:hover .group-hover\:border-class-purple {
+	--cyber-border-color: rgb(var(--cyber-purple-rgb) / var(--cyber-border-opacity));
+}
+
+.hover\:border-cyber-pink:hover,
+.group:hover .group-hover\:border-class-pink {
+	--cyber-border-color: rgb(var(--cyber-pink-rgb) / var(--cyber-border-opacity));
+}
+
+.hover\:border-cyber-yellow:hover,
+.group:hover .group-hover\:border-class-yellow {
+	--cyber-border-color: rgb(var(--cyber-yellow-rgb) / var(--cyber-border-opacity));
+}
+
+/* BORDER OPACITY BASE CLASSES */
+.border-opacity-100 {
+	--cyber-border-opacity: 1;
+}
+
+.border-opacity-90 {
+	--cyber-border-opacity: 0.9;
+}
+
+.border-opacity-80 {
+	--cyber-border-opacity: 0.8;
+}
+
+.border-opacity-70 {
+	--cyber-border-opacity: 0.7;
+}
+
+.border-opacity-60 {
+	--cyber-border-opacity: 0.6;
+}
+
+.border-opacity-50 {
+	--cyber-border-opacity: 0.5;
+}
+
+.border-opacity-40 {
+	--cyber-border-opacity: 0.4;
+}
+
+.border-opacity-30 {
+	--cyber-border-opacity: 0.3;
+}
+
+.border-opacity-20 {
+	--cyber-border-opacity: 0.2;
+}
+
+.border-opacity-10 {
+	--cyber-border-opacity: 0.1;
+}
+
+.border-opacity-0 {
+	--cyber-border-opacity: 0;
+}
+
+/* BORDER OPACITY HOVER CLASS */
 .hover\:border-opacity-100:hover,
 .group:hover .group-hover\:border-opacity-100 {
 	--cyber-border-opacity: 1;
 }
 
-.border-opacity-90,
 .hover\:border-opacity-90:hover,
 .group:hover .group-hover\:border-opacity-90 {
 	--cyber-border-opacity: 0.9;
 }
 
-.border-opacity-80,
 .hover\:border-opacity-80:hover,
 .group:hover .group-hover\:border-opacity-80 {
 	--cyber-border-opacity: 0.8;
 }
 
-.border-opacity-70,
 .hover\:border-opacity-70:hover,
 .group:hover .group-hover\:border-opacity-70 {
 	--cyber-border-opacity: 0.7;
 }
 
-.border-opacity-60,
 .hover\:border-opacity-60:hover,
 .group:hover .group-hover\:border-opacity-60 {
 	--cyber-border-opacity: 0.6;
 }
 
-.border-opacity-50,
 .hover\:border-opacity-50:hover,
 .group:hover .group-hover\:border-opacity-50 {
 	--cyber-border-opacity: 0.5;
 }
 
-.border-opacity-40,
 .hover\:border-opacity-40:hover,
 .group:hover .group-hover\:border-opacity-40 {
 	--cyber-border-opacity: 0.4;
 }
 
-.border-opacity-30,
 .hover\:border-opacity-30:hover,
 .group:hover .group-hover\:border-opacity-30 {
 	--cyber-border-opacity: 0.3;
 }
 
-.border-opacity-20,
 .hover\:border-opacity-20:hover,
 .group:hover .group-hover\:border-opacity-20 {
 	--cyber-border-opacity: 0.2;
 }
 
-.border-opacity-10,
 .hover\:border-opacity-10:hover,
 .group:hover .group-hover\:border-opacity-10 {
 	--cyber-border-opacity: 0.1;
 }
 
-.border-opacity-0,
 .hover\:border-opacity-0:hover,
 .group:hover .group-hover\:border-opacity-0 {
 	--cyber-border-opacity: 0;
@@ -155,43 +216,63 @@
 		inset 0 0 30px rgb(var(--cyber-border-glow-rgb) / 0.1);
 }
 
-.border-glow-blue,
+/* BORDER GLOW BASE CLASS */
+.border-glow-blue {
+	--cyber-border-glow-rgb: var(--cyber-blue-rgb);
+}
+
+.border-glow-green {
+	--cyber-border-glow-rgb: var(--cyber-green-rgb);
+}
+
+.border-glow-red {
+	--cyber-border-glow-rgb: var(--cyber-red-rgb);
+}
+
+.border-glow-purple {
+	--cyber-border-glow-rgb: var(--cyber-purple-rgb);
+}
+
+.border-glow-pink {
+	--cyber-border-glow-rgb: var(--cyber-pink-rgb);
+}
+
+.border-glow-yellow {
+	--cyber-border-glow-rgb: var(--cyber-yellow-rgb);
+}
+
+/* BORDER GLOW HOVER CLASS */
 .hover\:border-glow-blue:hover,
 .group:hover .group-hover\:border-glow-blue {
 	--cyber-border-glow-rgb: var(--cyber-blue-rgb);
 }
 
-.border-glow-green,
 .hover\:border-glow-green:hover,
 .group:hover .group-hover\:border-glow-green {
 	--cyber-border-glow-rgb: var(--cyber-green-rgb);
 }
 
-.border-glow-red,
 .hover\:border-glow-red:hover,
 .group:hover .group-hover\:border-glow-red {
 	--cyber-border-glow-rgb: var(--cyber-red-rgb);
 }
 
-.border-glow-purple,
 .hover\:border-glow-purple:hover,
 .group:hover .group-hover\:border-glow-purple {
 	--cyber-border-glow-rgb: var(--cyber-purple-rgb);
 }
 
-.border-glow-pink,
 .hover\:border-glow-pink:hover,
 .group:hover .group-hover\:border-glow-pink {
 	--cyber-border-glow-rgb: var(--cyber-pink-rgb);
 }
 
-.border-glow-yellow,
 .hover\:border-glow-yellow:hover,
 .group:hover .group-hover\:border-glow-blue {
 	--cyber-border-glow-rgb: var(--cyber-yellow-rgb);
 }
 
-/* BACKGROUND */
+/* BACKGROUND COLOR BASE CLASS */
 .bg-cyber-blue {
 	background-color: rgb(var(--cyber-blue-rgb) / var(--cyber-bg-opacity));
 }
@@ -216,6 +297,38 @@
 	background-color: rgb(var(--cyber-yellow-rgb) / var(--cyber-bg-opacity));
 }
 
+/* BACKGROUND COLOR HOVER CLASSES */
+.hover\:bg-cyber-blue:hover,
+.group:hover .group-hover\:bg-cyber-blue {
+	background-color: rgb(var(--cyber-blue-rgb) / var(--cyber-bg-opacity));
+}
+
+.hover\:bg-cyber-green:hover,
+.group:hover .group-hover\:bg-cyber-green {
+	background-color: rgb(var(--cyber-green-rgb) / var(--cyber-bg-opacity));
+}
+
+.hover\:bg-cyber-purple:hover,
+.group:hover .group-hover\:bg-cyber-purple {
+	background-color: rgb(var(--cyber-purple-rgb) / var(--cyber-bg-opacity));
+}
+
+.hover\:bg-cyber-red:hover,
+.group:hover .group-hover\:bg-cyber-red {
+	background-color: rgb(var(--cyber-red-rgb) / var(--cyber-bg-opacity));
+}
+
+.hover\:bg-cyber-pink:hover,
+.group:hover .group-hover\:bg-cyber-pink {
+	background-color: rgb(var(--cyber-pink-rgb) / var(--cyber-bg-opacity));
+}
+
+.hover\:bg-cyber-yellow:hover,
+.group:hover .group-hover\:bg-cyber-yellow {
+	background-color: rgb(var(--cyber-yellow-rgb) / var(--cyber-bg-opacity));
+}
+
+/* BACKGROUND OPACITY BASE CLASSES */
 .bg-opacity-100 {
 	--cyber-bg-opacity: 1;
 }
@@ -257,6 +370,62 @@
 }
 
 .bg-opacity-0 {
+	--cyber-bg-opacity: 0;
+}
+
+/* BACKGROUND OPACITY HOVER CLASSES */
+.hover\:bg-opacity-100:hover,
+.group:hover .group-hover\:bg-opacity-100 {
+	--cyber-bg-opacity: 1;
+}
+
+.hover\:bg-opacity-90:hover,
+.group:hover .group-hover\:bg-opacity-90 {
+	--cyber-bg-opacity: 0.9;
+}
+
+.hover\:bg-opacity-80:hover,
+.group:hover .group-hover\:bg-opacity-80 {
+	--cyber-bg-opacity: 0.8;
+}
+
+.hover\:bg-opacity-70:hover,
+.group:hover .group-hover\:bg-opacity-70 {
+	--cyber-bg-opacity: 0.7;
+}
+
+.hover\:bg-opacity-60:hover,
+.group:hover .group-hover\:bg-opacity-60 {
+	--cyber-bg-opacity: 0.6;
+}
+
+.hover\:bg-opacity-50:hover,
+.group:hover .group-hover\:bg-opacity-50 {
+	--cyber-bg-opacity: 0.5;
+}
+
+.hover\:bg-opacity-40:hover,
+.group:hover .group-hover\:bg-opacity-40 {
+	--cyber-bg-opacity: 0.4;
+}
+
+.hover\:bg-opacity-30:hover,
+.group:hover .group-hover\:bg-opacity-30 {
+	--cyber-bg-opacity: 0.3;
+}
+
+.hover\:bg-opacity-20:hover,
+.group:hover .group-hover\:bg-opacity-20 {
+	--cyber-bg-opacity: 0.2;
+}
+
+.hover\:bg-opacity-10:hover,
+.group:hover .group-hover\:bg-opacity-10 {
+	--cyber-bg-opacity: 0.1;
+}
+
+.hover\:bg-opacity-0:hover,
+.group:hover .group-hover\:bg-opacity-0 {
 	--cyber-bg-opacity: 0;
 }
 
@@ -395,7 +564,7 @@
 	transform: translateY(-0.5rem);
 }
 .hover\:transform-translate-y-\[-1\]:hover {
-	transform: translateY(-0.25);
+	transform: translateY(-0.25rem);
 }
 .hover\:transform-translate-y-\[1\]:hover {
 	transform: translateY(0.25rem);

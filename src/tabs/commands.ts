@@ -19,13 +19,20 @@ export default {
                 </div>
             `);
 
+		$(`#${accordionId}`).css({
+			"--bs-accordion-active-bg": "rgb(var(--cyber-green-rgb) / 0.1)",
+			"--bs-accordion-active-color": "rgb(var(--cyber-green-rgb))",
+			"--bs-accordion-border-color": "rgb(var(--cyber-green-rgb) / 0.3)",
+			"--bs-accordion-btn-focus-box-shadow": "0 0 0 0.25rem rgb(var(--cyber-green-rgb) / 0.25)",
+		});
+
 		function formatCommand(command: string) {
 			const [name, desc] = command.split("-").map((s) => s.trim());
 			return /*html*/ `
                 <div data-rblx-command="${escapeHTML(name)}" class="col-sm-6 col-md-4 col-lg-3">
-                    <div class="code-item flex-column h-100">
-                        <span class="font-medium text-glow-green">${escapeHTML(name)}</span>
-                        <span class="terminal-text text-sm text-center mt-2">${desc}</span>
+                    <div class="group p-3 rounded-3 bg-cyber-green bg-opacity-10 border-cyber-green border-opacity-30 hover:border-opacity-100 hover:border-glow-green d-flex flex-column h-100 text-center cursor-pointer transition hover:transform-translate-y-[-1]">
+                        <span class="text-terminal font-medium group-hover:text-glow-green">${escapeHTML(name)}</span>
+                        <span class="text-terminal text-sm text-cyber-green group-hover:text-glow-green mt-2 opacity-70 group-hover:opacity-100">${desc}</span>
                     </div>
                 </div>
             `;
@@ -34,9 +41,9 @@ export default {
 		for (const [idx, v] of Object.values(data).entries()) {
 			const targetId = generateUniqueId();
 			$(`#${accordionId}`).append(/*html*/ `
-                    <div class="accordion-item">
+                    <div class="accordion-item bg-dark-2 border-cyber-green border-opacity-30">
                         <h2 class="accordion-header">
-                            <button class="accordion-button ${idx === 0 ? "" : "collapsed"} text-xl font-bold text-glow-blue" type="button" data-bs-toggle="collapse" data-bs-target="#${targetId}">
+                            <button class="accordion-button ${idx === 0 ? "" : "collapsed"} text-xl font-bold text-glow-green" type="button" data-bs-toggle="collapse" data-bs-target="#${targetId}">
                                 ${v.label}
                             </button>
                         </h2>
@@ -51,7 +58,7 @@ export default {
 		$("[data-rblx-command]").on("click touchstart", function () {
 			navigator.clipboard
 				.writeText($(this).attr("data-rblx-command") ?? "")
-				.then(() => toast.success("Copied command to clipboard!"))
+				.then(() => toast.success("Command copied to clipboard!"))
 				.catch(() => toast.error("Failed to copy command to clipboard!"));
 		});
 

@@ -2,7 +2,7 @@ import $ from "jquery";
 import { buildFloatingInput, buildSelectInput } from "../../components/forms";
 import $storage from "../../components/storage";
 import toast from "../../components/toast";
-import { convertNum, humanizeDuration } from "./helper";
+import { convertNum, humanizeDuration, validateInput } from "./helper";
 import { Duration } from "luxon";
 import { generateUniqueId } from "../../utils/idGenerator";
 
@@ -29,17 +29,14 @@ const inputKeys = [
 	{
 		label: "CURRENT KILLS",
 		placeholder: "1",
-		key: "currentKills",
 	},
 	{
 		label: "WANTED KILLS",
 		placeholder: "20",
-		key: "wantedKills",
 	},
 	{
 		label: "AMOUNT OF NPC PER SPAWN",
 		placeholder: "4",
-		key: "npcsPerSpawn",
 	},
 ] as const;
 
@@ -47,60 +44,18 @@ const selectKeys = [
 	{
 		label: "TARGET REACHED",
 		selectOptions: [{ value: "DISABLED" }, { value: "ENABLED" }],
-		key: "notify",
 	},
 ];
 
-const inputs = inputKeys.map(({ label, placeholder, key }) => ({
+const inputs = inputKeys.map(({ label, placeholder }) => ({
 	label,
-	key,
 	...buildFloatingInput(label, { type: "text", placeholder, ...inputClasses }),
 }));
 
-const selects = selectKeys.map(({ label, selectOptions, key }) => ({
+const selects = selectKeys.map(({ label, selectOptions }) => ({
 	label,
-	key,
 	...buildSelectInput({ label, selectOptions: [...selectOptions], ...selectClasses }),
 }));
-
-// Helper function to validate input (simplified like other calculators)
-function isValidNumber(value: string, fieldName: string): { isValid: boolean; parsed: number; error?: string } {
-	const trimmed = value.trim();
-
-	// Check if empty
-	if (!trimmed) {
-		return { isValid: false, parsed: 0, error: `${fieldName} cannot be empty` };
-	}
-
-	try {
-		// Try to parse the value - convertNum should handle all suffix formats
-		const parsed = convertNum(trimmed, "parse");
-
-		// Check for negative values (only real validation we care about)
-		if (parsed < 0) {
-			return { isValid: false, parsed: parsed, error: `${fieldName} cannot be negative` };
-		}
-
-		// Check for zero or negative (kills should be >= 0, but 0 is allowed for current kills)
-		if (parsed < 0) {
-			return { isValid: false, parsed: parsed, error: `${fieldName} cannot be negative` };
-		}
-
-		// Check for NaN or Infinity
-		if (!isFinite(parsed) || isNaN(parsed)) {
-			return { isValid: false, parsed: 0, error: `${fieldName}: Invalid number` };
-		}
-
-		return { isValid: true, parsed: parsed };
-	} catch (error) {
-		// If convertNum throws an error, the format is invalid
-		return {
-			isValid: false,
-			parsed: 0,
-			error: `${fieldName}: Invalid format. Use numbers like 100, 1M, 1.5B, 1T, 1QD, etc.`,
-		};
-	}
-}
 
 export default {
 	render(appendTo: string) {
@@ -192,9 +147,9 @@ export default {
 			npcsInp.$().removeClass("invalid");
 
 			// Validate all inputs
-			const currValidation = isValidNumber(currValue, "CURRENT KILLS");
-			const wantValidation = isValidNumber(wantValue, "WANTED KILLS");
-			const npcsValidation = isValidNumber(npcsValue, "AMOUNT OF NPC PER SPAWN");
+			const currValidation = validateInput(currValue, "CURRENT KILLS");
+			const wantValidation = validateInput(wantValue, "WANTED KILLS");
+			const npcsValidation = validateInput(npcsValue, "AMOUNT OF NPC PER SPAWN");
 
 			// Check for validation errors
 			let hasError = false;

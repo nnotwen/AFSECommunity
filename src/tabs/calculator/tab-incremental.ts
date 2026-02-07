@@ -1,6 +1,6 @@
 import $ from "jquery";
 import { buildFloatingInput, buildSelectInput } from "../../components/forms";
-import { convertNum, humanizeDuration, ticksPerStat } from "./helper";
+import { convertNum, humanizeDuration, ticksPerStat, validateInput } from "./helper";
 import { Duration } from "luxon";
 import toast from "../../components/toast";
 import $storage from "../../components/storage";
@@ -41,80 +41,34 @@ const selectKeys = [
 	{
 		label: "STAT TYPE",
 		selectOptions: [{ value: "STRENGTH" }, { value: "DURABILITY" }, { value: "CHAKRA" }, { value: "SWORD" }],
-		key: "statType",
 	},
 	{
 		label: "MODE",
 		selectOptions: [{ value: "AFK" }, { value: "CLICKING" }],
-		key: "mode",
 	},
 	{
 		label: "CHAMPION",
 		selectOptions: [{ value: "DISABLED" }, { value: "ENABLED" }],
-		key: "champion",
 	},
 	{
 		label: "2X STATS",
 		selectOptions: [{ value: "DISABLED" }, { value: "ENABLED" }],
-		key: "doubleStats",
 	},
 	{
 		label: "TARGET REACHED",
 		selectOptions: [{ value: "DISABLED" }, { value: "ENABLED" }],
-		key: "notify",
 	},
 ] as const;
 
-const inputs = inputKeys.map(({ label, placeholder, key }) => ({
+const inputs = inputKeys.map(({ label, placeholder }) => ({
 	label,
-	key,
 	...buildFloatingInput(label, { type: "text", placeholder, ...inputClasses }),
 }));
 
-const selects = selectKeys.map(({ label, selectOptions, key }) => ({
+const selects = selectKeys.map(({ label, selectOptions }) => ({
 	label,
-	key,
 	...buildSelectInput({ label, selectOptions: [...selectOptions], ...selectClasses }),
 }));
-
-// Helper function to validate stat input (simplified like yen calculator)
-function isValidStatInput(value: string, fieldName: string): { isValid: boolean; parsed: number; error?: string } {
-	const trimmed = value.trim();
-
-	// Check if empty
-	if (!trimmed) {
-		return { isValid: false, parsed: 0, error: `${fieldName} cannot be empty` };
-	}
-
-	try {
-		// Try to parse the value - convertNum should handle all suffix formats
-		const parsed = convertNum(trimmed, "parse");
-
-		// Check for negative values (only real validation we care about)
-		if (parsed < 0) {
-			return { isValid: false, parsed: parsed, error: `${fieldName} cannot be negative` };
-		}
-
-		// Check for zero or negative (stats should be > 0)
-		if (parsed <= 0) {
-			return { isValid: false, parsed: parsed, error: `${fieldName} must be greater than 0` };
-		}
-
-		// Check for NaN or Infinity
-		if (!isFinite(parsed) || isNaN(parsed)) {
-			return { isValid: false, parsed: 0, error: `${fieldName}: Invalid number` };
-		}
-
-		return { isValid: true, parsed: parsed };
-	} catch (error) {
-		// If convertNum throws an error, the format is invalid
-		return {
-			isValid: false,
-			parsed: 0,
-			error: `${fieldName}: Invalid format. Use numbers like 100, 1M, 1.5B, 1T, 1QD, etc.`,
-		};
-	}
-}
 
 export default {
 	render(appendTo: string) {
@@ -218,8 +172,8 @@ export default {
 			wantInp.$().removeClass("invalid");
 
 			// Validate all inputs
-			const currValidation = isValidStatInput(currValue, "CURRENT");
-			const wantValidation = isValidStatInput(wantValue, "TARGET");
+			const currValidation = validateInput(currValue, "CURRENT");
+			const wantValidation = validateInput(wantValue, "TARGET");
 
 			// Check for validation errors
 			let hasError = false;
