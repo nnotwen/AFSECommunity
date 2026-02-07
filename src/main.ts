@@ -15,7 +15,6 @@ import powerskill from "./tabs/powerskill";
 import questline from "./tabs/questline";
 import specials from "./tabs/specials";
 import autotrain from "./tabs/autotrain";
-import credits from "./tabs/credits";
 import gacha from "./tabs/gacha";
 import trainingarea from "./tabs/trainingareas";
 import devilfruitloc from "./tabs/devilfruitloc";
@@ -31,7 +30,6 @@ const tabsBase = [
 	{ icon: "bi-dice-5", label: "GACHA" },
 	{ icon: "bi-geo-alt", label: "TRAINING AREAS" },
 	{ icon: "bi-code-slash", label: "CODES" },
-	{ icon: "bi-people", label: "CREDITS" },
 	{ icon: "bi-star", label: "SPECIALS" },
 	{ icon: "fas fa-apple-alt", label: "DEVIL FRUIT" },
 	{ icon: "bi-flag", label: "QUESTS" },
@@ -167,9 +165,6 @@ function init() {
 			case "CODES":
 				dataHref = "./data/codes.json";
 				doneCallbackFn = (data: string[]) => codes.render(data, tab.contentId, tab.label);
-				break;
-			case "CREDITS":
-				doneCallbackFn = () => credits.render(tab.contentId);
 				break;
 			case "SPECIALS":
 				dataHref = "./data/specials.json";

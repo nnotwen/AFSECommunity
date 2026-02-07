@@ -3,6 +3,13 @@ import { DataConfig } from "../types/data";
 import { DateTime } from "luxon";
 import { buildModal } from "../components/modal";
 
+const credits = [
+	{ label: "Lead Developer", content: "KAGESAN21", glow: "blue" },
+	{ label: "UI/UX", content: "KAGESAN21", glow: "purple" },
+	{ label: "Data Analyst", content: "KAGESAN21 & ZYLYZ_", glow: "green" },
+	{ label: "Version", content: '<span class="version-label"></span> AFSE', glow: "pink" },
+];
+
 export default {
 	render(data: DataConfig, id: string) {
 		const sorted = data.changelog.sort((a, b) => b.timestamp - a.timestamp);
@@ -31,6 +38,18 @@ export default {
                         <div class="flex flex-col gap-2">
                             ${sorted.slice(0, 5).map(formatChangelogEntry).join("")}
                         </div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="cyber-card">
+                        <h2 class="text-xl font-bold mb-4 text-glow-blue">DEVELOPMENT CREDITS</h2>
+                        <div class="row g-2">${credits.map(formatCreds).join("")}</div>
+                    </div>
+                </div>
+                <div class="col-12">
+                    <div class="cyber-card mt-2">
+                        <p class="text-xl font-bold text-glow-blue text-uppercase">Acknowledgement</p>
+                        <p class="text-sm terminal-text">All systems, calculators, and databases were developed by KAGESAN21 for the AFSE Community Guidelines hub.</p>
                     </div>
                 </div>
             </div>
@@ -95,4 +114,14 @@ function formatChangelogEntry(entry: DataConfig["changelog"][number]) {
             <ul>${entry.list.map(formatList).join("")}</ul>
         </div>
     `;
+}
+
+function formatCreds(credit: (typeof credits)[number]) {
+	return /*html*/ `
+    <div class="col-sm-6 col-md-4">
+        <div class="cyber-card">
+            <p class="text-sm text-terminal text-cyber-green text-glow-green text-uppercase">${credit.label}</p>
+            <p class="text-xl font-bold text-glow-${credit.glow}">${credit.content}</p>
+        </div>
+    </div>`;
 }
