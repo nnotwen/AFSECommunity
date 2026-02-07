@@ -1,6 +1,9 @@
 import { Duration } from "luxon";
 import { Valid } from "luxon/src/_util";
 
+// Import toast if you have it available in helper.ts, otherwise we'll handle it differently
+// import toast from "../../components/toast";
+
 export const ticksPerStat = {
 	STRENGTH: { AFK: 42, CLICKING: 52 },
 	DURABILITY: { AFK: 32, CLICKING: 32 },
@@ -41,13 +44,20 @@ export function convertNum<T extends "parse" | "format">(value: string | number,
 		if (!value) return 0 as any;
 		const str = value.toString().toUpperCase().replace(/,/g, "");
 		const match = str.match(/^([0-9.]+)([A-Z]+)?$/);
-		const num = parseFloat(match?.[1] ?? str);
-		const sufx = match?.[2];
+
+		if (!match) {
+			throw new Error(`Invalid number format: "${value}"`);
+		}
+
+		const num = parseFloat(match[1]);
+		const sufx = match[2];
+
+		// If suffix exists but not in multipliers, throw an error
 		if (sufx && !multipliers[sufx]) {
 			throw new Error(`Invalid Suffix (${sufx}): Suffix must only be one of the following: ${Object.keys(multipliers).join(", ")}`);
 		}
 
-		return (match?.[2] ? num * (multipliers[match[2]] ?? 1) : num) as any;
+		return (match[2] ? num * (multipliers[match[2]] ?? 1) : num) as any;
 	} else {
 		const num = typeof value === "number" ? value : parseFloat(value);
 		if (isNaN(num)) return "0" as any;
@@ -109,6 +119,7 @@ export function escapeHTML(str: string) {
  * @param value - The input string to validate and parse
  * @param fieldName - The name of the field being validated (used in error messages)
  * @param defaultVal - Optional default value to use if the input is empty
+ * @param showToast - Optional function to show toast notifications
  * @returns An object containing:
  *   - `isValid`: Whether the input is valid
  *   - `parsed`: The parsed numeric value (0 if invalid)
@@ -135,9 +146,11 @@ export function escapeHTML(str: string) {
 export function validateInput(value: string, fieldName: string, defaultVal?: number): { isValid: boolean; parsed: number; error?: string } {
 	const trimmed = value.trim();
 
+	// Handle empty input
 	if (!trimmed) {
 		if (defaultVal !== undefined) {
-			return validateInput(defaultVal.toString(), fieldName);
+			// Return the default value if provided
+			return { isValid: true, parsed: defaultVal };
 		} else {
 			return { isValid: false, parsed: 0, error: `${fieldName} cannot be empty` };
 		}
@@ -157,13 +170,20 @@ export function validateInput(value: string, fieldName: string, defaultVal?: num
 			return { isValid: false, parsed: 0, error: `${fieldName}: Invalid number` };
 		}
 
+		// For CHAMPION STAT/TICK, allow 0
+		// For other fields, check if it's 0 (invalid except for CHAMPION STAT/TICK)
+		if (parsed === 0 && fieldName !== "CHAMPION STAT/TICK") {
+			return { isValid: false, parsed: 0, error: `${fieldName} cannot be zero` };
+		}
+
 		return { isValid: true, parsed: parsed };
 	} catch (error) {
 		// If convertNum throws an error, the format is invalid
+		const errorMessage = (error as Error).message;
 		return {
 			isValid: false,
 			parsed: 0,
-			error: `${fieldName}: ${(error as Error).message}`,
+			error: `${fieldName}: ${errorMessage}`,
 		};
 	}
 }

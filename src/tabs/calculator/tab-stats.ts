@@ -1,6 +1,6 @@
 import $ from "jquery";
 import { Duration } from "luxon";
-import { convertNum, humanizeDuration, ticksPerStat } from "./helper";
+import { convertNum, humanizeDuration, ticksPerStat, validateInput } from "./helper";
 import { buildFloatingInput, buildSelectInput } from "../../components/forms";
 import { generateUniqueId } from "../../utils/idGenerator";
 import toast from "../../components/toast";
@@ -55,10 +55,6 @@ const selectKeys = [
 		label: "TARGET REACHED",
 		selectOptions: [{ value: "DISABLED" }, { value: "ENABLED" }],
 	},
-	{
-		label: "BOOST ENDED",
-		selectOptions: [{ value: "DISABLED" }, { value: "ENABLED" }],
-	},
 ] as const;
 
 const inputs = inputKeys.map(({ label, placeholder }) => ({
@@ -74,12 +70,10 @@ const selects = selectKeys.map(({ label, selectOptions }) => ({
 export default {
 	render(appendTo: string) {
 		const id = generateUniqueId();
-		const serverBoostId = generateUniqueId();
 
 		const statType = selects.find((x) => x.label === "STAT TYPE")!;
 		const statMode = selects.find((x) => x.label === "MODE")!;
 		const notifTR = selects.find((x) => x.label === "TARGET REACHED")!;
-		const notifBE = selects.find((x) => x.label === "BOOST ENDED")!;
 
 		const statInputs = inputs.map((x) => /*html*/ `<div class="col-sm-6 col-md-4">${x.input}</div>`);
 
@@ -95,27 +89,9 @@ export default {
                 </div>
             </div>
             <div class="my-3" data-bs-theme="dark">
-                <label for="input-${serverBoostId}" class="font-bold text-glow-blue text-lg">SERVER BOOST CONTROL</label>
-                <div class="row g-2">
-                    <div class="col-md-6">
-                        <div id="${serverBoostId}" class="input-group h-100">
-                            <input id="input-${serverBoostId}" type="number" class="form-control input-no-spinner cyber-input h-100" placeholder="DURATION (MINUTES)">
-                            <button class="btn cyber-btn cyber-btn-success hover:border-cyber-blue" type="button">ACTIVATE</button>
-                        </div>
-                    </div>
-                    <div class="col-md-6">
-                        <div class="d-flex flex-column text-glow-blue cyber-input text-center h-100">
-                            <span data-server-boost-label="true" class="text-terminal text-cyber-red text-glow-red">BOOST INACTIVE (x1)</span>
-                            <span data-server-boost-duration="0" class="text-terminal">00:00</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="my-3" data-bs-theme="dark">
                 <span class="d-block font-bold text-glow-blue text-lg">BROWSER NOTIFICATIONS</span>
                 <div class="row g-2">
                     <div class="col-sm-6 col-md-4">${notifTR.input}</div>
-                    <div class="col-sm-6 col-md-4">${notifBE.input}</div>
                 </div>
             </div>
             <div class="mt-5 mb-3">
@@ -136,7 +112,7 @@ export default {
         </div>`);
 
 		// Set default values for notifications on init
-		for (const notification of [notifTR, notifBE]) {
+		for (const notification of [notifTR]) {
 			if (Notification.permission === "granted" && $storage.has(`notifications:stats:${notification.label}`)) {
 				$(`#${notification.id}`).val($storage.get(`notifications:stats:${notification.label}`));
 			}
@@ -145,14 +121,14 @@ export default {
 		// Remove invalid classes when input are on focus
 		const devalidatedIdsLabels = ["STATS PER TICK", "CURRENT STATS", "TARGET STATS"] as const;
 		const devalidatedIds = devalidatedIdsLabels.map((x) => inputs.find((y) => y.label === x)!.id);
-		$(`#input-${serverBoostId}, ${devalidatedIds.map((id) => `#${id}`).join(", ")}`).on("focus", function () {
+		$(devalidatedIds.map((id) => `#${id}`).join(", ")).on("focus", function () {
 			$(this).removeClass("invalid");
 		});
 
 		// REQUEST NOTIFICATION PERMISSION
-		$([notifTR, notifBE].map((x) => `#${x.id}`).join(", ")).on("change", function () {
+		$([notifTR].map((x) => `#${x.id}`).join(", ")).on("change", function () {
 			const value = $(this).val();
-			const type = [notifTR, notifBE].find((x) => x.id === $(this).attr("id"))!.label;
+			const type = [notifTR].find((x) => x.id === $(this).attr("id"))!.label;
 			$storage.set(`notifications:stats:${type}`, value);
 
 			if (value !== "ENABLED") return;
@@ -172,60 +148,6 @@ export default {
 			});
 		});
 
-		// When boost is activated
-		$(`#${serverBoostId} > button`).on("click touchstart", function () {
-			const $input = $(`#input-${serverBoostId}`);
-			const val = parseFloat($input.val() as string) || null;
-
-			// Invalid input
-			if (!val || val <= 0) {
-				toast.error("Invalid value! Please enter a valid value.");
-				return $input.addClass("invalid");
-			}
-
-			let remainingSeconds = val * 60;
-			state.boostActive = true;
-			clearInterval(state.boostInterval);
-
-			if (state.timeToReachTargetInterval !== 0) {
-				toast.warning("Boost Value changed. Please recalculate to avoid duration mismatch!");
-			}
-
-			$("[data-server-boost-label]") // Update boost label
-				.text("BOOST ACTIVE (x1.5)")
-				.addClass("text-cyber-green text-glow-green")
-				.removeClass("text-cyber-red text-glow-red");
-
-			state.boostInterval = setInterval(() => {
-				if (remainingSeconds <= 0) {
-					clearInterval(state.boostInterval);
-					state.boostActive = false;
-
-					$("[data-server-boost-label]")
-						.text("BOOST INACTIVE (x1)")
-						.addClass("text-cyber-red text-glow-red")
-						.removeClass("text-cyber-green text-glow-green");
-
-					if ($(`#${[notifTR, notifBE].find((x) => x.label === "BOOST ENDED")!.id}`).val() === "ENABLED") {
-						new Notification("Stat Calculator v2.0", {
-							body: "Boost has been exhausted!",
-							icon: "/icons/icon-256.png",
-						});
-					}
-
-					return $("[data-server-boost-duration]") // update duration
-						.attr("data-server-boost-duration", "0")
-						.text("00:00:00");
-				}
-
-				$("[data-server-boost-duration]")
-					.attr("data-server-boost-duration", `${remainingSeconds}`)
-					.text(Duration.fromObject({ seconds: remainingSeconds }).toFormat("hh:mm:ss"));
-
-				remainingSeconds--;
-			}, 1_000);
-		});
-
 		// When user clicks "Calculate"
 		$("[data-stats-calculate]").on("click touchstart", function () {
 			const $statsPrT = $(`#${inputs.find((x) => x.label === "STATS PER TICK")!.id}`);
@@ -235,45 +157,66 @@ export default {
 			const $notifyTR = $(`#${selects.find((x) => x.label === "TARGET REACHED")!.id}`);
 
 			let validated = true;
+			let validationErrors: string[] = [];
+
+			// Validate inputs using validateInput function
+			const statsPerTickValidation = validateInput($statsPrT.val() as string, "STATS PER TICK");
+			if (!statsPerTickValidation.isValid) {
+				validated = false;
+				validationErrors.push(statsPerTickValidation.error!);
+				$(`#${inputs.find((x) => x.label === "STATS PER TICK")!.id}`).addClass("invalid");
+			}
+
+			const currentStatsValidation = validateInput($(`#${inputs.find((x) => x.label === "CURRENT STATS")!.id}`).val() as string, "CURRENT STATS");
+			if (!currentStatsValidation.isValid) {
+				validated = false;
+				validationErrors.push(currentStatsValidation.error!);
+				$(`#${inputs.find((x) => x.label === "CURRENT STATS")!.id}`).addClass("invalid");
+			}
+
+			const targetStatsValidation = validateInput($(`#${inputs.find((x) => x.label === "TARGET STATS")!.id}`).val() as string, "TARGET STATS");
+			if (!targetStatsValidation.isValid) {
+				validated = false;
+				validationErrors.push(targetStatsValidation.error!);
+				$(`#${inputs.find((x) => x.label === "TARGET STATS")!.id}`).addClass("invalid");
+			}
+
+			const champStatPerTickValidation = validateInput($champSPT.val() as string, "CHAMPION STAT/TICK", 0);
+			if (!champStatPerTickValidation.isValid) {
+				validated = false;
+				validationErrors.push(champStatPerTickValidation.error!);
+				$(`#${inputs.find((x) => x.label === "CHAMPION STAT/TICK")!.id}`).addClass("invalid");
+			}
+
+			// Check if current stats is less than target stats
+			if (currentStatsValidation.isValid && targetStatsValidation.isValid) {
+				if (currentStatsValidation.parsed > targetStatsValidation.parsed) {
+					validated = false;
+					validationErrors.push("Current stats can't be greater than target stats.");
+					$(`#${inputs.find((x) => x.label === "TARGET STATS")!.id}`).addClass("invalid");
+					$(`#${inputs.find((x) => x.label === "CURRENT STATS")!.id}`).addClass("invalid");
+				}
+			}
+
+			if (!validated) {
+				// Show all validation errors
+				validationErrors.forEach((error) => toast.error(error));
+				return;
+			}
+
+			// Now we know all inputs are valid, get the parsed values
 			const statName = $statType.val() as keyof typeof ticksPerStat;
-			const basePerTick = convertNum($statsPrT.val() as string, "parse");
+			const basePerTick = statsPerTickValidation.parsed;
 			const tickRate = ticksPerStat[statName][$statMode.val() as "CLICKING" | "AFK"];
-			const champBonus = convertNum($champSPT.val() as string, "parse") * 15;
-			const boostSeconds = parseFloat($("[data-server-boost-duration]").attr("data-server-boost-duration") as string) ?? 0;
+			const champBonus = champStatPerTickValidation.parsed * 15;
+			const boostSeconds = 0; // Removed boost functionality
 
 			// per-minute rates
 			const boostedSPM = basePerTick * 1.5 * tickRate + champBonus;
 			const normalSPM = basePerTick * tickRate + champBonus;
 
-			const want = convertNum($(`#${inputs.find((x) => x.label === "TARGET STATS")!.id}`).val() as string, "parse");
-			const curr = convertNum($(`#${inputs.find((x) => x.label === "CURRENT STATS")!.id}`).val() as string, "parse");
-
-			// validate
-			if (basePerTick <= 0) {
-				validated = false;
-				$(`#${inputs.find((x) => x.label === "STATS PER TICK")!.id}`).addClass("invalid");
-			}
-
-			if (want <= 0) {
-				validated = false;
-				$(`#${inputs.find((x) => x.label === "TARGET STATS")!.id}`).addClass("invalid");
-			}
-
-			if (curr <= 0) {
-				validated = false;
-				$(`#${inputs.find((x) => x.label === "CURRENT STATS")!.id}`).addClass("invalid");
-			}
-
-			if (curr > want) {
-				validated = false;
-				$(`#${inputs.find((x) => x.label === "TARGET STATS")!.id}`).addClass("invalid");
-				$(`#${inputs.find((x) => x.label === "CURRENT STATS")!.id}`).addClass("invalid");
-				toast.error("Current stats can't be lesser than target stats.");
-			}
-
-			if (!validated) {
-				return toast.error("Please fix all validation errors!");
-			}
+			const want = targetStatsValidation.parsed;
+			const curr = currentStatsValidation.parsed;
 
 			// Phase 1: stats gained during boost
 			const boostMinutes = boostSeconds / 60;
@@ -295,9 +238,7 @@ export default {
 			state.lastUnboostedStatPerMinute = normalSPM;
 
 			$(`[data-stats-gpm-label]`).html(
-				state.boostActive
-					? `${convertNum(boostedSPM, "format")} <span class="text-glow-green">(x1.5)</span>`
-					: `${convertNum(normalSPM, "format")} <span class="text-glow-green">(x1.0)</span>`,
+				`${convertNum(normalSPM, "format")} <span class="text-glow-green">(x1.0)</span>`, // Always show normal rate since boost is removed
 			);
 
 			$(`[data-stats-ttr-label]`).text(want > curr ? humanizeDuration(Duration.fromObject({ minutes: totalMinutes })) : "TARGET REACHED");
@@ -320,9 +261,7 @@ export default {
 				}
 
 				$(`[data-stats-gpm-label]`).html(
-					state.boostActive
-						? `${convertNum(boostedSPM, "format")} <span class="text-glow-green">(x1.5)</span>`
-						: `${convertNum(normalSPM, "format")} <span class="text-glow-green">(x1.0)</span>`,
+					`${convertNum(normalSPM, "format")} <span class="text-glow-green">(x1.0)</span>`, // Always show normal rate
 				);
 
 				$(`[data-stats-ttr-label]`).text(humanizeDuration(Duration.fromObject({ seconds: remainingSeconds })));
