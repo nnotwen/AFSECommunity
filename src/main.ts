@@ -75,7 +75,7 @@ function init() {
 	tabs.forEach((tab) => {
 		// Initialize Navigation Buttons
 		$("[data-main-navbar]").append(/*html*/ `
-            <button id=${tab.btnId} class="cyber-tab ${tab.active ? "active" : ""}">
+            <button id=${tab.btnId} class="cyber-tab">
                 <i class="bi ${tab.icon}"></i>
                 <span class="hidden md:inline">${tab.label}</span>
             </button>
@@ -83,7 +83,7 @@ function init() {
 
 		// Initialize tab content
 		$("[data-main-content]").append(/*html*/ `
-            <div id=${tab.contentId} data-content-loaded="false" class="cyber-card w-100" style="${tab.active ? "" : "display:none;"}">
+            <div id=${tab.contentId} data-content-loaded="false" class="cyber-card w-100" style="display:none;">
                 <div data-spinner="true" class="d-flex gap-4 justify-center items-center flex-column">
                     <div class="spinner-border text-2xl" role="status">
                         <span class="visually-hidden">Loading...</span>
@@ -92,6 +92,12 @@ function init() {
                 </div>
             </div>
         `);
+
+		if ($storage.getOrSet<string>("tabs:navigation:lastVisited", tabs[0].label) === tab.label) {
+			$(`#${tab.btnId}`).addClass("active");
+			$(`#${tab.contentId}`).show(0);
+			loadTab(tab.label);
+		}
 
 		// Add tooltip
 		new Tooltip(`#${tab.btnId}`, {
@@ -116,22 +122,22 @@ function init() {
 		$(this).addClass("active").siblings().removeClass("active");
 
 		// Show the active tab and hide others
-		$(`#${tab.contentId}`).siblings().hide(0);
-		$(`#${tab.contentId}`).fadeIn("slow");
+		$(`#${tab.contentId}`)
+			.siblings()
+			.hide(0, () => {
+				// debounce to prevent scroll effect
+				setTimeout(() => $(`#${tab.contentId}`).fadeIn("slow"), 100);
+			});
 
 		// Load data on demand
 		if ($(`#${tab.contentId}`).attr("data-content-loaded") === "false") {
 			loadTab(tab.label);
 		}
 
-		$("html, body").animate({ scrollTop: "100vh" });
+		$(".snap-container").animate({ scrollTop: $("[data-page-hero]").height() });
 	});
 
-	$(`#${tabs.find((x) => x.label === $storage.getOrSet("tabs:navigation:lastVisited", tabs[0].label))?.btnId}`)
-		.trigger("click")
-		.trigger("touchstart");
-
-	// always load dashboard at the start
+	// Always load because it contains the version
 	loadTab("DASHBOARD");
 
 	function loadTab(label: (typeof tabs)[number]["label"]) {
