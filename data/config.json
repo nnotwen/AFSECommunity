@@ -50,6 +50,11 @@
 			"type": "update",
 			"timestamp": 1770540038351,
 			"list": ["Improved Yen Per Min on Shinigami & Hashira & Hakaishin."]
+		},
+		{
+			"type": "added",
+			"timestamp": 1770563811103,
+			"list": ["Added Total tokens on NPC Kills Farming Calculator."]
 		}
 	]
 }
