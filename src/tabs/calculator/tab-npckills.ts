@@ -45,6 +45,10 @@ const selectKeys = [
 		label: "TARGET REACHED",
 		selectOptions: [{ value: "DISABLED" }, { value: "ENABLED" }],
 	},
+	{
+		label: "2X TOKENS",
+		selectOptions: [{ value: "DISABLED" }, { value: "ENABLED" }],
+	},
 ];
 
 const inputs = inputKeys.map(({ label, placeholder }) => ({
@@ -65,6 +69,7 @@ export default {
 		const wantInp = inputs.find((x) => x.label === "WANTED KILLS")!;
 		const npcsInp = inputs.find((x) => x.label === "AMOUNT OF NPC PER SPAWN")!;
 		const notify = selects.find((x) => x.label === "TARGET REACHED")!;
+		const doubleTokens = selects.find((x) => x.label === "2X TOKENS")!;
 
 		const statInputs = inputs.map((x) => /*html*/ `<div class="col-sm-6 col-md-4">${x.input}</div>`);
 
@@ -79,6 +84,12 @@ export default {
                     <span class="d-block font-bold text-glow-red text-lg">BROWSER NOTIFICATIONS</span>
                     <div class="row g-2">
                         <div class="col-sm-6 col-md-4">${notify.input}</div>
+                    </div>
+                </div>
+                <div class="my-3" data-bs-theme="dark">
+                    <span class="d-block font-bold text-glow-red text-lg">TOKEN MULTIPLIER</span>
+                    <div class="row g-2">
+                        <div class="col-sm-6 col-md-4">${doubleTokens.input}</div>
                     </div>
                 </div>
                 <div class="mt-5 mb-3">
@@ -98,6 +109,10 @@ export default {
                             <span class="d-block text-sm text-terminal text-cyber-red text-glow-red">TIME NEEDED</span>
                             <span data-npck-ttr-label="true" class="d-block text-xl text-terminal text-glow-red">TARGET REACHED</span>
                         </div>
+                        <div class="col-md-6">
+                            <span class="d-block text-sm text-terminal text-cyber-red text-glow-red">TOKEN</span>
+                            <span data-npck-token-label="true" class="d-block text-xl text-terminal text-glow-red">0</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -105,6 +120,10 @@ export default {
 
 		if (Notification.permission === "granted" && $storage.has(`notifications:npck:${notify.label}`)) {
 			$(`#${notify.id}`).val($storage.get(`notifications:npck:${notify.label}`));
+		}
+
+		if ($storage.has(`multiplier:npck:${doubleTokens.label}`)) {
+			$(`#${doubleTokens.id}`).val($storage.get(`multiplier:npck:${doubleTokens.label}`));
 		}
 
 		// Remove invalid class on focus for all inputs
@@ -136,10 +155,23 @@ export default {
 			});
 		});
 
+		// Save 2x tokens setting with toast notification
+		$(`#${doubleTokens.id}`).on("change", function () {
+			const value = $(this).val();
+			$storage.set(`multiplier:npck:${doubleTokens.label}`, value);
+
+			// Show toast notification if timer is running
+			if (state.timeToReachTargetInterval > 0) {
+				const status = value === "ENABLED" ? "enabled" : "disabled";
+				toast.info(`2X Tokens ${status}. Token count updated in real-time.`);
+			}
+		});
+
 		$("[data-npckills-calculate]").on("click touchstart", function () {
 			const currValue = currInp.$().val() as string;
 			const wantValue = wantInp.$().val() as string;
 			const npcsValue = npcsInp.$().val() as string;
+			const isDoubleTokens = doubleTokens.$().val() === "ENABLED";
 
 			// Remove invalid class from all inputs first
 			currInp.$().removeClass("invalid");
@@ -196,12 +228,21 @@ export default {
 			const kpm = npcs * config.npcKPM;
 			const killsRemaining = Math.max(0, want - curr);
 
+			// Calculate expected tokens (33% drop rate)
+			let expectedTokens = killsRemaining * 0.33;
+
+			// Apply 2x multiplier if enabled
+			if (isDoubleTokens) {
+				expectedTokens *= 2;
+			}
+
 			// Handle case where kills per minute is 0 (shouldn't happen with validation above)
 			if (kpm === 0) {
 				toast.error("Kills per minute is 0. Check your inputs.");
 				$("[data-npck-kpm-label]").text("0");
 				$("[data-npck-krem-label]").text(convertNum(killsRemaining.toFixed(2), "format"));
 				$("[data-npck-ttr-label]").text("NO PROGRESS");
+				$("[data-npck-token-label]").text(convertNum(expectedTokens.toFixed(2), "format"));
 				return;
 			}
 
@@ -209,6 +250,7 @@ export default {
 
 			$("[data-npck-kpm-label]").text(kpm.toFixed(2));
 			$("[data-npck-krem-label]").text(convertNum(killsRemaining.toFixed(2), "format"));
+			$("[data-npck-token-label]").text(convertNum(expectedTokens.toFixed(2), "format"));
 
 			clearInterval(state.timeToReachTargetInterval);
 			let remainingSeconds = Math.floor(minutesNeeded * 60);
@@ -217,6 +259,7 @@ export default {
 			if (remainingSeconds <= 0) {
 				$("[data-npck-ttr-label]").text("TARGET REACHED");
 				$("[data-npck-krem-label]").text("0");
+				$("[data-npck-token-label]").text("0");
 				if (notify.$().val() === "ENABLED") {
 					new Notification(config.header, {
 						body: "Target kills has been reached!",
@@ -232,6 +275,7 @@ export default {
 					state.timeToReachTargetInterval = 0;
 					$("[data-npck-ttr-label]").text("TARGET REACHED");
 					$("[data-npck-krem-label]").text("0");
+					$("[data-npck-token-label]").text("0");
 					if (notify.$().val() === "ENABLED") {
 						new Notification(config.header, {
 							body: "Target kills has been reached!",
@@ -241,7 +285,16 @@ export default {
 					return;
 				}
 
-				$("[data-npck-krem-label]").text(convertNum(Math.floor((remainingSeconds / 60) * kpm), "format"));
+				const currentKillsRemaining = Math.floor((remainingSeconds / 60) * kpm);
+				let currentExpectedTokens = currentKillsRemaining * 0.33;
+
+				// Apply 2x multiplier if enabled
+				if (doubleTokens.$().val() === "ENABLED") {
+					currentExpectedTokens *= 2;
+				}
+
+				$("[data-npck-krem-label]").text(convertNum(currentKillsRemaining, "format"));
+				$("[data-npck-token-label]").text(convertNum(currentExpectedTokens.toFixed(2), "format"));
 				$("[data-npck-ttr-label]").text(humanizeDuration(Duration.fromObject({ seconds: remainingSeconds })));
 				remainingSeconds--;
 			}, 1_000);
