@@ -44,7 +44,12 @@
 		{
 			"type": "removed",
 			"timestamp": 1770485425228,
-			"list": ["Removed server boost control to avoid confusion Since it's reading the stats per tick. If there is boost or none."]
+			"list": ["Removed server boost control to avoid confusion. Since it's reading the stats per tick. If there is boost or none."]
+		},
+		{
+			"type": "update",
+			"timestamp": 1770540038351,
+			"list": ["Improved Yen Per Min on Shinigami & Hashira & Hakaishin."]
 		}
 	]
 }
