@@ -3,12 +3,9 @@ name: Discord Notifications
 on:
  issues:
   types: [opened, closed, reopened]
- pull_request:
-  types: [opened, closed, reopened, review_requested]
  watch:
   types: [started]
  fork:
- create:
 
 jobs:
  discord:
@@ -46,55 +43,6 @@ jobs:
          fields: [
            { name: 'Issue', value: `#${issue.number}`, inline: true },
            { name: 'State', value: issue.state, inline: true }
-         ],
-         footer: { 
-           text: `${context.repo.owner}/${context.repo.repo}`
-         },
-         timestamp: new Date().toISOString(),
-       };
-
-       await fetch(webhookUrl, {
-         method: 'POST',
-         headers: { 'Content-Type': 'application/json' },
-         body: JSON.stringify({ embeds: [embed] }),
-       });
-
-   - name: Handle Pull Requests
-     if: github.event_name == 'pull_request'
-     uses: actions/github-script@v6
-     env:
-      DISCORD_WEBHOOK: ${{ secrets.GH_NOTIFICATIONS_WEBHOOK_URL }}
-     with:
-      script: |
-       const { pull_request } = context.payload;
-       const action = context.payload.action;
-       const webhookUrl = process.env.DISCORD_WEBHOOK;
-
-       const isMerged = pull_request.merged;
-       const effectiveAction = isMerged ? 'merged' : action;
-
-       const colors = { 
-         opened: 0x238636,
-         closed: 0xDA3633,
-         reopened: 0xF0C674,
-         review_requested: 0x8957E5,
-         merged: 0x8957E5
-       };
-
-       const embed = {
-         author: {
-           name: pull_request.user.login,
-           icon_url: pull_request.user.avatar_url,
-           url: pull_request.user.html_url
-         },
-         title: (pull_request.title || 'Untitled PR').substr(0, 256),
-         url: pull_request.html_url,
-         color: colors[effectiveAction] || 0x6E7681,
-         description: pull_request.body ? pull_request.body.substr(0, 2048) : undefined,
-         fields: [
-           { name: 'PR', value: `#${pull_request.number}`, inline: true },
-           { name: 'Status', value: isMerged ? 'merged' : pull_request.state, inline: true },
-           { name: 'Branch', value: `${pull_request.head.ref} → ${pull_request.base.ref}`, inline: false }
          ],
          footer: { 
            text: `${context.repo.owner}/${context.repo.repo}`
@@ -163,41 +111,6 @@ jobs:
          ],
          footer: { 
            text: `${forkee.owner.login}/${forkee.name}`
-         },
-         timestamp: new Date().toISOString(),
-       };
-
-       await fetch(webhookUrl, {
-         method: 'POST',
-         headers: { 'Content-Type': 'application/json' },
-         body: JSON.stringify({ embeds: [embed] }),
-       });
-
-   - name: Handle Repository Creation
-     if: github.event_name == 'create'
-     uses: actions/github-script@v6
-     env:
-      DISCORD_WEBHOOK: ${{ secrets.GH_NOTIFICATIONS_WEBHOOK_URL }}
-     with:
-      script: |
-       const { ref, ref_type, repository, sender } = context.payload;
-       const webhookUrl = process.env.DISCORD_WEBHOOK;
-
-       const embed = {
-         author: {
-           name: sender.login,
-           icon_url: sender.avatar_url,
-           url: sender.html_url
-         },
-         title: `${ref_type} created`,
-         url: repository.html_url,
-         color: 0x238636,
-         fields: [
-           { name: 'Ref', value: ref, inline: true },
-           { name: 'Type', value: ref_type, inline: true }
-         ],
-         footer: { 
-           text: `${context.repo.owner}/${context.repo.repo}`
          },
          timestamp: new Date().toISOString(),
        };
