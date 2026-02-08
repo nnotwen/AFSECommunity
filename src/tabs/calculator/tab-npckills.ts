@@ -78,18 +78,15 @@ export default {
                 <h2 class="text-2xl font-bold mb-6 text-glow-red">${config.header}</h2>
                 <div class="my-3" data-bs-theme="dark">
                     <span class="d-block font-bold text-glow-red text-lg">STATS</span>
-                    <div class="row g-2">${statInputs.join("")}</div>
+                    <div class="row g-2">
+                        ${statInputs.join("")}
+                        <div class="col-sm-6 col-md-4">${doubleTokens.input}</div>
+                    </div>
                 </div>
                 <div class="my-3" data-bs-theme="dark">
                     <span class="d-block font-bold text-glow-red text-lg">BROWSER NOTIFICATIONS</span>
                     <div class="row g-2">
                         <div class="col-sm-6 col-md-4">${notify.input}</div>
-                    </div>
-                </div>
-                <div class="my-3" data-bs-theme="dark">
-                    <span class="d-block font-bold text-glow-red text-lg">TOKEN MULTIPLIER</span>
-                    <div class="row g-2">
-                        <div class="col-sm-6 col-md-4">${doubleTokens.input}</div>
                     </div>
                 </div>
                 <div class="mt-5 mb-3">
