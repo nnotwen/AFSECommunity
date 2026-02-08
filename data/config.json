@@ -40,6 +40,11 @@
 			"type": "update",
 			"timestamp": 1770408409108,
 			"list": ["Improved validation on calculators."]
+		},
+		{
+			"type": "removed",
+			"timestamp": 1770485425228,
+			"list": ["Removed server boost control to avoid confusion Since it's reading the stats per tick. If there is boost or none."]
 		}
 	]
 }
