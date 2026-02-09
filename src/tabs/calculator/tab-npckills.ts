@@ -8,7 +8,7 @@ import { generateUniqueId } from "../../utils/idGenerator";
 
 const config = {
 	header: "NPC KILLS FARMING CALCULATOR",
-	npcKPM: 20, // NPC Kills Per Minute
+	npcKPM: 20, // 60 seconds / 3 seconds = 20 kills per minute
 };
 
 const state = {
@@ -511,28 +511,32 @@ export default {
                             <span data-npck-kpm-label="true" class="d-block text-xl text-terminal text-glow-red">0</span>
                         </div>
                         <div class="col-md-6">
-                            <span class="d-block text-sm text-terminal text-cyber-red text-glow-red">KILLS REMAINING</span>
+                            <span class="d-block text-sm text-terminal text-cyber-red text-glow-red">NPC KILL REMAINING</span>
                             <span data-npck-krem-label="true" class="d-block text-xl text-terminal text-glow-red">0</span>
                         </div>
                         <div class="col-md-6">
-                            <span class="d-block text-sm text-terminal text-cyber-red text-glow-red">MINI BOSS REMAINING</span>
+                            <span class="d-block text-sm text-terminal text-cyber-red text-glow-red">MINI BOSS KILL REMAINING</span>
                             <span data-npck-miniboss-rem-label="true" class="d-block text-xl text-terminal text-glow-red">0</span>
                         </div>
                         <div class="col-md-6">
-                            <span class="d-block text-sm text-terminal text-cyber-red text-glow-red">TIME NEEDED</span>
-                            <span data-npck-ttr-label="true" class="d-block text-xl text-terminal text-glow-red">TARGET REACHED</span>
+                            <span class="d-block text-sm text-terminal text-cyber-red text-glow-red">GACHA TOKEN</span>
+                            <span data-npck-gacha-token-label="true" class="d-block text-xl text-terminal text-glow-red">0</span>
                         </div>
-                        <div class="col-md-6">
-                            <span class="d-block text-sm text-terminal text-cyber-red text-glow-red">TOKEN</span>
-                            <span data-npck-token-label="true" class="d-block text-xl text-terminal text-glow-red">0</span>
-                        </div>
-                        <div class="col-md-6">
+						<div class="col-md-6">
                             <span class="d-block text-sm text-terminal text-cyber-red text-glow-red">NPC HEARTS</span>
                             <span data-npck-npc-hearts-label="true" class="d-block text-xl text-terminal text-glow-red">0</span>
                         </div>
                         <div class="col-md-6">
+                            <span class="d-block text-sm text-terminal text-cyber-red text-glow-red">VALENTINE'S TOKEN</span>
+                            <span data-npck-valentine-token-label="true" class="d-block text-xl text-terminal text-glow-red">0</span>
+                        </div>
+                        <div class="col-md-6">
                             <span class="d-block text-sm text-terminal text-cyber-red text-glow-red">MINI BOSS HEARTS</span>
                             <span data-npck-miniboss-hearts-label="true" class="d-block text-xl text-terminal text-glow-red">0</span>
+                        </div>
+						<div class="col-md-6">
+                            <span class="d-block text-sm text-terminal text-cyber-red text-glow-red">TIME NEEDED</span>
+                            <span data-npck-ttr-label="true" class="d-block text-xl text-terminal text-glow-red">TARGET REACHED</span>
                         </div>
                     </div>
                 </div>
@@ -774,6 +778,12 @@ export default {
 			const npcs = parseNumberWithSuffix(npcsValue);
 			const miniBossPerSpawn = parseNumberWithSuffix(miniBossValue);
 
+			// Determine what inputs are provided
+			const hasKillData = curr > 0 || want > 0;
+			const hasNPCData = npcs > 0;
+			const hasMiniBossData = miniBossPerSpawn > 0;
+			const killsRemaining = Math.max(0, want - curr);
+
 			// Validate only if values are provided
 			let hasError = false;
 
@@ -789,82 +799,184 @@ export default {
 			}
 
 			// Calculate NPC Kills Stats (only if we have kill data)
-			if (curr > 0 || want > 0) {
-				// Calculate KPM for both NPC types
-				const npcKPM = npcs * config.npcKPM;
-				const miniBossKPM = miniBossPerSpawn * config.npcKPM;
-				const totalKPM = npcKPM + miniBossKPM;
-				const effectiveKPM = totalKPM > 0 ? totalKPM : config.npcKPM;
+			if (hasKillData) {
+				// Calculate KPM for each type based on 3-second respawn time
+				const npcKPM = hasNPCData ? npcs * config.npcKPM : 0;
+				const miniBossKPM = hasMiniBossData ? miniBossPerSpawn * config.npcKPM : 0;
 
-				const killsRemaining = Math.max(0, want - curr);
-
-				// Calculate expected tokens (33% drop rate)
-				let expectedTokens = killsRemaining * 0.33;
-				if (isDoubleTokens) {
-					expectedTokens *= 2;
+				let effectiveKPM = 0;
+				if (hasNPCData && hasMiniBossData) {
+					// Both types provided
+					effectiveKPM = npcKPM + miniBossKPM;
+				} else if (hasNPCData) {
+					// Only NPC data provided
+					effectiveKPM = npcKPM;
+				} else if (hasMiniBossData) {
+					// Only Mini Boss data provided
+					effectiveKPM = miniBossKPM;
+				} else {
+					// Neither provided - show N/A
+					effectiveKPM = 0;
 				}
 
-				// Calculate expected hearts for NPCs (20% drop rate, 50 hearts each)
-				const npcHearts = killsRemaining * 0.2 * 50;
+				// Calculate expected tokens
+				let expectedGachaTokens = 0; // Gacha Tokens only from regular NPCs
+				let expectedValentineTokens = 0; // Valentine's Tokens only from Mini Bosses
 
-				// Calculate expected hearts for Mini Bosses (20% drop rate, 150 hearts each)
-				const miniBossHearts = killsRemaining * 0.2 * 150;
+				// Gacha Tokens only from regular NPCs (33% drop rate)
+				if (hasNPCData) {
+					expectedGachaTokens = killsRemaining * 0.33;
+				}
 
-				// Update NPC kills results
-				if (effectiveKPM === 0) {
-					$("[data-npck-kpm-label]").text("0");
-					$("[data-npck-krem-label]").text(formatNumberWithSuffix(killsRemaining));
-					$("[data-npck-miniboss-rem-label]").text(formatNumberWithSuffix(killsRemaining));
-					$("[data-npck-ttr-label]").text("NO PROGRESS");
+				// Valentine's Token calculation - 25% drop rate from Mini Bosses only
+				if (hasMiniBossData) {
+					expectedValentineTokens = killsRemaining * 0.25;
+				}
+
+				// Apply 2X Tokens gamepass if enabled
+				if (isDoubleTokens) {
+					expectedGachaTokens *= 2;
+					expectedValentineTokens *= 2;
+				}
+
+				// Calculate hearts based on what data is provided
+				let npcHearts = 0;
+				let miniBossHearts = 0;
+
+				if (hasNPCData) {
+					// Calculate NPC hearts (20% drop rate, 50 hearts each)
+					npcHearts = killsRemaining * 0.2 * 50;
+				}
+
+				if (hasMiniBossData) {
+					// Calculate Mini Boss hearts (20% drop rate, 150 hearts each)
+					miniBossHearts = killsRemaining * 0.2 * 150;
+				}
+
+				// Update KPM display - show N/A if no data for the type
+				if (!hasNPCData && !hasMiniBossData) {
+					$("[data-npck-kpm-label]").text("N/A");
 				} else {
 					$("[data-npck-kpm-label]").text(effectiveKPM.toFixed(2));
-					$("[data-npck-krem-label]").text(formatNumberWithSuffix(killsRemaining));
-					$("[data-npck-miniboss-rem-label]").text(formatNumberWithSuffix(killsRemaining));
-
-					if (killsRemaining <= 0) {
-						$("[data-npck-ttr-label]").text("TARGET REACHED");
-					} else {
-						const minutesNeeded = killsRemaining / effectiveKPM;
-						let remainingSeconds = Math.floor(minutesNeeded * 60);
-						$("[data-npck-ttr-label]").text(humanizeDuration(Duration.fromObject({ seconds: remainingSeconds })));
-
-						// Start NPC kills countdown
-						state.timeToReachTargetInterval = setInterval(() => {
-							if (remainingSeconds <= 0) {
-								clearInterval(state.timeToReachTargetInterval);
-								state.timeToReachTargetInterval = 0;
-								$("[data-npck-ttr-label]").text("TARGET REACHED");
-								$("[data-npck-krem-label]").text("0");
-								$("[data-npck-miniboss-rem-label]").text("0");
-
-								if (notify.$().val() === "ENABLED") {
-									new Notification(config.header, {
-										body: "Target kills has been reached!",
-										icon: "/icons/icon-256.png",
-									});
-								}
-								return;
-							}
-
-							const currentKillsRemaining = Math.floor((remainingSeconds / 60) * effectiveKPM);
-							$("[data-npck-krem-label]").text(formatNumberWithSuffix(currentKillsRemaining));
-							$("[data-npck-miniboss-rem-label]").text(formatNumberWithSuffix(currentKillsRemaining));
-							$("[data-npck-ttr-label]").text(humanizeDuration(Duration.fromObject({ seconds: remainingSeconds })));
-							remainingSeconds--;
-						}, 1_000);
-					}
 				}
 
-				$("[data-npck-token-label]").text(formatNumberWithSuffix(expectedTokens));
-				$("[data-npck-npc-hearts-label]").text(formatNumberWithSuffix(npcHearts));
-				$("[data-npck-miniboss-hearts-label]").text(formatNumberWithSuffix(miniBossHearts));
+				// Update NPC Kill Remaining display
+				if (killsRemaining <= 0) {
+					$("[data-npck-krem-label]").text("0");
+				} else if (!hasNPCData && !hasMiniBossData) {
+					$("[data-npck-krem-label]").text("N/A");
+				} else if (!hasNPCData) {
+					// Only Mini Boss data provided
+					$("[data-npck-krem-label]").text("N/A");
+				} else {
+					$("[data-npck-krem-label]").text(formatNumberWithSuffix(killsRemaining));
+				}
+
+				// Update Mini Boss Remaining display
+				if (killsRemaining <= 0) {
+					$("[data-npck-miniboss-rem-label]").text("0");
+				} else if (!hasMiniBossData) {
+					$("[data-npck-miniboss-rem-label]").text("N/A");
+				} else {
+					$("[data-npck-miniboss-rem-label]").text(formatNumberWithSuffix(killsRemaining));
+				}
+
+				// Update hearts displays
+				if (!hasNPCData) {
+					$("[data-npck-npc-hearts-label]").text("N/A");
+				} else {
+					$("[data-npck-npc-hearts-label]").text(formatNumberWithSuffix(npcHearts));
+				}
+
+				if (!hasMiniBossData) {
+					$("[data-npck-miniboss-hearts-label]").text("N/A");
+				} else {
+					$("[data-npck-miniboss-hearts-label]").text(formatNumberWithSuffix(miniBossHearts));
+				}
+
+				// Update tokens displays
+				if (!hasNPCData) {
+					$("[data-npck-gacha-token-label]").text("N/A");
+				} else {
+					$("[data-npck-gacha-token-label]").text(formatNumberWithSuffix(expectedGachaTokens));
+				}
+
+				if (!hasMiniBossData) {
+					$("[data-npck-valentine-token-label]").text("N/A");
+				} else {
+					$("[data-npck-valentine-token-label]").text(formatNumberWithSuffix(expectedValentineTokens));
+				}
+
+				// Time calculation
+				if (effectiveKPM === 0) {
+					$("[data-npck-ttr-label]").text("NO PROGRESS");
+
+					// Clear any existing interval
+					clearInterval(state.timeToReachTargetInterval);
+					state.timeToReachTargetInterval = 0;
+				} else if (killsRemaining <= 0) {
+					$("[data-npck-ttr-label]").text("TARGET REACHED");
+
+					// Clear any existing interval
+					clearInterval(state.timeToReachTargetInterval);
+					state.timeToReachTargetInterval = 0;
+				} else {
+					const minutesNeeded = killsRemaining / effectiveKPM;
+					let remainingSeconds = Math.floor(minutesNeeded * 60);
+					$("[data-npck-ttr-label]").text(humanizeDuration(Duration.fromObject({ seconds: remainingSeconds })));
+
+					// Clear any existing interval first
+					clearInterval(state.timeToReachTargetInterval);
+
+					// Start NPC kills countdown
+					state.timeToReachTargetInterval = setInterval(() => {
+						if (remainingSeconds <= 0) {
+							clearInterval(state.timeToReachTargetInterval);
+							state.timeToReachTargetInterval = 0;
+							$("[data-npck-ttr-label]").text("TARGET REACHED");
+
+							if (hasNPCData) {
+								$("[data-npck-krem-label]").text("0");
+							}
+
+							if (hasMiniBossData) {
+								$("[data-npck-miniboss-rem-label]").text("0");
+							}
+
+							if (notify.$().val() === "ENABLED") {
+								new Notification(config.header, {
+									body: "Target kills has been reached!",
+									icon: "/icons/icon-256.png",
+								});
+							}
+							return;
+						}
+
+						// Update remaining kills
+						const currentKillsRemaining = Math.floor((remainingSeconds / 60) * effectiveKPM);
+
+						// Update NPC kills if applicable
+						if (hasNPCData) {
+							$("[data-npck-krem-label]").text(formatNumberWithSuffix(currentKillsRemaining));
+						}
+
+						// Update Mini Boss kills if applicable
+						if (hasMiniBossData) {
+							$("[data-npck-miniboss-rem-label]").text(formatNumberWithSuffix(currentKillsRemaining));
+						}
+
+						$("[data-npck-ttr-label]").text(humanizeDuration(Duration.fromObject({ seconds: remainingSeconds })));
+						remainingSeconds--;
+					}, 1_000);
+				}
 			} else {
 				// No kill data provided
 				$("[data-npck-kpm-label]").text("N/A");
 				$("[data-npck-krem-label]").text("N/A");
 				$("[data-npck-miniboss-rem-label]").text("N/A");
 				$("[data-npck-ttr-label]").text("N/A");
-				$("[data-npck-token-label]").text("N/A");
+				$("[data-npck-gacha-token-label]").text("N/A");
+				$("[data-npck-valentine-token-label]").text("N/A");
 				$("[data-npck-npc-hearts-label]").text("N/A");
 				$("[data-npck-miniboss-hearts-label]").text("N/A");
 			}
