@@ -158,7 +158,7 @@
 		"chance": "0.005%",
 		"cost": "7500 SHARDS",
 		"board": 1,
-		"desc": "Auto trains 150% of your Strength, 150% of your Durability. Nerfs all player damage by 50% buffs all damage by 100% increase your Chikara Per Min by x1.5, increases your Yen per Min by x1.25"
+		"desc": "Auto trains 160% of your Strength, 175% of your Durability. Nerfs all player damage by 50% buffs all damage by 100% increase your Chikara Per Min by x1.5, increases your Yen per Min by x1.25"
 	},
 	{
 		"name": "GIOVANNA",
@@ -292,5 +292,33 @@
 		"cost": "EVENT ONLY",
 		"board": 3,
 		"desc": "Auto trains 175% of your Chakra, Buffs Kurama damage by 1.5x and Kurama drop chances by 1.5x increases your Yen Per Min by x1.05."
+	},
+	{
+		"name": "YUMEKO",
+		"chance": "0.004%",
+		"cost": "EVENT ONLY",
+		"board": 3,
+		"desc": "Auto trains 300% of your Chakra, increases your Yen Per Min by x1.25, increases your Hearts Per Min by x2.5"
+	},
+	{
+		"name": "MAKIMA",
+		"chance": "0.02%",
+		"cost": "EVENT ONLY",
+		"board": 3,
+		"desc": "Auto trains 150% of your Strength, 150% of your Durability, 175% of your Chakra, 120% of your Sword, 90% of your Speed and 90% Agility, increases your Yen Per Min by x1.1, increases your Heart Per Min by x1.5."
+	},
+	{
+		"name": "ASUNA",
+		"chance": "VALENTINE'S PASS TIER 49",
+		"cost": "EVENT ONLY",
+		"board": 3,
+		"desc": "Auto trains 125% of your Durability, 125% of your Sword, increases your Yen Per Min by x1.15, increases your Hearts Per Min by x2."
+	},
+	{
+		"name": "ESDEATH",
+		"chance": "0.01%",
+		"cost": "EVENT ONLY",
+		"board": 3,
+		"desc": "Auto trains 150% of your Sword, increases your Yen Per Min by x1.15, increases your Heart Per Min by x2."
 	}
 ]
