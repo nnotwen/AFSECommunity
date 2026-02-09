@@ -1,18 +1,18 @@
 {
 	"minato": [
-		{ "quest": 1, "requirement": "5 Kurama kills", "reward": "6H Boost" },
+		{ "quest": 1, "requirement": "5 Kurama kills", "reward": "6H Self Boost" },
 		{ "quest": 2, "requirement": "1 QN Strength, Durability, Chakra", "reward": "400,000,000 Yen" },
 		{ "quest": 3, "requirement": "5K Increment of Strength, Durability and Chakra", "reward": "25,000 Chikara" },
-		{ "quest": 4, "requirement": "10 Kurama kills", "reward": "12H Boost" },
+		{ "quest": 4, "requirement": "10 Kurama kills", "reward": "12H Self Boost" },
 		{ "quest": 5, "requirement": "1SX Strength, Durability, Chakra", "reward": "12,500,000,000 Yen" },
 		{ "quest": 6, "requirement": "10k Increments of Strength, Durability, Chakra", "reward": "35,000 Chikara" },
-		{ "quest": 7, "requirement": "50 Kurama kills", "reward": "1D Boost" },
+		{ "quest": 7, "requirement": "50 Kurama kills", "reward": "1D Self Boost" },
 		{ "quest": 8, "requirement": "1sp Strength, Durability, Chakra", "reward": "2,000,000,000,000 Yen" },
 		{ "quest": 9, "requirement": "15k Increments of Strength, Durability, Chakra", "reward": "50,000 Chikara" },
 		{
 			"quest": 10,
 			"requirement": "100 Kurama kills",
-			"reward": "2D Boost, +5 Champion Inventory Slots (F2P)"
+			"reward": "2D Self Boost, +5 Champion Inventory Slots (F2P)"
 		}
 	],
 	"kirito": [
@@ -24,7 +24,7 @@
 		{
 			"quest": 2,
 			"requirement": "Defeat 5,000 NPCs",
-			"reward": "5,000 Chikara, 3-Hour Boost"
+			"reward": "5,000 Chikara, 3-Hour Self Boost"
 		},
 		{
 			"quest": 3,
@@ -34,7 +34,7 @@
 		{
 			"quest": 4,
 			"requirement": "Defeat 10,000 NPCs",
-			"reward": "15,000 Chikara, 6-Hour Boost"
+			"reward": "15,000 Chikara, 6-Hour Self Boost"
 		},
 		{
 			"quest": 5,
@@ -59,12 +59,12 @@
 		{
 			"quest": 9,
 			"requirement": "Defeat 25,000 NPCs",
-			"reward": "50,000 Chikara, 12-Hour Boost"
+			"reward": "50,000 Chikara, 12-Hour Self Boost"
 		},
 		{
 			"quest": 10,
 			"requirement": "Reach 1QN strength, durability, and sword",
-			"reward": "180,000,000 Yen, 100K Chikara, 3-Hour Boost, New Champion (KIRITO), +5 Champion Inventory (F2P)"
+			"reward": "180,000,000 Yen, 100K Chikara, 3-Hour Self Boost, New Champion (KIRITO), +5 Champion Inventory (F2P)"
 		}
 	],
 	"bang": [
@@ -284,7 +284,103 @@
 		{
 			"quest": 1,
 			"requirement": "Gain 1 Strength, 1 Durability, 1 Chakra",
-			"reward": "1 Day Free Boost - 1,500 Chikara"
+			"reward": "1 Day Free Self Boost - 1,500 Chikara"
+		}
+	],
+	"makima": [
+		{
+			"quest": 1,
+			"requirement": "Defeat 10 Makima.",
+			"reward": " 150k Hearts, 1 Hour Self Boost."
+		},
+		{
+			"quest": 2,
+			"requirement": "Defeat 1000 NPC's",
+			"reward": " 150k Hearts, 2 Hour Self Boost."
+		},
+		{
+			"quest": 3,
+			"requirement": "Defeat 25 Kurama",
+			"reward": " 150k Hearts, 3 Hour Self Boost."
+		},
+		{
+			"quest": 4,
+			"requirement": "5K Increments on Strength, Durability, Chakra.",
+			"reward": " 150k Hearts, 4 Hour, 30 Mins Self Boost."
+		},
+		{
+			"quest": 5,
+			"requirement": "Gain 1SX Strength, 1SX Durability, 1SX Chakra.",
+			"reward": " 150k Hearts, 8 Hour Self Boost."
+		}
+	],
+	"nami": [
+		{
+			"quest": 1,
+			"requirement": "Defeat 1000 NPC's.",
+			"reward": "6 Hour Self Boost."
+		},
+		{
+			"quest": 2,
+			"requirement": "Gain 1QN Strength, 1QN Durability, 1QN Chakra.",
+			"reward": "400M Yent."
+		},
+		{
+			"quest": 3,
+			"requirement": "Defeat 2000 NPC's.",
+			"reward": "12 Hour Self Boost."
+		},
+		{
+			"quest": 4,
+			"requirement": "5K Increments on Strength, Durability, Chakra.",
+			"reward": "50K Chikara."
+		},
+		{
+			"quest": 5,
+			"requirement": "Gain 1SX Strength, 1SX Durability, 1SX Chakra.",
+			"reward": "2T Yen."
+		},
+		{
+			"quest": 6,
+			"requirement": "Defeat 250 Makimo.",
+			"reward": "2 Day Self Boost."
+		},
+		{
+			"quest": 7,
+			"requirement": "10K Increments on Strength, Durability, Chakra.",
+			"reward": "100K Chikara."
+		},
+		{
+			"quest": 8,
+			"requirement": "Gain 100SP Strength, 100SP Durability, 100SP Chakra.",
+			"reward": "20T Yen."
+		}
+	],
+	"esdeath": [
+		{
+			"quest": 1,
+			"requirement": "Defeat 10 Esdeath.",
+			"reward": " 150K Hearts, 3 Hour Self Boost."
+		},
+		{
+			"quest": 2,
+			"requirement": "10k Increments of Sword and Durability.",
+			"reward": " 150K Hearts, 6 Hour Self Boost."
+		},
+		{
+			"quest": 3,
+			"requirement": " Defeat 5000 NPC's.",
+			"reward": " 300K Hearts, 8 Hour Self Boost."
+		},
+		{
+			"quest": 4,
+			"requirement": "Defeat 1000 Esdeath.",
+			"reward": " 500k Hearts, 12 Hour Self Boost."
+		},
+		{
+			"quest": 5,
+			"requirement": "1SP Sword and Durability.",
+			"reward": " 300k Hearts, 15 Hour Self Boost."
 		}
 	]
 }
