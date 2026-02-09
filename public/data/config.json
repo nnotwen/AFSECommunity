@@ -55,6 +55,11 @@
 			"type": "added",
 			"timestamp": 1770563811103,
 			"list": ["Added Total tokens on NPC Kills Farming Calculator."]
+		},
+		{
+			"type": "added",
+			"timestamp": 1770622634485,
+			"list": ["Added Hearts Calculator on NPC Kills Farming Calculator."]
 		}
 	]
 }

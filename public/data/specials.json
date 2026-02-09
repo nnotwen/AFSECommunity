@@ -15,6 +15,22 @@
 		{
 			"name": "RINNEGAN / RIPPLE EYES",
 			"abilities": ["Z - No Damage, Pulls towards user", "X - Strength, 10x Multiplier", "C - Chakra, 55x Multiplier"]
+		},
+		{
+			"name": "FLYING RAIJIN / FLYING THUNDER GOD",
+			"abilities": [
+				"Z - Chakra, 30x Multiplier 7s CD.",
+				"X - Strength, 25x Multiplier/2 Ticks 10s CD.",
+				"C - Evasion, Teleports you away directly on your cursor."
+			]
+		},
+		{
+			"name": "KYUBII MODE / NINE TAILED FOX",
+			"abilities": [
+				"Z - Strength, 25x Multiplier 7s CD.",
+				"X - Strength/Durability, 3x DMG + 25% Damage Reduction 10.5s CD.",
+				"C - Strength/Durability 4x Damage on click, 40.5 CD."
+			]
 		}
 	],
 	"quirks": [
@@ -183,6 +199,18 @@
 		{
 			"name": "DARK / BLACKBEARD'S DF",
 			"abilities": ["Z - Chakra, 12x Multiplier/8 Ticks, 8s CD.", "X - Chakra, 18x Multiplier/3 Ticks, 6s CD.", "C - Chakra, 75x Multiplier, 6.5s CD"]
+		},
+		{
+			"name": "MOCHI / KATAKURI'S DF",
+			"abilities": [
+				"Z - Strength, 5x Multiplier/10 Ticks, 10s CD.",
+				"X - Strength, 60x Multiplier, 6s CD.",
+				"C - Strength, 70x Multiplier/7 Ticks, 14s CD."
+			]
+		},
+		{
+			"name": "BUDDHA / SENGOKU'S DF",
+			"abilities": ["Z - Chakra, 35x Multiplier/10 Ticks, 7s CD.", "X - Chakra, 25x Multiplier, 9s CD.", "C - Chakra, 45x Multiplier/7 Ticks, 15s CD."]
 		}
 	]
 }

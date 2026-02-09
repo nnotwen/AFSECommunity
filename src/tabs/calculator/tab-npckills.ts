@@ -35,8 +35,12 @@ const inputKeys = [
 		placeholder: "20",
 	},
 	{
-		label: "AMOUNT OF NPC PER SPAWN",
+		label: "NPC PER SPAWN",
 		placeholder: "4",
+	},
+	{
+		label: "MINI BOSS PER SPAWN",
+		placeholder: "1",
 	},
 ] as const;
 
@@ -48,6 +52,17 @@ const selectKeys = [
 	{
 		label: "2X TOKENS",
 		selectOptions: [{ value: "DISABLED" }, { value: "ENABLED" }],
+	},
+	{
+		label: "HEARTS MULTIPLIER",
+		selectOptions: [
+			{ label: "NONE (1x)", value: "1" },
+			{ label: "E (1.2x)", value: "1.2" },
+			{ label: "D (1.4x)", value: "1.4" },
+			{ label: "C (1.6x)", value: "1.6" },
+			{ label: "B (1.8x)", value: "1.8" },
+			{ label: "A (2x)", value: "2" },
+		],
 	},
 ];
 
@@ -67,11 +82,13 @@ export default {
 
 		const currInp = inputs.find((x) => x.label === "CURRENT KILLS")!;
 		const wantInp = inputs.find((x) => x.label === "WANTED KILLS")!;
-		const npcsInp = inputs.find((x) => x.label === "AMOUNT OF NPC PER SPAWN")!;
+		const npcsInp = inputs.find((x) => x.label === "NPC PER SPAWN")!;
+		const miniBossInp = inputs.find((x) => x.label === "MINI BOSS PER SPAWN")!;
 		const notify = selects.find((x) => x.label === "TARGET REACHED")!;
 		const doubleTokens = selects.find((x) => x.label === "2X TOKENS")!;
+		const heartsMultiplier = selects.find((x) => x.label === "HEARTS MULTIPLIER")!;
 
-		const statInputs = inputs.map((x) => /*html*/ `<div class="col-sm-6 col-md-4">${x.input}</div>`);
+		const statInputs = inputs.map((x) => /*html*/ `<div class="col-sm-6 col-md-4 col-lg-3">${x.input}</div>`);
 
 		$(appendTo).append(/*html*/ `
             <div id="${id}" class="cyber-card cyber-card-red">
@@ -80,7 +97,8 @@ export default {
                     <span class="d-block font-bold text-glow-red text-lg">STATS</span>
                     <div class="row g-2">
                         ${statInputs.join("")}
-                        <div class="col-sm-6 col-md-4">${doubleTokens.input}</div>
+                        <div class="col-sm-6 col-md-4 col-lg-3">${doubleTokens.input}</div>
+                        <div class="col-sm-6 col-md-4 col-lg-3">${heartsMultiplier.input}</div>
                     </div>
                 </div>
                 <div class="my-3" data-bs-theme="dark">
@@ -103,12 +121,24 @@ export default {
                             <span data-npck-krem-label="true" class="d-block text-xl text-terminal text-glow-red">0</span>
                         </div>
                         <div class="col-md-6">
+                            <span class="d-block text-sm text-terminal text-cyber-red text-glow-red">MINI BOSS REMAINING</span>
+                            <span data-npck-miniboss-rem-label="true" class="d-block text-xl text-terminal text-glow-red">0</span>
+                        </div>
+                        <div class="col-md-6">
                             <span class="d-block text-sm text-terminal text-cyber-red text-glow-red">TIME NEEDED</span>
                             <span data-npck-ttr-label="true" class="d-block text-xl text-terminal text-glow-red">TARGET REACHED</span>
                         </div>
                         <div class="col-md-6">
                             <span class="d-block text-sm text-terminal text-cyber-red text-glow-red">TOKEN</span>
                             <span data-npck-token-label="true" class="d-block text-xl text-terminal text-glow-red">0</span>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="d-block text-sm text-terminal text-cyber-red text-glow-red">NPC HEARTS</span>
+                            <span data-npck-npc-hearts-label="true" class="d-block text-xl text-terminal text-glow-red">0</span>
+                        </div>
+                        <div class="col-md-6">
+                            <span class="d-block text-sm text-terminal text-cyber-red text-glow-red">MINI BOSS HEARTS</span>
+                            <span data-npck-miniboss-hearts-label="true" class="d-block text-xl text-terminal text-glow-red">0</span>
                         </div>
                     </div>
                 </div>
@@ -121,6 +151,13 @@ export default {
 
 		if ($storage.has(`multiplier:npck:${doubleTokens.label}`)) {
 			$(`#${doubleTokens.id}`).val($storage.get(`multiplier:npck:${doubleTokens.label}`));
+		}
+
+		if ($storage.has(`heartsMultiplier:npck:${heartsMultiplier.label}`)) {
+			$(`#${heartsMultiplier.id}`).val($storage.get(`heartsMultiplier:npck:${heartsMultiplier.label}`));
+		} else {
+			// Set default to NONE (1x)
+			$(`#${heartsMultiplier.id}`).val("1");
 		}
 
 		// Remove invalid class on focus for all inputs
@@ -164,21 +201,37 @@ export default {
 			}
 		});
 
+		// Save hearts multiplier setting with toast notification
+		$(`#${heartsMultiplier.id}`).on("change", function () {
+			const value = $(this).val();
+			$storage.set(`heartsMultiplier:npck:${heartsMultiplier.label}`, value);
+
+			// Show toast notification if timer is running
+			if (state.timeToReachTargetInterval > 0) {
+				const multiplierText = $(this).find("option:selected").text();
+				toast.info(`Hearts Multiplier set to ${multiplierText}. Heart counts updated in real-time.`);
+			}
+		});
+
 		$("[data-npckills-calculate]").on("click touchstart", function () {
 			const currValue = currInp.$().val() as string;
 			const wantValue = wantInp.$().val() as string;
 			const npcsValue = npcsInp.$().val() as string;
+			const miniBossValue = miniBossInp.$().val() as string;
 			const isDoubleTokens = doubleTokens.$().val() === "ENABLED";
+			const heartsMultiplierValue = parseFloat(heartsMultiplier.$().val() as string) || 1;
 
 			// Remove invalid class from all inputs first
 			currInp.$().removeClass("invalid");
 			wantInp.$().removeClass("invalid");
 			npcsInp.$().removeClass("invalid");
+			miniBossInp.$().removeClass("invalid");
 
 			// Validate all inputs
 			const currValidation = validateInput(currValue, "CURRENT KILLS");
 			const wantValidation = validateInput(wantValue, "WANTED KILLS");
 			const npcsValidation = validateInput(npcsValue, "AMOUNT OF NPC PER SPAWN");
+			const miniBossValidation = validateInput(miniBossValue, "AMOUNT OF MINI BOSS PER SPAWN");
 
 			// Check for validation errors
 			let hasError = false;
@@ -201,6 +254,12 @@ export default {
 				hasError = true;
 			}
 
+			if (!miniBossValidation.isValid) {
+				toast.error(miniBossValidation.error || "Invalid AMOUNT OF MINI BOSS PER SPAWN value");
+				miniBossInp.$().addClass("invalid");
+				hasError = true;
+			}
+
 			if (hasError) {
 				return; // Stop calculation if any input is invalid
 			}
@@ -208,6 +267,7 @@ export default {
 			const curr = currValidation.parsed;
 			const want = wantValidation.parsed;
 			const npcs = npcsValidation.parsed;
+			const miniBossPerSpawn = miniBossValidation.parsed;
 
 			// Check for logical errors
 			if (curr > want) {
@@ -216,13 +276,18 @@ export default {
 				return;
 			}
 
-			if (npcs === 0) {
-				toast.error("Amount of NPC per spawn cannot be 0");
+			if (npcs === 0 && miniBossPerSpawn === 0) {
+				toast.error("Amount of NPC per spawn or Mini Boss per spawn cannot both be 0");
 				npcsInp.$().addClass("invalid");
+				miniBossInp.$().addClass("invalid");
 				return;
 			}
 
-			const kpm = npcs * config.npcKPM;
+			// Calculate KPM for both NPC types
+			const npcKPM = npcs * config.npcKPM;
+			const miniBossKPM = miniBossPerSpawn * config.npcKPM;
+			const totalKPM = npcKPM + miniBossKPM;
+
 			const killsRemaining = Math.max(0, want - curr);
 
 			// Calculate expected tokens (33% drop rate)
@@ -233,21 +298,33 @@ export default {
 				expectedTokens *= 2;
 			}
 
-			// Handle case where kills per minute is 0 (shouldn't happen with validation above)
-			if (kpm === 0) {
-				toast.error("Kills per minute is 0. Check your inputs.");
+			// Calculate expected hearts for NPCs (20% drop rate, 50 hearts each)
+			const npcHearts = killsRemaining * 0.2 * 50 * heartsMultiplierValue;
+
+			// Calculate expected hearts for Mini Bosses (20% drop rate, 150 hearts each)
+			const miniBossHearts = killsRemaining * 0.2 * 150 * heartsMultiplierValue;
+
+			// Handle case where total kills per minute is 0
+			if (totalKPM === 0) {
+				toast.error("Total kills per minute is 0. Check your inputs.");
 				$("[data-npck-kpm-label]").text("0");
 				$("[data-npck-krem-label]").text(convertNum(killsRemaining.toFixed(2), "format"));
+				$("[data-npck-miniboss-rem-label]").text(convertNum(killsRemaining.toFixed(2), "format"));
 				$("[data-npck-ttr-label]").text("NO PROGRESS");
 				$("[data-npck-token-label]").text(convertNum(expectedTokens.toFixed(2), "format"));
+				$("[data-npck-npc-hearts-label]").text(convertNum(npcHearts.toFixed(2), "format"));
+				$("[data-npck-miniboss-hearts-label]").text(convertNum(miniBossHearts.toFixed(2), "format"));
 				return;
 			}
 
-			const minutesNeeded = killsRemaining / kpm;
+			const minutesNeeded = killsRemaining / totalKPM;
 
-			$("[data-npck-kpm-label]").text(kpm.toFixed(2));
+			$("[data-npck-kpm-label]").text(totalKPM.toFixed(2));
 			$("[data-npck-krem-label]").text(convertNum(killsRemaining.toFixed(2), "format"));
+			$("[data-npck-miniboss-rem-label]").text(convertNum(killsRemaining.toFixed(2), "format"));
 			$("[data-npck-token-label]").text(convertNum(expectedTokens.toFixed(2), "format"));
+			$("[data-npck-npc-hearts-label]").text(convertNum(npcHearts.toFixed(2), "format"));
+			$("[data-npck-miniboss-hearts-label]").text(convertNum(miniBossHearts.toFixed(2), "format"));
 
 			clearInterval(state.timeToReachTargetInterval);
 			let remainingSeconds = Math.floor(minutesNeeded * 60);
@@ -256,7 +333,10 @@ export default {
 			if (remainingSeconds <= 0) {
 				$("[data-npck-ttr-label]").text("TARGET REACHED");
 				$("[data-npck-krem-label]").text("0");
+				$("[data-npck-miniboss-rem-label]").text("0");
 				$("[data-npck-token-label]").text("0");
+				$("[data-npck-npc-hearts-label]").text("0");
+				$("[data-npck-miniboss-hearts-label]").text("0");
 				if (notify.$().val() === "ENABLED") {
 					new Notification(config.header, {
 						body: "Target kills has been reached!",
@@ -272,7 +352,10 @@ export default {
 					state.timeToReachTargetInterval = 0;
 					$("[data-npck-ttr-label]").text("TARGET REACHED");
 					$("[data-npck-krem-label]").text("0");
+					$("[data-npck-miniboss-rem-label]").text("0");
 					$("[data-npck-token-label]").text("0");
+					$("[data-npck-npc-hearts-label]").text("0");
+					$("[data-npck-miniboss-hearts-label]").text("0");
 					if (notify.$().val() === "ENABLED") {
 						new Notification(config.header, {
 							body: "Target kills has been reached!",
@@ -282,8 +365,10 @@ export default {
 					return;
 				}
 
-				const currentKillsRemaining = Math.floor((remainingSeconds / 60) * kpm);
+				const currentKillsRemaining = Math.floor((remainingSeconds / 60) * totalKPM);
 				let currentExpectedTokens = currentKillsRemaining * 0.33;
+				const currentNpcHearts = currentKillsRemaining * 0.2 * 50 * heartsMultiplierValue;
+				const currentMiniBossHearts = currentKillsRemaining * 0.2 * 150 * heartsMultiplierValue;
 
 				// Apply 2x multiplier if enabled
 				if (doubleTokens.$().val() === "ENABLED") {
@@ -291,7 +376,10 @@ export default {
 				}
 
 				$("[data-npck-krem-label]").text(convertNum(currentKillsRemaining, "format"));
+				$("[data-npck-miniboss-rem-label]").text(convertNum(currentKillsRemaining, "format"));
 				$("[data-npck-token-label]").text(convertNum(currentExpectedTokens.toFixed(2), "format"));
+				$("[data-npck-npc-hearts-label]").text(convertNum(currentNpcHearts.toFixed(2), "format"));
+				$("[data-npck-miniboss-hearts-label]").text(convertNum(currentMiniBossHearts.toFixed(2), "format"));
 				$("[data-npck-ttr-label]").text(humanizeDuration(Duration.fromObject({ seconds: remainingSeconds })));
 				remainingSeconds--;
 			}, 1_000);
