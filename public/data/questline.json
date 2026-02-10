@@ -69,6 +69,141 @@
 	],
 	"bang": [
 		{
+			"quest": 1,
+			"requirement": "Gain 20 Strength and 20 Durability",
+			"reward": "50 Yen"
+		},
+		{
+			"quest": 2,
+			"requirement": "Gain 20 Agility and 20 Speed",
+			"reward": "50 Yen"
+		},
+		{
+			"quest": 3,
+			"requirement": "Gain 100 Chakra",
+			"reward": "50 Yen"
+		},
+		{
+			"quest": 4,
+			"requirement": "Gain 100 Sword Skill",
+			"reward": "50 Yen, Katana Sword"
+		},
+		{
+			"quest": 5,
+			"requirement": "Gain 1k Strength",
+			"reward": "100 Yen, Rapid Punch Power"
+		},
+		{
+			"quest": 6,
+			"requirement": "Gain 1k Durability",
+			"reward": "100 Yen, King's Aura Power"
+		},
+		{
+			"quest": 7,
+			"requirement": "Gain 1k Chakra",
+			"reward": "100 Yen, Spiral Sphere Power"
+		},
+		{
+			"quest": 8,
+			"requirement": "Gain 1k Agility and 1k Speed",
+			"reward": "100 Yen, Water Running Power"
+		},
+		{
+			"quest": 9,
+			"requirement": "Gain 1k Sword Skill",
+			"reward": "100 Yen, Flying Slash Power, Titan Slayer Sword"
+		},
+		{
+			"quest": 10,
+			"requirement": "Gain 10k Chakra and 10k Agility",
+			"reward": "500 Yen, Flight Power"
+		},
+		{
+			"quest": 11,
+			"requirement": "Gain 10k Durability",
+			"reward": "500 Yen"
+		},
+		{
+			"quest": 12,
+			"requirement": "Gain 10k Strength and 10k Sword Skill",
+			"reward": "500 Yen, Rapid Slash Power, Soul Cutter Sword"
+		},
+		{
+			"quest": 13,
+			"requirement": "Gain 100k Chakra",
+			"reward": "1.5k Yen, Fire Fist Power"
+		},
+		{
+			"quest": 14,
+			"requirement": "Gain 50k Chakra and 50k Agility",
+			"reward": "1.5k Yen, Flame Flight Power"
+		},
+		{
+			"quest": 15,
+			"requirement": "Gain 100k Strength",
+			"reward": "1.5k Yen, Serious Punch Power"
+		},
+		{
+			"quest": 16,
+			"requirement": "Gain 100k Durability",
+			"reward": "1.5k Yen, Super Human Power"
+		},
+		{
+			"quest": 17,
+			"requirement": "Gain 1M Strength, 1M Durability, 1M Sword Skill",
+			"reward": "3.5k Yen, Dragon's Wrath Power, Brave Sword"
+		},
+		{
+			"quest": 18,
+			"requirement": "Gain 1M Chakra",
+			"reward": "3.5k Yen, Energy Beam Power"
+		},
+		{
+			"quest": 19,
+			"requirement": "Gain 100M Strength",
+			"reward": "40k Yen, Tornado Smash Power"
+		},
+		{
+			"quest": 20,
+			"requirement": "Gain 100M Durability and 100M Chakra",
+			"reward": "40k Yen, Skeleton Power"
+		},
+		{
+			"quest": 21,
+			"requirement": "Gain 100M Sword Skill",
+			"reward": "40k Yen, Sword of the Mist"
+		},
+		{
+			"quest": 22,
+			"requirement": "Gain 250k Agility and 250k Speed",
+			"reward": "40k Yen, Blink Power"
+		},
+		{
+			"quest": 23,
+			"requirement": "Gain 1B Strength",
+			"reward": "100k Yen, Vibration Wave Power"
+		},
+		{
+			"quest": 24,
+			"requirement": "Gain 1B Chakra",
+			"reward": "100k Yen, Ice Blast Power"
+		},
+		{
+			"quest": 25,
+			"requirement": "Gain 1B Sword Skill and 1B Durability",
+			"reward": "150k Yen, Triple-bladed Scythe"
+		},
+		{
+			"quest": 26,
+			"requirement": "Gain 500B Strength, 500B Durability, 500B Chakra",
+			"reward": "300k Yen, Armored Colossus Power"
+		},
+		{
+			"quest": 27,
+			"requirement": "Gain 5T Strength, 5T Durability, 5T Chakra",
+			"reward": "150K Yen, Stage Four. "
+		},
+		{
 			"quest": 28,
 			"requirement": "Gain 10T Strength, 10T Durability, 10T Chakra",
 			"reward": "2,000,000 Yen, Spirit Explosion Power"
@@ -154,83 +289,6 @@
 			"reward": "3,000,000,000,000 Yen"
 		}
 	],
-	"chopper": [
-		{
-			"quest": 1,
-			"requirement": "1K Strength, Durability, Chakra",
-			"reward": "1,000 Yen, 1,000 Chikara"
-		},
-		{
-			"quest": 2,
-			"requirement": "Kill 10 players",
-			"reward": "1,000 Yen, 2,000 Chikara"
-		},
-		{
-			"quest": 3,
-			"requirement": "1M Strength, Durability, Chakra",
-			"reward": "5,000 Yen, 3,000 Chikara , 3 Christmas Boxes"
-		},
-		{
-			"quest": 4,
-			"requirement": "5K increment of strength, durability and chakra",
-			"reward": "10,000 Yen, 5,000 Chikara, 30 Mins Self Boost"
-		},
-		{
-			"quest": 5,
-			"requirement": "1B Strength, Durability, Chakra",
-			"reward": "25K Yen 10K Chikara"
-		},
-		{
-			"quest": 6,
-			"requirement": "25 Sword kills",
-			"reward": "25K Yen, 10K Chikara, Snowflake Aura"
-		},
-		{
-			"quest": 7,
-			"requirement": "1T Strength, Durability, Chakra",
-			"reward": "500K Yen, 20K Chikara"
-		},
-		{
-			"quest": 8,
-			"requirement": "10K increment of Strength, Durability, Chakra",
-			"reward": "500K Yen, 20K Chikara, 2 Hour Self Boost"
-		},
-		{
-			"quest": 9,
-			"requirement": "1 QD Strength, Durability, Chakra",
-			"reward": "5M Yen, 30K Chikara, Chopper Champion"
-		},
-		{
-			"quest": 10,
-			"requirement": "250 kills",
-			"reward": "5M Yen, 30K Chikara, 4 Hour Self boost"
-		},
-		{
-			"quest": 11,
-			"requirement": "1 QN Strength, Durability, Chakra",
-			"reward": "500M Yen, 40K Chikara"
-		},
-		{
-			"quest": 12,
-			"requirement": "15K increment of strength, durability and chakra",
-			"reward": "500M Yen, 40K Chikara, 1 Day Self Boost"
-		},
-		{
-			"quest": 13,
-			"requirement": "1 SX Strength, Durability, Chakra",
-			"reward": "50B Yen, 50K Chikara"
-		},
-		{
-			"quest": 14,
-			"requirement": "25K increment of strength, durability and chakra",
-			"reward": "50B Yen, 50K Chikara, 1 Day Self Boost"
-		},
-		{
-			"quest": 15,
-			"requirement": "1 SP Strength, Durability, Chakra",
-			"reward": "1T Yen, 100K Chikara, Ace Champion"
-		}
-	],
 	"giovanno": [
 		{
 			"quest": 1,
@@ -278,13 +336,6 @@
 			"quest": 3,
 			"requirement": "Defeat 250 Players",
 			"reward": "100K Yen - 1,500 Chikara"
-		}
-	],
-	"santa": [
-		{
-			"quest": 1,
-			"requirement": "Gain 1 Strength, 1 Durability, 1 Chakra",
-			"reward": "1 Day Free Self Boost - 1,500 Chikara"
 		}
 	],
 	"makima": [

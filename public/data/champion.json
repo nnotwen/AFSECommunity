@@ -158,7 +158,7 @@
 		"chance": "0.005%",
 		"cost": "7500 SHARDS",
 		"board": 1,
-		"desc": "Auto trains 160% of your Strength, 175% of your Durability. Nerfs all player damage by 50% buffs all damage by 100% increase your Chikara Per Min by x1.5, increases your Yen per Min by x1.25"
+		"desc": "Auto trains 160% of your Strength, 175% of your Durability. Nerfs all player damage by 50% buffs all damage by 100% increase your Chikara Per Min by x1.5, increases your Yen per Min by x1.25."
 	},
 	{
 		"name": "GIOVANNA",

@@ -1,5 +1,5 @@
 {
-	"version": "4.5.1",
+	"version": "4.5.2",
 	"changelog": [
 		{
 			"type": "removed",
@@ -75,6 +75,16 @@
 			"type": "update",
 			"timestamp": 1770718992639,
 			"list": ["Changes of Questlines on Nami."]
+		},
+		{
+			"type": "removed",
+			"timestamp": 1770742507142,
+			"list": ["Removed Chopper & Santa Questline."]
+		},
+		{
+			"type": "added",
+			"timestamp": 1770742507142,
+			"list": ["Added 1-27 Bang's Questline."]
 		}
 	]
 }
