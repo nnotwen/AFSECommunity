@@ -68,7 +68,7 @@ const selectKeys = [
 			{ label: "SUPER IN LOVE", value: "2400" },
 			{ label: "STALKER", value: "2700" },
 			{ label: "OBESSESED", value: "3000" },
-			{ label: "WEIRDLY OBSSESED", value: "3375" },
+			{ label: "WEIRDLY OBSESSED", value: "3375" },
 		],
 	},
 ];
