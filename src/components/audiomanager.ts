@@ -23,7 +23,7 @@ export function backgroundMusic() {
 		$(`#${muteButtonId} > i`).removeClass("bi-volume-mute-fill").addClass("bi-volume-up-fill");
 	}
 
-	$(`#${muteButtonId}`).on("click touchstart", function () {
+	$(`#${muteButtonId}`).on("click", function () {
 		const audio = $(`#${id}`)[0] as HTMLAudioElement;
 		if (audio.paused) {
 			audio.play();
