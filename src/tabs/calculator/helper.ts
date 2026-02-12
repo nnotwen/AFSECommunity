@@ -73,7 +73,7 @@ export function convertNum<T extends "parse" | "format">(value: string | number,
 			}
 		}
 
-		return (suffix ? (num / divisor).toFixed(2).replace(/\.00$/, "") + suffix : num.toString()) as any;
+		return (suffix ? (num / divisor).toFixed(2).replace(/\.00$/, "") + suffix : num.toFixed(2)) as any;
 	}
 }
 
