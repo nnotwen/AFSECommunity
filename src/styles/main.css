@@ -2774,3 +2774,13 @@ input:checked + .toggle-slider:before {
 .group:hover .group-hover\:opacity-100 {
 	opacity: 1 !important;
 }
+
+.separator {
+	height: 2px;
+	background: linear-gradient(90deg, transparent, currentColor, transparent);
+	margin: 1rem 0;
+}
+.separator-red {
+	color: var(--cyber-red);
+	box-shadow: 0 0 10px var(--cyber-red);
+}

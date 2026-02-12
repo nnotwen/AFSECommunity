@@ -562,36 +562,6 @@ export default {
             </div>
         `);
 
-		// Add CSS for the separator
-		$(appendTo).append(/*html*/ `
-			<style>
-				.separator {
-					height: 2px;
-					background: linear-gradient(90deg, transparent, currentColor, transparent);
-					margin: 1rem 0;
-				}
-				.separator-red {
-					color: var(--cyber-red);
-					box-shadow: 0 0 10px var(--cyber-red);
-				}
-				.stats-display {
-					border: 1px solid var(--cyber-red);
-					border-radius: 8px;
-					padding: 15px;
-					margin-bottom: 15px;
-				}
-				.stats-display-red {
-					background: rgba(255, 0, 0, 0.05);
-					border-color: var(--cyber-red);
-					box-shadow: 0 0 10px rgba(255, 0, 0, 0.2);
-				}
-				.invalid {
-					border-color: #ff3860 !important;
-					box-shadow: 0 0 0 0.2rem rgba(255, 56, 96, 0.25) !important;
-				}
-			</style>
-		`);
-
 		// Load saved values
 		if (Notification.permission === "granted" && $storage.has(`notifications:npck:${notify.label}`)) {
 			$(`#${notify.id}`).val($storage.get(`notifications:npck:${notify.label}`));
