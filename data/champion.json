@@ -158,7 +158,7 @@
 		"chance": "0.005%",
 		"cost": "7500 SHARDS",
 		"board": 1,
-		"desc": "Auto trains 160% of your Strength, 175% of your Durability. Nerfs all player damage by 50% buffs all damage by 100% increase your Chikara Per Min by x1.5, increases your Yen per Min by x1.25"
+		"desc": "Auto trains 160% of your Strength, 175% of your Durability. Nerfs all player damage by 50% buffs all damage by 100% increase your Chikara Per Min by x1.5, increases your Yen per Min by x1.25."
 	},
 	{
 		"name": "GIOVANNA",
@@ -277,7 +277,7 @@
 		"chance": "BATTLE PASS TIER 25",
 		"cost": "EVENT ONLY",
 		"board": 3,
-		"desc": "Auto trains 160% of your Strength, Nerfs all player damage by 20%, buffs all Damage by 25%, increases your Yen Per Min by x1.1"
+		"desc": "Auto trains 160% of your Strength, Nerfs all player damage by 20%, buffs all Damage by 25%, increases your Yen Per Min by x1.15"
 	},
 	{
 		"name": "ROCK LEE",
@@ -319,6 +319,13 @@
 		"chance": "0.01%",
 		"cost": "EVENT ONLY",
 		"board": 3,
-		"desc": "Auto trains 150% of your Sword, increases your Yen Per Min by x1.15, increases your Heart Per Min by x2."
+		"desc": "Auto trains 150% of your Sword, 160% of your Strength, increases your Yen Per Min by x1.15, increases your Heart Per Min by x2."
+	},
+	{
+		"name": "NAMI",
+		"chance": "NAMI QUEST",
+		"cost": "EVENT ONLY",
+		"board": 3,
+		"desc": "Auto trains 140% of your Sword, increases your Yen Per Min by x1.2."
 	}
 ]
