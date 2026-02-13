@@ -85,6 +85,11 @@
 			"type": "added",
 			"timestamp": 1770742507142,
 			"list": ["Added 1-27 Bang's Questline."]
+		},
+		{
+			"type": "update",
+			"timestamp": 1770920384045,
+			"list": ["Improved UI and Mute toggle button for Mobile users."]
 		}
 	]
 }
